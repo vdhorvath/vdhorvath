@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e26ed931-77e1-4987-b383-95744ee67a31" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bMjqB3dT4zfhSmyXPmWVfnaszf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e26ed931-77e1-4987-b383-95744ee67a31" name="Default Changelist" comment="" />
+      <created>1588449044887</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588449044887</updated>
+      <workItem from="1588449047899" duration="5356000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2501" y="303" key="#com.intellij.ide.util.MemberChooser" timestamp="1588454313625">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2501" y="289" key="#com.intellij.ide.util.MemberChooser/1792.23.1920.1005/0.23.1792.1097@1792.23.1920.1005" timestamp="1588451116324" />
+    <state x="2501" y="303" key="#com.intellij.ide.util.MemberChooser/1792.23.1920.1057/0.23.1792.1045@1792.23.1920.1057" timestamp="1588454313625" />
+    <state x="573" y="378" key="com.intellij.ide.util.TipDialog" timestamp="1588449049435">
+      <screen x="0" y="23" width="1792" height="1045" />
+    </state>
+    <state x="573" y="378" key="com.intellij.ide.util.TipDialog/1792.23.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1588449049435" />
+  </component>
+</project>
