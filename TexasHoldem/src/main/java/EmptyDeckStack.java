@@ -1,6 +1,6 @@
 import java.util.EmptyStackException;
 
-public class EmptyDeckStack ADeck {
+public class EmptyDeckStack extends ADeck {
 
   public EmptyDeckStack () {
 
@@ -32,10 +32,37 @@ public class EmptyDeckStack ADeck {
 
   @Override
   public Card showCard() throws EmptyStackException {
-    return null;
+    throw new IllegalArgumentException("Empty Deck (see) ");
+  }
+
+  /**
+   * Populate the deck of cards.
+   *
+   * @return A full deck of cards.
+   */
+
+
+  @Override
+  public Deck populateDeck() {
+    throw new IllegalArgumentException("Failed to populate new deck");
   }
 
 
+
+  /**
+   * Returns and removes the most recently-added item.
+   *
+   * @return The most recently-added item.
+   * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
+   *                             Stack. Note: EmptyStackException is a built-in Java exception.
+   */
+
+
+
+  @Override
+  public Deck popCard() throws EmptyStackException {
+    throw new IllegalArgumentException("Empty Deck (pop)");
+  }
 
 
   @Override
@@ -44,19 +71,9 @@ public class EmptyDeckStack ADeck {
   }
 
 
-
-  @Override
-  public boolean equals(Object obj) {
-    return super.equals(obj);
-  }
-
-
-
   @Override
   public String toString() {
-    return super.toString();
+    return "EmptyDeckStack{}";
   }
-
-
 }
 

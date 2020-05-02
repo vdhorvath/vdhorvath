@@ -5,16 +5,16 @@ import java.util.EmptyStackException;
 
 
 
-
     /**
      * Create an empty deck of Cards.
      *
      * @return and empty deck of Cards.
      */
 
-    static Deck createDeck() {
+    static IDeck createDeck() {
       return new EmptyDeckStack();
     }
+
 
     /**
      * Tests if this Stack is empty.
@@ -41,7 +41,7 @@ import java.util.EmptyStackException;
      */
 
 
-    Card popCard() throws EmptyStackException;
+    Deck popCard() throws EmptyStackException;
 
     /**
      * Returns the most recently-added item.

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e26ed931-77e1-4987-b383-95744ee67a31" name="Default Changelist" comment="" />
+    <list default="true" id="e26ed931-77e1-4987-b383-95744ee67a31" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ADeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ADeck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EmptyDeckStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmptyDeckStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IDeck.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +29,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1bMjqB3dT4zfhSmyXPmWVfnaszf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -28,8 +42,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -59,6 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588449044887</updated>
       <workItem from="1588449047899" duration="5356000" />
+      <workItem from="1588455563192" duration="3975000" />
     </task>
     <servers />
   </component>
@@ -66,14 +83,23 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2501" y="303" key="#com.intellij.ide.util.MemberChooser" timestamp="1588454313625">
+    <state x="2501" y="303" key="#com.intellij.ide.util.MemberChooser" timestamp="1588458102303">
       <screen x="1792" y="23" width="1920" height="1057" />
     </state>
     <state x="2501" y="289" key="#com.intellij.ide.util.MemberChooser/1792.23.1920.1005/0.23.1792.1097@1792.23.1920.1005" timestamp="1588451116324" />
-    <state x="2501" y="303" key="#com.intellij.ide.util.MemberChooser/1792.23.1920.1057/0.23.1792.1045@1792.23.1920.1057" timestamp="1588454313625" />
-    <state x="573" y="378" key="com.intellij.ide.util.TipDialog" timestamp="1588449049435">
-      <screen x="0" y="23" width="1792" height="1045" />
+    <state x="2501" y="303" key="#com.intellij.ide.util.MemberChooser/1792.23.1920.1057/0.23.1792.1045@1792.23.1920.1057" timestamp="1588458102303" />
+    <state x="2462" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588457065289">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2462" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1792.23.1920.1057/0.23.1792.1045@1792.23.1920.1057" timestamp="1588457065289" />
+    <state x="2406" y="382" key="com.intellij.ide.util.TipDialog" timestamp="1588455564062">
+      <screen x="1792" y="23" width="1920" height="1057" />
     </state>
     <state x="573" y="378" key="com.intellij.ide.util.TipDialog/1792.23.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1588449049435" />
+    <state x="2406" y="382" key="com.intellij.ide.util.TipDialog/1792.23.1920.1057/0.23.1792.1045@1792.23.1920.1057" timestamp="1588455564062" />
+    <state x="2501" y="245" width="670" height="676" key="search.everywhere.popup" timestamp="1588458840101">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2501" y="245" width="670" height="676" key="search.everywhere.popup/1792.23.1920.1057/0.23.1792.1045@1792.23.1920.1057" timestamp="1588458840101" />
   </component>
 </project>
