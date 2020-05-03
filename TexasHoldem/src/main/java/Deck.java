@@ -1,20 +1,21 @@
+import java.util.ArrayList;
 import java.util.EmptyStackException;
-import java.util.Objects;
+import java.util.List;
 
-public class Deck extends ADeck  {
-  private Card card;
-  private IDeck deck;
 
-  /**
-   * Creates an empty Deck of Cards
-   * @param card - A Card
-   * @param deck - A Suit
-   */
 
-  public Deck(Card card, IDeck deck) {
-    this.card = card;
-    this.deck = deck;
+public class Deck implements IDeck  {
+  private List<Card> deck;
 
+
+  public Deck() {
+    this.deck = new ArrayList<>();
+    this.populateDeck();
+  }
+
+
+  public List<Card> getDeck() {
+    return this.deck;
   }
 
   /**
@@ -37,14 +38,29 @@ public class Deck extends ADeck  {
    * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
    *                             Stack. Note: EmptyStackException is a built-in Java exception.
    */
+
+
   @Override
-  public Deck popCard() throws EmptyStackException {
+  public Deck removeCard() throws EmptyStackException {
     if (this.deck.isEmpty()) {
       throw new IllegalArgumentException("Empty Deck (pop)");
     } else {
-      return new Deck(this.card, this.deck.popCard());
+      return new Deck().removeCard();
     }
   }
+
+
+  /**
+   * Adds a Card to the Stack
+   * @param card A Card push onto the Stack.
+   */
+
+
+  @Override
+  public void addCard(Card card) {
+    this.deck.add(card);
+  }
+
 
   /**
    * Returns the most recently-added item.
@@ -60,38 +76,29 @@ public class Deck extends ADeck  {
     if (this.deck.isEmpty()) {
       throw new IllegalArgumentException("There are no cards in this deck");
     } else
-    return this.deck.showCard();
+    return this.deck.get(-1);
   }
 
 
   /**
-   * Populate the deck of cards.
-   *
+   * Populate a deck of cards.
    * @return A full deck of cards.
    */
-  @Override
-  public Deck populateDeck() {
-    return null;
-  }
 
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+  public void populateDeck() {
+    for(Suit suit : Suit.values()) {
+      for (Value value : Value.values()) {
+        Card newCard = new Card(suit, value);
+        addCard(newCard);
+      }
     }
-    if (!(o instanceof Deck)) {
-      return false;
-    }
-    Deck deck1 = (Deck) o;
-    return card.equals(deck1.card) &&
-        deck.equals(deck1.deck);
+
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(card, deck);
-  }
+
+
 }
 
 
