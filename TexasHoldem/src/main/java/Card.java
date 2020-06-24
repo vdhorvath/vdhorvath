@@ -18,7 +18,9 @@ public class Card  {
 
   public Value getValue() {
     return value;
+
   }
+
 
   public static Comparator<Card> sortByValue() {
     return Comparator.comparing(card -> card.value);

@@ -1,5 +1,8 @@
 import java.util.EmptyStackException;
-import java.util.List;
+
+/**
+ * Stack Implementation of a Deck.
+ */
 
 
 public interface IDeck {
@@ -13,9 +16,26 @@ public interface IDeck {
 
     boolean isEmpty();
 
+    /**
+     * Size of the Deck
+     *
+     * @return Number of cards in deck
+     */
+
+
+    Integer size();
 
     /**
-     * Adds a Card to the Stack.
+     * Return the card at a particular index
+     *
+     * @return
+     */
+
+    Card cardAtPosition(Integer index);
+
+
+    /**
+     * Adds a Card to the Deck.
      *
      * @param card A Card push onto the Stack.
      */
@@ -23,10 +43,10 @@ public interface IDeck {
     void addCard(Card card);
 
     /**
-     * Returns and removes the most recently-added item.
+     * Returns Deck and removes the most recently-added item.
+     *
      * @return The most recently-added item.
-     * @throws EmptyStackException Throws an EmptyStackException
-     * if the method is called on an empty
+     * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
      */
 
 
@@ -36,20 +56,20 @@ public interface IDeck {
      * Returns the most recently-added item.
      *
      * @return The most recently-added item. (Show)
-     * @throws EmptyStackException Throws an EmptyStackException
-     * if the method is called on an empty
-     *
+     * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
      */
 
-    Card showCard() throws EmptyStackException;
+    Card showTopCard() throws EmptyStackException;
+
 
     /**
      * Populate the deck of cards.
+     *
      * @return A full deck of cards.
      */
 
 
     void populateDeck();
-
-
 }
+
+

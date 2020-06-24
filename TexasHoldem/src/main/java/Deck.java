@@ -4,8 +4,10 @@ import java.util.List;
 
 
 
-public class Deck implements IDeck  {
+public class Deck implements IDeck {
   private List<Card> deck;
+  private Integer numberOfCardsInDeck = 52;
+
 
 
   public Deck() {
@@ -13,9 +15,50 @@ public class Deck implements IDeck  {
     this.populateDeck();
   }
 
+  /**
+   * Getter for the deck
+   * @return a List of Cards
+   */
+
 
   public List<Card> getDeck() {
     return this.deck;
+  }
+
+
+  /**
+   * Setter for Deck helper to shuffle cards
+   * @param index , Index would like to exchange within the deck.
+   * @param card , Card we are exchanging.
+   */
+
+  private void set(Integer index, Card card) {
+    this.deck.set(index, card);
+
+  }
+
+
+  /**
+   * Size of the Deck
+   *
+   * @return Number of cards in deck
+   */
+
+
+  public Integer size() {
+    return this.deck.size();
+  }
+
+  /**
+   * Return the card at a particular index
+   *
+   * @return
+   */
+
+
+  @Override
+  public Card cardAtPosition(Integer index) throws IndexOutOfBoundsException {
+    return this.deck.get(index);
   }
 
   /**
@@ -42,16 +85,13 @@ public class Deck implements IDeck  {
 
   @Override
   public Deck removeCard() throws EmptyStackException {
-    if (this.deck.isEmpty()) {
-      throw new IllegalArgumentException("Empty Deck (pop)");
-    } else {
-      return new Deck().removeCard();
-    }
+    return new Deck().removeCard();
   }
 
 
   /**
-   * Adds a Card to the Stack
+   * Adds a Card to the Deck
+   *
    * @param card A Card push onto the Stack.
    */
 
@@ -72,34 +112,49 @@ public class Deck implements IDeck  {
 
 
   @Override
-  public Card showCard() throws EmptyStackException {
-    if (this.deck.isEmpty()) {
-      throw new IllegalArgumentException("There are no cards in this deck");
-    } else
+  public Card showTopCard() throws EmptyStackException {
     return this.deck.get(-1);
   }
 
 
   /**
    * Populate a deck of cards.
+   *
    * @return A full deck of cards.
    */
 
 
   @Override
   public void populateDeck() {
-    for(Suit suit : Suit.values()) {
+    for (Suit suit : Suit.values()) {
       for (Value value : Value.values()) {
         Card newCard = new Card(suit, value);
         addCard(newCard);
+
       }
     }
 
   }
 
 
+  /**
+   * Shuffle the Deck of Cards
+   * @param deck
+   */
 
-}
+
+  public void shuffleDeck(Deck deck) {
+      for (int i = 0; i < numberOfCardsInDeck; i++) {
+        int index = i + (int) (Math.random() * (numberOfCardsInDeck - i));
+        Card temp = deck.cardAtPosition(index);
+        deck.set(index, deck.cardAtPosition(i));
+        deck.set(i, temp);
+        System.out.println(temp);
+
+      }
+
+    }
+  }
 
 
 
