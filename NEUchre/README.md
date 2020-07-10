@@ -1,8 +1,7 @@
 # README: NEUchre
 
 
-![NEUchre, card game]()
-
+![NEUchre, card game](euchre.png)
 
 
 **What is NEUchre*
