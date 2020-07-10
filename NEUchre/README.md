@@ -1,8 +1,7 @@
-# README 
+# README: NEUchre
 
-## NEUchre
 
-![NEUchre, card game](https://www.google.com/url?sa=i&url=https%3A%2F%2Fvipeuchre.com%2F&psig=AOvVaw1L8e1GjsadyABo9NKZRqk6&ust=1594509963628000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLiiwNjqw-oCFQAAAAAdAAAAABAD)
+![NEUchre, card game]()
 
 
 
