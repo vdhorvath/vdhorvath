@@ -13,17 +13,19 @@ In this version of the game, Player 1 (the computer) ALWAYS goes first and leads
 The deck used for Euchre is a subset of the traditional 52-card deck. It includes the Ace, King, Queen, Jack, 10 & 9 of all four suits (Spades, Diamonds, Hearts, and Clubs).
 
 
-This project is an implementation of the 2 player Euchre card game. To get a sense of the game, you can play the traditional version at https://cardgames.io/euchre/
+This project is an implementation of the 2-player Euchre card game. To get a sense of the game, you can play the traditional version at https://cardgames.io/euchre/
 
 ~                                                                                                                                                           
 **How to build and run the code**
 
+You will want to use the Makefile to execute the game. 
+
 
 **Description of the files in the directory**
 
-> a4.c - A players hand is built as a doubly Linked-linked list
+> a4.c - **A players hand is built as a doubly Linked-linked list**
 
-> deck.c - Deck implemented as a stack based on an Array  
+> deck.c -**Deck implemented as a stack based on an Array**  
 
 > a4.h - Header file, containing all the information as it relates to all the function. 
 
@@ -35,4 +37,5 @@ This project is an implementation of the 2 player Euchre card game. To get a sen
 
 > Makefile - Executes all files. 
 
+**Val's implementation bolded**
  
