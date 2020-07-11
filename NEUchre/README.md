@@ -1,7 +1,7 @@
 # README: Euchre (pronounced "U-ker")
 
 
-		![Euchre, card game](euchre.png)
+![Euchre, card game](euchre.png)
 
 
 **What is Euchre?**
