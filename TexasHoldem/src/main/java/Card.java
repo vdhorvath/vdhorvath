@@ -1,10 +1,20 @@
-import java.util.Comparator;
 
+import java.util.Objects;
 
-public class Card  {
+/**
+ * Class for the Card
+ */
+
+public class Card implements Comparable<Card> {
   private Suit suit;
   private Value value;
 
+
+  /**
+   * Card Constructor
+   * @param suit
+   * @param value
+   */
 
   public Card(Suit suit, Value value) {
     this.suit = suit;
@@ -12,22 +22,64 @@ public class Card  {
 
   }
 
+  /**
+   * Get suit of the Card.
+   * @return suit
+   */
+
+
   public Suit getSuit() {
-    return suit;
+    return this.suit;
   }
+
+  /**
+   * Get the Value of the Card.
+   * @return value
+   */
+
 
   public Value getValue() {
-    return value;
+    return this.value;
+
+  }
+
+  /**
+   * Compares this object with the specified object for order.  Returns a negative integer, zero, or
+   * a positive integer as this object is less than, equal to, or greater than the specified
+   * object.
+   *
+   * @param other the object to be compared.
+   * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
+   * or greater than the specified object.
+   * @throws NullPointerException if the specified object is null
+   * @throws ClassCastException   if the specified object's type prevents it from being compared to
+   *                              this object.
+   */
+
+
+  public int compareTo(Card other) {
+    CardComparator cardComparator = new CardComparator();
+    return cardComparator.compare(this, other);
 
   }
 
 
-  public static Comparator<Card> sortByValue() {
-    return Comparator.comparing(card -> card.value);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Card)) {
+      return false;
+    }
+    Card card = (Card) o;
+    return suit == card.suit &&
+        value == card.value;
   }
 
-  public static Comparator<Card> sortBySuit() {
-    return Comparator.comparing(card -> card.suit);
+  @Override
+  public int hashCode() {
+    return Objects.hash(suit, value);
   }
 
   @Override
@@ -37,6 +89,8 @@ public class Card  {
         ", value=" + value +
         '}';
   }
+
+
 }
 
 

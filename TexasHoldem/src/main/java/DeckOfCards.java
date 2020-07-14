@@ -1,19 +1,29 @@
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
+import java.util.Objects;
 
 
+/**
+ * DeckOfCards class implementing a Stack Interface
+ */
 
-public class Deck implements IDeck {
+public class DeckOfCards implements Stack {
   private List<Card> deck;
   private Integer numberOfCardsInDeck = 52;
 
 
 
-  public Deck() {
+
+  /**
+   * DeckOfCards no argument Constructor to implement a DeckOfCards.
+   */
+
+  public DeckOfCards() {
     this.deck = new ArrayList<>();
     this.populateDeck();
   }
+
 
   /**
    * Getter for the deck
@@ -27,7 +37,7 @@ public class Deck implements IDeck {
 
 
   /**
-   * Setter for Deck helper to shuffle cards
+   * Setter for DeckOfCards helper to shuffle cards
    * @param index , Index would like to exchange within the deck.
    * @param card , Card we are exchanging.
    */
@@ -39,9 +49,9 @@ public class Deck implements IDeck {
 
 
   /**
-   * Size of the Deck
+   * Size of the DeckOfCards
    *
-   * @return Number of cards in deck
+   * @return number of cards in deck
    */
 
 
@@ -52,11 +62,9 @@ public class Deck implements IDeck {
   /**
    * Return the card at a particular index
    *
-   * @return
+   * @return Card at a specified index.
    */
 
-
-  @Override
   public Card cardAtPosition(Integer index) throws IndexOutOfBoundsException {
     return this.deck.get(index);
   }
@@ -64,7 +72,7 @@ public class Deck implements IDeck {
   /**
    * Tests if this Stack is empty.
    *
-   * @return true if and only if the Deck contains no Cards. Otherwise return false.
+   * @return true if and only if the DeckOfCards contains no Cards. Otherwise return false.
    */
 
 
@@ -84,13 +92,15 @@ public class Deck implements IDeck {
 
 
   @Override
-  public Deck removeCard() throws EmptyStackException {
-    return new Deck().removeCard();
+  public Card popCard() throws EmptyStackException {
+    return this.deck.remove(this.numberOfCardsInDeck - 1);
+
+
   }
 
 
   /**
-   * Adds a Card to the Deck
+   * Adds a Card to the DeckOfCards
    *
    * @param card A Card push onto the Stack.
    */
@@ -113,8 +123,9 @@ public class Deck implements IDeck {
 
   @Override
   public Card showTopCard() throws EmptyStackException {
-    return this.deck.get(-1);
+    return this.deck.get(this.numberOfCardsInDeck - 1);
   }
+
 
 
   /**
@@ -123,8 +134,6 @@ public class Deck implements IDeck {
    * @return A full deck of cards.
    */
 
-
-  @Override
   public void populateDeck() {
     for (Suit suit : Suit.values()) {
       for (Value value : Value.values()) {
@@ -138,23 +147,50 @@ public class Deck implements IDeck {
 
 
   /**
-   * Shuffle the Deck of Cards
-   * @param deck
+   * Shuffle the DeckOfCards of Cards
    */
 
 
-  public void shuffleDeck(Deck deck) {
-      for (int i = 0; i < numberOfCardsInDeck; i++) {
+  public void shuffleDeck() {
+    DeckOfCards deck = new DeckOfCards();
+    for (int i = 0; i < numberOfCardsInDeck; i++) {
         int index = i + (int) (Math.random() * (numberOfCardsInDeck - i));
         Card temp = deck.cardAtPosition(index);
         deck.set(index, deck.cardAtPosition(i));
         deck.set(i, temp);
         System.out.println(temp);
-
       }
 
     }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof DeckOfCards)) {
+      return false;
+    }
+    DeckOfCards that = (DeckOfCards) o;
+    return Objects.equals(deck, that.deck) &&
+        Objects.equals(numberOfCardsInDeck, that.numberOfCardsInDeck);
   }
+
+
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(deck, numberOfCardsInDeck);
+  }
+
+  @Override
+  public String toString() {
+    return "DeckOfCards{" +
+        "deck=" + deck +
+        ", numberOfCardsInDeck=" + numberOfCardsInDeck +
+        '}';
+  }
+}
 
 
 

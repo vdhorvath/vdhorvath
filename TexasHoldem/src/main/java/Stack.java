@@ -1,11 +1,11 @@
 import java.util.EmptyStackException;
 
 /**
- * Stack Implementation of a Deck.
+ * Stack Implementation of a DeckOfCards.
  */
 
 
-public interface IDeck {
+public interface Stack {
 
 
     /**
@@ -17,7 +17,7 @@ public interface IDeck {
     boolean isEmpty();
 
     /**
-     * Size of the Deck
+     * Size of the DeckOfCards
      *
      * @return Number of cards in deck
      */
@@ -25,17 +25,9 @@ public interface IDeck {
 
     Integer size();
 
-    /**
-     * Return the card at a particular index
-     *
-     * @return
-     */
-
-    Card cardAtPosition(Integer index);
-
 
     /**
-     * Adds a Card to the Deck.
+     * Adds a Card to the DeckOfCards.
      *
      * @param card A Card push onto the Stack.
      */
@@ -43,14 +35,14 @@ public interface IDeck {
     void addCard(Card card);
 
     /**
-     * Returns Deck and removes the most recently-added item.
+     * Returns and removes the most recently-added item.
      *
      * @return The most recently-added item.
      * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
      */
 
 
-    Deck removeCard() throws EmptyStackException;
+    Card popCard() throws EmptyStackException;
 
     /**
      * Returns the most recently-added item.
@@ -61,15 +53,6 @@ public interface IDeck {
 
     Card showTopCard() throws EmptyStackException;
 
-
-    /**
-     * Populate the deck of cards.
-     *
-     * @return A full deck of cards.
-     */
-
-
-    void populateDeck();
 }
 
 

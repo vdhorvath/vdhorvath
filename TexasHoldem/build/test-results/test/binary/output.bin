@@ -1,0 +1,52 @@
+Card{suit=Clubs, value=Nine}
+Card{suit=Clubs, value=Eight}
+Card{suit=Spades, value=Jack}
+Card{suit=Hearts, value=ACE}
+Card{suit=Clubs, value=Five}
+ Card{suit=Diamonds, value=King}
+Card{suit=Spades, value=Eight}
+Card{suit=Hearts, value=Eight}
+ Card{suit=Diamonds, value=Five}
+Card{suit=Spades, value=Two}
+Card{suit=Clubs, value=Two}
+Card{suit=Hearts, value=Ten}
+Card{suit=Spades, value=Ten}
+Card{suit=Hearts, value=King}
+Card{suit=Clubs, value=Ten}
+Card{suit=Spades, value=Queen}
+Card{suit=Clubs, value=ACE}
+Card{suit=Clubs, value=Jack}
+ Card{suit=Diamonds, value=Four}
+Card{suit=Clubs, value=Three}
+ Card{suit=Diamonds, value=Jack}
+Card{suit=Hearts, value=Queen}
+Card{suit=Clubs, value=King}
+!Card{suit=Diamonds, value=Three}
+Card{suit=Spades, value=Nine}
+Card{suit=Spades, value=Six}
+Card{suit=Hearts, value=Four}
+Card{suit=Diamonds, value=Two}
+Card{suit=Spades, value=Five}
+Card{suit=Spades, value=Four}
+!Card{suit=Diamonds, value=Seven}
+Card{suit=Clubs, value=Seven}
+ Card{suit=Diamonds, value=Nine}
+Card{suit=Diamonds, value=Ten}
+Card{suit=Hearts, value=Seven}
+!Card{suit=Diamonds, value=Queen}
+Card{suit=Diamonds, value=Six}
+Card{suit=Hearts, value=Six}
+Card{suit=Hearts, value=Nine}
+Card{suit=Spades, value=King}
+Card{suit=Clubs, value=Queen}
+Card{suit=Spades, value=Three}
+Card{suit=Hearts, value=Five}
+!Card{suit=Diamonds, value=Eight}
+Card{suit=Diamonds, value=ACE}
+Card{suit=Spades, value=Seven}
+Card{suit=Hearts, value=Three}
+Card{suit=Hearts, value=Jack}
+Card{suit=Clubs, value=Six}
+Card{suit=Hearts, value=Two}
+Card{suit=Spades, value=ACE}
+Card{suit=Clubs, value=Four}
