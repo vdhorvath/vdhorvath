@@ -1,5 +1,10 @@
 import static org.junit.Assert.*;
 
+import Model.Card;
+import Model.DeckOfCards;
+import Model.EmptyDeckOfCards;
+import Model.Suit;
+import Model.Value;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,8 +54,10 @@ public class DeckOfCardsTest {
 
   @Test
   public void popCard() {
-    deck1.popCard();
-    assertEquals(Integer.valueOf(51), deck1.size());
+
+    deck1.popCard(deck1);
+    deck1.popCard(deck1);
+    assertEquals(Integer.valueOf(50), deck1.size());
   }
 
   @Test
@@ -89,7 +96,7 @@ public class DeckOfCardsTest {
 
   @Test
   public void testToString() {
-    String expected = "EmptyDeckOfCards{}";
+    String expected = "Model.EmptyDeckOfCards{}";
     assertEquals(expected, emptyDeckOfCards.toString());
 
   }

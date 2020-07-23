@@ -1,5 +1,9 @@
 
 import static org.junit.Assert.*;
+
+import Model.Card;
+import Model.Suit;
+import Model.Value;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,7 +56,7 @@ public class CardTest {
 
   @Test
   public void testToString() {
-    String expected = "Card{suit=Hearts, value=Queen}";
+    String expected = "Model.Card{suit=Hearts, value=Queen}";
     assertEquals(expected, card2.toString());
 
   }

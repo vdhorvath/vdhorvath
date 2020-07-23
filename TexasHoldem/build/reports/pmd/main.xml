@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.8.0" timestamp="2020-07-16T08:37:17.862">
+<file name="/Users/valeriehorvath/Documents/vdhorvath/TexasHoldem/src/main/java/Model/DeckOfCards.java">
+<violation beginline="26" endline="26" begincolumn="5" endcolumn="23" rule="ConstructorCallsOverridableMethod" ruleset="Error Prone" package="Model" class="DeckOfCards" method="DeckOfCards" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#constructorcallsoverridablemethod" priority="1">
+Overridable method 'populateDeck' called during object construction
+</violation>
+<violation beginline="173" endline="173" begincolumn="8" endcolumn="25" rule="SystemPrintln" ruleset="Best Practices" package="Model" class="DeckOfCards" method="cutsDeck" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+System.out.println is used
+</violation>
+</file>
+<file name="/Users/valeriehorvath/Documents/vdhorvath/TexasHoldem/src/main/java/Model/Suit.java">
+<violation beginline="4" endline="4" begincolumn="3" endcolumn="7" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Suit" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Clubs' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="4" endline="4" begincolumn="10" endcolumn="17" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Suit" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Diamonds' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="4" endline="4" begincolumn="20" endcolumn="25" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Suit" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Hearts' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="4" endline="4" begincolumn="28" endcolumn="33" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Suit" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Spades' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+</file>
+<file name="/Users/valeriehorvath/Documents/vdhorvath/TexasHoldem/src/main/java/Model/Value.java">
+<violation beginline="5" endline="5" begincolumn="57" endcolumn="64" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Eight' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="30" endcolumn="36" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Five' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="21" endcolumn="27" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Four' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="67" endcolumn="73" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Nine' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="47" endcolumn="54" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Seven' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="39" endcolumn="44" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Six' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="76" endcolumn="82" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Ten' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="11" endcolumn="18" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Three' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="5" endline="5" begincolumn="3" endcolumn="8" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Two' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="6" endline="6" begincolumn="3" endcolumn="10" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Jack' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="6" endline="6" begincolumn="24" endcolumn="31" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'King' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+<violation beginline="6" endline="6" begincolumn="13" endcolumn="21" rule="FieldNamingConventions" ruleset="Code Style" package="Model" class="Value" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#fieldnamingconventions" priority="1">
+The enum constant name 'Queen' doesn't match '[A-Z][A-Z_0-9]*'
+</violation>
+</file>
+</pmd>

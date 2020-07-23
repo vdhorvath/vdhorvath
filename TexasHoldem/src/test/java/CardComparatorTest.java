@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import Model.Card;
+import Model.Suit;
+import Model.Value;
 import org.junit.Before;
 import org.junit.Test;
 
