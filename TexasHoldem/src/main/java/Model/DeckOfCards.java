@@ -23,11 +23,9 @@ public class DeckOfCards extends ADeckOfCards {
 
   public DeckOfCards() {
     this.deck = new ArrayList<>();
+    this.populateDeck();
 
   }
-
-
-
 
 
   /**
@@ -54,7 +52,6 @@ public class DeckOfCards extends ADeckOfCards {
 
   }
 
-
   /**
    * Size of the Model.DeckOfCards
    *
@@ -66,15 +63,6 @@ public class DeckOfCards extends ADeckOfCards {
     return this.deck.size();
   }
 
-  /**
-   * Return the card at a particular index
-   *
-   * @return Model.Card at a specified index.
-   */
-
-  public Card cardAtPosition(Integer index) throws IndexOutOfBoundsException {
-    return this.deck.get(index);
-  }
 
   /**
    * Tests if this Model.Stack is empty.
@@ -189,7 +177,7 @@ public class DeckOfCards extends ADeckOfCards {
     int i = this.numberOfCardsInDeck - 1;
     int j = 0;
 
-    // We are partitioning around the new topcard.
+    // We are partitioning around the new Topcard.
     // Cards that are on top of deck are being pushed to the back of the deck
 
     while (i > indexOfNewTopCard) {

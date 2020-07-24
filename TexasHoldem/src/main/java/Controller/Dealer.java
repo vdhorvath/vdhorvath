@@ -1,27 +1,29 @@
 package Controller;
 
-import Model.Card;
-import java.util.ArrayList;
+import Model.Hand;
 
 
-public class Dealer {
-  private ArrayList<Card> dealerHand;
 
+public class Dealer extends Hand {
 
-  public Dealer(ArrayList<Card> dealerHand) {
-    this.dealerHand = dealerHand;
+  public Dealer() {
+    super();
+
 
   }
 
-  public ArrayList<Card> getDealerHand() {
-    return dealerHand;
+
+  @Override
+  public String toString() {
+    return "Dealer" + getHand();
   }
-
-  // Possible come back and add a flag
-
-
-
 }
+
+
+
+
+
+
 
 
 

@@ -1,20 +1,35 @@
-import View.Game;
+package View;
+
+import Controller.Game;
+import Controller.Players;
+import Model.NoCashException;
 import java.util.Scanner;
 
 public class Main {
 
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws NoCashException {
 
     Scanner scanner = new Scanner(System.in);  // Create a Scanner object
     System.out.println("Enter number of players");
     Integer numberOfPlayers = scanner.nextInt();
 
 
-    Game game = new Game(numberOfPlayers);
+      Game game = new Game(numberOfPlayers);
+      game.newGame();
+      game.PlayGame();
 
-    game.newGame();
-    game.deal();
+
+
+
+
+
+
+
+
+
+
+
 
 
 
