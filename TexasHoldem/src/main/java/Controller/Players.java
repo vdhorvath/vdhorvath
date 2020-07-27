@@ -3,21 +3,27 @@ package Controller;
 
 import Model.Hand;
 import Model.NoCashException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Players extends Hand {
-
-  private final int playerNumber = 0;
+  private static AtomicInteger playerNumberGen = new AtomicInteger(1);
   private Double purse = 100000.00;
+  private Integer playerNumber = 1;
+  private Double currBet = 0.0;
 
 
   public Players() {
     super();
     this.purse = getPurse();
-    this.playerNumber =
+    this.playerNumber = this.playerNumberGen.getAndIncrement();
 
 
 
+  }
+
+  protected static void setPlayerNumber(int startingInt) {
+    Players.playerNumberGen = new AtomicInteger(startingInt);
   }
 
 
@@ -32,8 +38,8 @@ public class Players extends Hand {
 
   }
 
-  public Integer getPlay() {
-    return getPNumberGen();
+  public Integer getPlayerNum() {
+    return this.playerNumber;
   }
 
 
@@ -48,18 +54,24 @@ public class Players extends Hand {
   }
 
 
-  public Double bet(Double amount) throws NoCashException {
-    if (this.purse - amount > 0) {
-      return this.purse - amount;
+  public Double bet(Double currBet) throws NoCashException {
+    if (this.purse - currBet > 0) {
+      System.out.println(currBet);
+      return this.purse - currBet;
+
     }
     throw new NoCashException();
 
 
   }
 
+
+
+
+
   public String toCustomString() {
-    return "Player = " + getPNumberGen() + " " +
-        "purse=" + purse +
+    return "Player = " + getPlayerNum() + " " +
+        "purse = " + purse +
         '}';
   }
 
@@ -68,7 +80,7 @@ public class Players extends Hand {
 
   @Override
   public String toString() {
-    return "Player = " + getPNumberGen() + getHand() +
+    return "Player = " + getPlayerNum() + getHand() +
         "purse=" + purse +
         '}';
   }

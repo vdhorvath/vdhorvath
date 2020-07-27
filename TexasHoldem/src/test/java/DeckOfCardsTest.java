@@ -41,24 +41,13 @@ public class DeckOfCardsTest {
 
   }
 
-  @Test
-  public void cardAtPosition() {
-    assertEquals(card7, deck1.cardAtPosition(5));
-  }
+
 
   @Test
   public void isEmpty() {
     assertFalse(deck1.isEmpty());
   }
 
-
-  @Test
-  public void popCard() {
-
-    deck1.popCard(deck1);
-    deck1.popCard(deck1);
-    assertEquals(Integer.valueOf(50), deck1.size());
-  }
 
   @Test
   public void addCard() {

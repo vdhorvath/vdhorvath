@@ -3,27 +3,49 @@ package View;
 
 import Model.DeckOfCards;
 import Model.Hand;
-import Model.Pot;
+import java.security.PublicKey;
 
 
 public class Table extends Hand {
-  private Pot pot;
+  private Integer pot;
   private DeckOfCards currDeckOfCards;
+
+
 
 
   public Table() {
     super();
     this.pot = pot;
-    this.currDeckOfCards = new DeckOfCards();
+
 
   }
 
-  public Pot getPot() {
+
+
+
+  public Integer getPot() {
     return pot;
   }
 
-  public DeckOfCards getCurrDeckOfCards() {
-    return currDeckOfCards;
+
+
+
+
+
+  public void setPot(Integer pot) {
+    this.pot = pot;
   }
 
+
+
+
+
+
+  @Override
+  public String toString() {
+    return "Table {" +
+        "pot =" + pot +
+        ", currDeckOfCards = " + currDeckOfCards +
+        '}';
+  }
 }
