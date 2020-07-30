@@ -1,3 +1,3 @@
-# Hi, I'm Valerie ![Val, appVal](/assets/images/Grateful_val.png)
+# Hi, I'm Valerie ![Val, appVal](Grateful_val.png)
 
 personalrepo
