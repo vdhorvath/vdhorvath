@@ -1,7 +1,6 @@
 package View;
 
 import Controller.Game;
-import Model.MinBetException;
 import Model.NoCashException;
 import java.util.Scanner;
 

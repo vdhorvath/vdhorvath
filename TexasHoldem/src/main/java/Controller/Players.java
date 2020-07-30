@@ -1,7 +1,6 @@
 package Controller;
 
 
-import Model.Bet;
 import Model.Hand;
 import Model.NoCashException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -9,9 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Players extends Hand {
   private static AtomicInteger playerNumberGen = new AtomicInteger(1);
-  private Double purse = 100000.00;
+  private double purse = 10000.00;
   private Integer playerNumber = 1;
-  private Bet bet;
+
 
 
 
@@ -54,7 +53,7 @@ public class Players extends Hand {
   }
 
 
-  public Double bet(Double currBet) throws NoCashException {
+  public double bet(Double currBet) throws NoCashException {
     if (this.purse - currBet > 0) {
       System.out.println(currBet);
       return this.purse - currBet;
@@ -64,8 +63,6 @@ public class Players extends Hand {
 
 
   }
-
-
 
 
 

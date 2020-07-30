@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.DeckOfCards;
-import Model.MinBetException;
 import Model.NoCashException;
 import View.Table;
 import java.util.ArrayList;
@@ -13,10 +12,11 @@ public class Game {
   private Integer numberOfPlayers;
   private ArrayList<Players> currPlayers;
   private Table currTable;
-  private Double currRoundPot = 0.0;
-  private Double minBet = 1000.00;
   private DeckOfCards currDeckOfCards;
-  private Integer round = 0;
+  private Double bigBlind = 1000.0;
+  private Double smallBlind = bigBlind / 2;
+  private Double betsToPot = 0.0;
+
 
 
   public Game(Integer numberOfPlayers) {
@@ -24,7 +24,10 @@ public class Game {
     this.currPlayers = new ArrayList<>();
     this.currTable = new Table();
     this.currDeckOfCards = new DeckOfCards();
-    this.round = 0;
+
+
+
+
 
 
   }
@@ -56,8 +59,8 @@ public class Game {
   }
 
 
-  public Double updateMinBet(Double minRoundBet) {
-    return this.minBet = minRoundBet;
+  public Double updateBigBlind(Double minRoundBet) {
+    return this.bigBlind = minRoundBet;
 
 
   }
@@ -119,6 +122,33 @@ public class Game {
     }*/
 
 
+  /**
+   * Ask current players the amount they would like to wager;
+   * @return a double, players bet amount.
+   * @throws MinBetException
+   */
+
+
+  public Double askPlayerBetAmt() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("_____________________________");
+    System.out.println("_____________________________");
+    System.out.println(String
+        .format("How much would you like bet? Your bet must be a minimum of %f", this.bigBlind));
+    Double amount = scanner.nextDouble();
+    if (amount < this.bigBlind) {
+      System.out.println("Sorry your bet was too low, the minimum bet is " + "" + this.bigBlind);
+      askPlayerBetAmt(); // Re-prompt player if bet is to low
+
+    } else if (amount > this.bigBlind) {
+      updateBigBlind(amount); // update big blind if previous player raised
+      this.currTable.addBetsToPot(amount); // collect total bets
+      return amount;
+    }
+
+    return this.currTable.addBetsToPot(amount); // collect total bets
+  }
+
 
 
 
@@ -161,14 +191,14 @@ public class Game {
 
     }
 
-
+/*
     public void updateLeftOfDealer() {
       if (this.round == 0) {
         return;
       } else
         this.currPlayers.add(this.currPlayers.remove(0));
       System.out.println(this.getCurrPlayers());
-    }
+    }*/
 
 
 
@@ -185,7 +215,8 @@ public class Game {
 
       for(Players players : this.currPlayers) {
         System.out.println(players.toCustomString());
-        players.bet(getPlayerBetAmount());
+        askPlayerBetAmt();
+        System.out.println("This is the current pot" + " " + this.currTable.getPot());
 
       }
 

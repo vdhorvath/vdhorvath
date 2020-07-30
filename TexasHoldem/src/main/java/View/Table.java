@@ -7,7 +7,7 @@ import Model.Hand;
 
 
 public class Table extends Hand {
-  private Integer pot;
+  private Double pot = 0.0;
   private DeckOfCards currDeckOfCards;
 
 
@@ -21,9 +21,7 @@ public class Table extends Hand {
   }
 
 
-
-
-  public Integer getPot() {
+  public Double getPot() {
     return pot;
   }
 
@@ -31,9 +29,8 @@ public class Table extends Hand {
 
 
 
-
-  public void setPot(Integer pot) {
-    this.pot = pot;
+  public Double addBetsToPot(Double pot) {
+    return this.pot += pot;
   }
 
 
