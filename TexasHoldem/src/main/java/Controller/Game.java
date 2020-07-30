@@ -125,7 +125,7 @@ public class Game {
   /**
    * Ask current players the amount they would like to wager;
    * @return a double, players bet amount.
-   * @throws MinBetException
+   * @throws
    */
 
 
@@ -152,7 +152,7 @@ public class Game {
 
 
 
-  public void checkOrRaise() throws MinBetException, NoCashException {
+  public void checkOrRaise() throws NoCashException {
     for (Players players : this.currPlayers) {
       System.out.println(players.toCustomString());
       Scanner scanner = new Scanner(System.in);
@@ -204,7 +204,7 @@ public class Game {
 
 
 
-  public void PlayGame() throws MinBetException, NoCashException {
+  public void PlayGame() throws NoCashException {
     deal();
     int round = 0;
     while (round != 3) {

@@ -2,4 +2,4 @@
 
 # Hi, I'm Valerie!
 
-I am graduate student at Northeastern University, studying Computer Science. 
+I am a graduate student at Northeastern University, studying Computer Science. 
