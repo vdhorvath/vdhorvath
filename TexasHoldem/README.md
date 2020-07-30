@@ -1,4 +1,4 @@
-# README: TEXAS HOLDEM
+# TEXAS HOLDEM
 
 
-![Texas Holdem, card game](TexasHoldem.png)
+![Texas Holdem, card game](TexasHoldem.jpg)
