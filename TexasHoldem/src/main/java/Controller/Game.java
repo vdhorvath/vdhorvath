@@ -16,8 +16,7 @@ public class Game {
   private Double currRoundPot = 0.0;
   private Double minBet = 1000.00;
   private DeckOfCards currDeckOfCards;
-
-
+  private Integer round = 0;
 
 
   public Game(Integer numberOfPlayers) {
@@ -25,7 +24,7 @@ public class Game {
     this.currPlayers = new ArrayList<>();
     this.currTable = new Table();
     this.currDeckOfCards = new DeckOfCards();
-
+    this.round = 0;
 
 
   }
@@ -40,10 +39,12 @@ public class Game {
   }
 
 
+
   public void newGame() {
     createPlayer();
 
   }
+
 
   public void createPlayer() {
     for (int i = 0; i < this.numberOfPlayers; i++) {
@@ -53,6 +54,7 @@ public class Game {
 
 
   }
+
 
   public Double updateMinBet(Double minRoundBet) {
     return this.minBet = minRoundBet;
@@ -93,107 +95,108 @@ public class Game {
 
   }
 
-
-  public Double playerBetsAmt() throws MinBetException {
-    Scanner scanner = new Scanner(System.in);
-    System.out.println(String.format("How much would you like bet, your bet must be a minimum of %f",this.minBet));
-    Double amount = scanner.nextDouble();
-    if (amount.equals(this.minBet)) {
-      this.currRoundPot += amount;
-      return amount;
-    } else if (amount > this.minBet) {
-      return updateMinBet(amount);
-    }
-    throw new MinBetException();
-  }
+  /**
+   * Get players bet amount, and update minimum bet
+   * @return a double, players bet amount.
+   * @throws MinBetException
+   */
 
 
+  /*public Double getPlayerBetAmount() throws MinBetException {
+      Scanner scanner = new Scanner(System.in);
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println(String
+          .format("How much would you like bet, your bet must be a minimum of %f", this.minBet));
+      Double amount = scanner.nextDouble();
+      if (amount.equals(this.minBet)) {
+        this.currRoundPot += amount;
+        return amount;
+      } else if (amount > this.minBet) {
+        return updateMinBet(amount);
+      }
+      throw new MinBetException();
+    }*/
 
-  public void choicesCheckRaise() throws MinBetException {
-    System.out.println("_____________________________");
-    System.out.println("Player 1 Check or Re-raise?");
-    System.out.println("For Check enter = 1 OR Raise enter = 2");
-    System.out.println("_______________________");
-    System.out.println("_______________________");
-    System.out.println("_______________________");
-    Players players = new Players();
-    Scanner scanner = new Scanner(System.in);
-    Integer choice = scanner.nextInt();
 
 
-    switch(choice) {
-      case 1:
+
+
+  public void checkOrRaise() throws MinBetException, NoCashException {
+    for (Players players : this.currPlayers) {
+      System.out.println(players.toCustomString());
+      Scanner scanner = new Scanner(System.in);
+      Integer choice = scanner.nextInt();
+
+      switch (choice) {
+        case 1:
+          players.check();
+          break;
+        case 2:
+          break;
+        default:
+          players.fold();
+      }
+
+      if (choice.equals(1)) {
         players.check();
-        break;
-      case 2:
+        //} else
+        //playerBetsAmt();
 
-        break;
-      default:
-        players.fold();
+      }
+
     }
-
-    if (choice.equals(1)) {
-      players.check();
-    } else playerBetsAmt();
-
-
-  }
-
-
-  public void checkPlayerLosses() {
-    for (Players player : this.currPlayers) {
-      if (player.getPurse().equals(0.0));
-      this.currPlayers.remove(player);
-      System.out.println("You Lose!");
-    }
-
-
   }
 
 
 
+    public void checkPlayerLosses() {
+      for (Players player : this.currPlayers) {
+        if (player.getPurse().equals(0.0))
+          ;
+        System.out.println(String.format("%s, You Lose!", player.toCustomString()));
+        this.currPlayers.remove(player);
+      }
 
-  public void PlayGame() throws NoCashException, MinBetException {
+
+    }
+
+
+    public void updateLeftOfDealer() {
+      if (this.round == 0) {
+        return;
+      } else
+        this.currPlayers.add(this.currPlayers.remove(0));
+      System.out.println(this.getCurrPlayers());
+    }
+
+
+
+
+
+  public void PlayGame() throws MinBetException, NoCashException {
     deal();
     int round = 0;
-    while (round != 1) {
+    while (round != 3) {
 
       System.out.println("_____________________________");
       System.out.println("_____________________________");
       System.out.println("_____________________________");
 
-      for (Players players : this.currPlayers) {
-        System.out.println("_____________________________");
+      for(Players players : this.currPlayers) {
         System.out.println(players.toCustomString());
-        players.bet(playerBetsAmt());
+        players.bet(getPlayerBetAmount());
 
       }
-      choicesCheckRaise();
 
-      dealFlop();
-
-      System.out.println(this.currRoundPot);
-      System.out.println(this.currDeckOfCards.size());
-
-      choicesCheckRaise();
-      dealTurn();
-
-      System.out.println(this.currRoundPot);
-      System.out.println(this.currDeckOfCards.size());
-
-      choicesCheckRaise();
-      dealRiver();
-
-      System.out.println(this.currRoundPot);
-      System.out.println(this.currDeckOfCards.size());
-      checkPlayerLosses();
-      round++;
-
-      }
 
 
     }
+
+
   }
+}
+
 
 
 
