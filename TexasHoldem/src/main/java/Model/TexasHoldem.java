@@ -5,18 +5,22 @@ import Controller.Players;
 import View.Table;
 import java.util.ArrayList;
 
+import java.util.List;
 
 public class TexasHoldem {
 
   private Integer numberOfPlayers;
   private Dealer dealer;
-  private ArrayList<Players> currPlayers;
+  private List<Players> currPlayers;
   private Table currTable;
   private DeckOfCards currDeckOfCards;
   private Double gameBigBlind = 1000.0;
   private Double roundBigBlind = 1000.0;
   private Double smallBlind = roundBigBlind / 2;
   private boolean raiseFlag = false;
+  private List<Players> foldList = new ArrayList<>();
+
+
 
 
   public TexasHoldem(Integer numberOfPlayers) {
@@ -25,18 +29,23 @@ public class TexasHoldem {
     this.currPlayers = new ArrayList<>();
     this.currTable = new Table();
     this.dealer = new Dealer(currDeckOfCards, currTable);
+    this.roundBigBlind = getRoundBigBlind();
 
 
   }
 
-  public Integer getNumberOfPlayers() {
-    return numberOfPlayers;
-  }
+
+  /**
+   * Get all the current players in the game.
+   * @return an Array list of players in the game.
+   */
 
 
-  public ArrayList<Players> getCurrPlayers() {
+  public List<Players> getCurrPlayers() {
     return this.currPlayers;
   }
+
+
 
 
   public void newGame() {
@@ -44,6 +53,10 @@ public class TexasHoldem {
 
   }
 
+
+  /**
+   * Create number of players in the game.
+   */
 
   public void createPlayer() {
     for (int i = 0; i < this.numberOfPlayers; i++) {
@@ -55,11 +68,26 @@ public class TexasHoldem {
   }
 
 
+  /**
+   * Setter function to update the number of players in the game.
+   * @param minRoundBet
+   */
+
+
   public void updateRoundBigBlind(Double minRoundBet) {
     this.roundBigBlind = minRoundBet;
 
   }
 
+  public void updateFlag(boolean raiseFlag) {
+    this.raiseFlag = false;
+  }
+
+
+  /**
+   * Getter for the
+   * @return the big blind for the round.
+   */
 
   public Double getRoundBigBlind() {
     return roundBigBlind;
@@ -75,6 +103,26 @@ public class TexasHoldem {
 /// Need to split up logic here
 
 
+  public void validatePlayersChoice(List<Players> currPlayers, Players player)
+      throws NoCashException {
+
+    if (player.getChoice() == 3) {
+      foldPlayer(currPlayers, player);
+
+
+    } else if(player.getChoice() == 1) {
+      validatePlayersBet(player, this.roundBigBlind);
+
+
+    } else if (player.getChoice() == 2) {
+      validatePlayersBet(player, dealer.askPlayerBetAmt());
+
+    }
+
+
+  }
+
+
   public Double validatePlayersBet(Players player, Double amount) throws NoCashException {
     Double newBet = 0.0;
     if (amount < this.roundBigBlind) {
@@ -82,38 +130,42 @@ public class TexasHoldem {
           .println("Sorry your bet was too low, the minimum bet is " + "" + this.roundBigBlind);
       newBet = dealer.askPlayerBetAmt();
       return this.validatePlayersBet(player, newBet);
+
     } else if (amount > this.roundBigBlind) {
       updateRoundBigBlind(amount);
-      player.bet(amount);
+      // take money from players purse
+      player.betOrCheck(amount);
+
+      // flag for raise bet
       this.raiseFlag = true;
+
       System.out.println("The minimum has increased, the minimum bet is " + "" + this.roundBigBlind);
       return this.currTable.addBetsToPot(amount);
     }
+    // take money from players purse
+    player.betOrCheck(this.roundBigBlind);
+    // update the pot, adding funds to pot
     return this.currTable.addBetsToPot(amount);
   }
 
+  /**
+   * Skip Player's Turn if they fold.
+   * @param currPlayers Current players in the game
+   * @param player player that has folded.
+   */
 
 
 
+  public void foldPlayer(List<Players> currPlayers, Players player) {
+    this.foldList.add(player);
+    currPlayers.listIterator().next();
+      System.out.println("---------------------------------");
+      System.out.println(player.toCustomString() + " " + "has folded");
+      System.out.println("---------------------------------");
 
-  public void validateChoice(Players player) throws NoCashException {
-    if (player.getChoice() == 1) {
-      player.check();
+    }
 
 
-    } else if (player.getChoice() == 2) {
-      this.shiftPlayersForBets(this.currPlayers, this.indexOfBigBlind());
-
-
-    } else if (player.getChoice() == 3) {
-      player.fold();
-
-  } else
-    System.out
-        .println("Sorry please enter a valid number");
-    dealer.askPlayerForChoice(player);
-
-  }
 
 
   public void checkPlayerLosses() {
@@ -121,8 +173,8 @@ public class TexasHoldem {
       if (player.getPurse().equals(0.0)) {
         System.out.println(String.format("%s, You Lose!", player.toCustomString()));
         this.currPlayers.remove(player);
-      }
 
+      }
     }
   }
 
@@ -139,19 +191,6 @@ public class TexasHoldem {
   }
 
 
-  public Players smallBlindPlayer() {
-    return this.currPlayers.get(0);
-  }
-
-
-  public Integer indexOfBigBlind() {
-    if (this.currPlayers.size() < 3) {
-      return 0;
-    } else
-      return 1;
-  }
-
-
   public Integer indexOfFirstToAct() {
     if (this.currPlayers.size() < 3) {
       return 1;
@@ -160,17 +199,18 @@ public class TexasHoldem {
   }
 
 
-  public ArrayList<Players> shiftPlayersForBets(ArrayList<Players> currPlayers, Integer index) {
+  public List<Players> shiftPlayersForBets(List<Players> currPlayers, Integer index) {
     Integer i = index;
     Integer j = 0;
-    ArrayList<Players> shiftedPlayerList = new ArrayList<>();
+    List<Players> shiftedPlayerList = new ArrayList() {
+    };
 
     while (i <= currPlayers.size() - 1) {
       shiftedPlayerList.add(currPlayers.get(i));
       i++;
     }
 
-    while (j <= indexOfFirstToAct()) {
+    while (j < indexOfFirstToAct()) {
       shiftedPlayerList.add(currPlayers.get(j));
       j++;
 
@@ -179,25 +219,35 @@ public class TexasHoldem {
   }
 
 
-  public void bettingRound() throws NoCashException { // may get rid of  {
-    Integer firstToAct = 0;
-    ArrayList<Players> shiftPlayersForBets =
+  /**
+   * One betting round
+   * @throws NoCashException
+   */
+
+
+  public void bettingRound() throws NoCashException {
+    List<Players> shiftPlayersForBets =
         shiftPlayersForBets(this.currPlayers, indexOfFirstToAct());
 
-    for(Players p : shiftPlayersForBets) {
-      System.out.println(p.toCustomString());
-      dealer.askPlayerForChoice(p);
-      this.validateChoice(p);
-      this.validatePlayersBet(p, dealer.askPlayerBetAmt());
-      System.out.println("This is the current pot" + " " + this.currTable.getPot());
-    }
+      for (Players player : shiftPlayersForBets) {
+        if (!this.foldList.contains(player)) {
+          System.out.println(player.toString());
+          System.out.println(player.toCustomString());
+          dealer.askPlayerForChoice(player);
+          this.validatePlayersChoice(shiftPlayersForBets, player);
+          System.out.println("_________________________________");
+          System.out.println("This is the current pot" + " " + this.currTable.getPot());
+          System.out.println("_________________________________");
+        } else
+          shiftPlayersForBets.listIterator().next();
+      } if (this.raiseFlag != false) {
+        this.updateFlag(true);
+        bettingRound();
 
-    if (this.raiseFlag != false && shiftPlayersForBets.get(firstToAct).getChoice() != 1) {
-      bettingRound();
-    } else
-      dealer.askBigBlindCheckOrBet(shiftPlayersForBets);
+      }
 
   }
+
 
 
   public void PlayGame() throws NoCashException {
@@ -216,32 +266,46 @@ public class TexasHoldem {
       System.out.println("_____________________________");
       System.out.println("_____________________________");
       this.bettingRound();
-
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("FLOP");
       dealer.dealFlop(this.currDeckOfCards);
-      System.out.println("Size of deck after flop");
-      System.out.println(this.currDeckOfCards.size());
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      this.bettingRound();
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("TURN");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
       dealer.dealTurnOrRiver(this.currDeckOfCards);
-      System.out.println("Size of deck after Turn ");
-      System.out.println(this.currDeckOfCards.size());
+      this.bettingRound();
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("RIVER");
       dealer.dealTurnOrRiver(this.currDeckOfCards);
-      System.out.println(this.currDeckOfCards.size());
+      this.bettingRound();
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
+      System.out.println("_____________________________");
 
       round++;
 
     }
 
+
+  }
+
     // Check if only one player has money in the there purse.
     // if only one player has money in their purse game over
 
-    round--;
-
-    //this.bettingRound();
-    //askBigBlindCheckOrBet();
-    //validateCheckOrRaiseBeforeCards(this.bigBlindPlayer().getChoice());
-    //System.out.println(this.bigBlindPlayer().getChoice());
-
-  }
 }
+
 
 
 

@@ -4,6 +4,7 @@ import Model.Card;
 import Model.DeckOfCards;
 import View.Table;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -98,7 +99,7 @@ public class Dealer {
    */
 
 
-  public void deal(DeckOfCards deckOfCards, ArrayList<Players> currPlayers) {
+  public void deal(DeckOfCards deckOfCards, List<Players> currPlayers) {
     for (Players p : currPlayers) {
       p.addCard(deckOfCards.popCard());
       p.addCard(deckOfCards.popCard());
@@ -115,7 +116,7 @@ public class Dealer {
 
 
   public void dealFlop(DeckOfCards deckOfCards) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
       this.currTable.addCard(deckOfCards.popCard());
     }
     System.out.println("BELOW IS THE FLOP");
@@ -158,12 +159,13 @@ public class Dealer {
   /**
    * Ask player for amount they would like to wager;
    * @return a double, players bet amount.
+   * @param playersArrayList
    */
 
 
-  public Integer askBigBlindCheckOrBet(ArrayList<Players> playersArrayList) {
+  public Integer askBigBlindCheckOrBet(List<Players> playersArrayList) {
     System.out.println(playersArrayList.get(1).toCustomString());
-    System.out.println("Check = 1 or Bet = 2");
+    System.out.println("Check or Call = 1 or Raise = 2");
     Scanner scanner = new Scanner(System.in);
     Integer choice = scanner.nextInt();
     return choice;
@@ -172,7 +174,7 @@ public class Dealer {
 
 
   public Integer askPlayerForChoice(Players player) {
-    System.out.println("Check = 1 or Bet = 2 or Fold = 3");
+    System.out.println("Check or Call = 1 or Raise = 2 or Fold = 3");
     Scanner scanner = new Scanner(System.in);
     Integer choice = scanner.nextInt();
     player.updateChoice(choice);

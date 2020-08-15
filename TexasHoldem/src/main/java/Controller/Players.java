@@ -30,11 +30,6 @@ public class Players extends Hand {
   }
 
 
-  public void check() {
-    return;
-
-  }
-
   public Double getPurse() {
     return this.purse;
 
@@ -56,9 +51,9 @@ public class Players extends Hand {
   }
 
 
-  public double bet(Double currBet) throws NoCashException {
+  public double betOrCheck(Double currBet) throws NoCashException {
     if (this.purse - currBet > 0) {
-      System.out.println(currBet);
+      System.out.println(this.purse);
       return this.purse - currBet;
 
     }
@@ -68,9 +63,7 @@ public class Players extends Hand {
   }
 
   public Integer getChoice() {
-    Scanner scanner = new Scanner(System.in);
-    Integer choice = scanner.nextInt();
-    return choice;
+    return this.choice;
   }
 
 
@@ -94,9 +87,7 @@ public class Players extends Hand {
 
   @Override
   public String toString() {
-    return "Player = " + getPlayerNum() + getHand() +
-        "purse=" + purse +
-        '}';
+    return "Player = " + getPlayerNum() + getHand();
   }
 
 

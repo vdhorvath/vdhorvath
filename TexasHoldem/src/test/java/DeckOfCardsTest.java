@@ -62,13 +62,6 @@ public class DeckOfCardsTest {
 
 
 
-  @Test
-  public void shuffleDeck() {
-    deck2.shuffleDeck();
-    deck2.getDeck();
-    assertTrue(!deck1.getDeck().equals(deck2));
-  }
-
 
   @Test
   public void testDeckEquals() {
