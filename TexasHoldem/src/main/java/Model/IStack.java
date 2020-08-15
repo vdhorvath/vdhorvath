@@ -1,20 +1,19 @@
 package Model;
 
-import Model.Card;
 import java.util.EmptyStackException;
 
 /**
- * Model.Stack Implementation of a Model.DeckOfCards.
+ * Model.IStack Implementation of a Model.DeckOfCards.
  */
 
 
-public interface Stack {
+public interface IStack {
 
 
     /**
-     * Tests if this Model.Stack is empty.
+     * Tests if this Model.IStack is empty.
      *
-     * @return true if and only if the Model.Stack contains no items. Otherwise return false.
+     * @return true if and only if the Model.IStack contains no items. Otherwise return false.
      */
 
     boolean isEmpty();
@@ -32,7 +31,7 @@ public interface Stack {
     /**
      * Adds a Model.Card to the Model.DeckOfCards.
      *
-     * @param card A Model.Card push onto the Model.Stack.
+     * @param card A Model.Card push onto the Model.IStack.
      */
 
     void addCard(Card card);

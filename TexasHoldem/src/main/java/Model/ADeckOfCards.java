@@ -1,6 +1,6 @@
 package Model;
 
-public abstract class ADeckOfCards implements Stack {
+public abstract class ADeckOfCards implements IStack {
 
   /**
    * Adds a Model.Card to the Model.DeckOfCards.

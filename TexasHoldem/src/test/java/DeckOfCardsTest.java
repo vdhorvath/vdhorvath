@@ -42,11 +42,11 @@ public class DeckOfCardsTest {
   }
 
 
-
   @Test
   public void isEmpty() {
     assertFalse(deck1.isEmpty());
   }
+
 
 
   @Test

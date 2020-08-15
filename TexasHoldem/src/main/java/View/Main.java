@@ -1,14 +1,11 @@
 package View;
 
-import Controller.Game;
+import Model.TexasHoldem;
 import Model.NoCashException;
 import java.util.Scanner;
 
 public class Main {
-
-
-  public static void main(String[] args) throws NoCashException, MinBetException {
-
+  public static void main(String[] args) throws NoCashException {
     System.out.println("_____________________________");
     System.out.println("_____________________________");
     System.out.println("_____________________________");
@@ -22,49 +19,15 @@ public class Main {
     Integer numberOfPlayers = scanner.nextInt();
 
 
-      Game game = new Game(numberOfPlayers);
-      game.newGame();
-      game.PlayGame();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    TexasHoldem texasHoldem = new TexasHoldem(numberOfPlayers);
+    texasHoldem.newGame();
+    texasHoldem.PlayGame();
 
 
 
 
   }
-
-
-
-
 }
-
-
-
-
-
-
-
 
 
 

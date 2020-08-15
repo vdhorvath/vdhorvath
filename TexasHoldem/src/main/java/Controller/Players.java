@@ -1,8 +1,8 @@
 package Controller;
 
-
 import Model.Hand;
 import Model.NoCashException;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -10,6 +10,7 @@ public class Players extends Hand {
   private static AtomicInteger playerNumberGen = new AtomicInteger(1);
   private double purse = 10000.00;
   private Integer playerNumber = 1;
+  private Integer choice = 0;
 
 
 
@@ -18,13 +19,15 @@ public class Players extends Hand {
     super();
     this.purse = getPurse();
     this.playerNumber = this.playerNumberGen.getAndIncrement();
+    this.choice = 0;
+
+
 
   }
 
   protected static void setPlayerNumber(int startingInt) {
     Players.playerNumberGen = new AtomicInteger(startingInt);
   }
-
 
 
   public void check() {
@@ -63,6 +66,20 @@ public class Players extends Hand {
 
 
   }
+
+  public Integer getChoice() {
+    Scanner scanner = new Scanner(System.in);
+    Integer choice = scanner.nextInt();
+    return choice;
+  }
+
+
+
+
+  public void updateChoice(Integer newChoice) {
+    this.choice = newChoice;
+  }
+
 
 
 

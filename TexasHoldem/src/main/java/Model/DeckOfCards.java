@@ -1,18 +1,18 @@
 package Model;
 
+
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
+
 
 
 /**
- * Model.DeckOfCards class implementing a Model.Stack Interface
+ * Model.DeckOfCards class implementing a Model.IStack Interface
  */
 
 public class DeckOfCards extends ADeckOfCards {
-
   private List<Card> deck;
   private Integer numberOfCardsInDeck = 52;
 
@@ -47,7 +47,7 @@ public class DeckOfCards extends ADeckOfCards {
    * @param card  , Model.Card we are exchanging.
    */
 
-  private void set(Integer index, Card card) {
+  public void set(Integer index, Card card) {
     this.deck.set(index, card);
 
   }
@@ -65,7 +65,7 @@ public class DeckOfCards extends ADeckOfCards {
 
 
   /**
-   * Tests if this Model.Stack is empty.
+   * Tests if this Model.IStack is empty.
    *
    * @return true if and only if the Model.DeckOfCards contains no Cards. Otherwise return false.
    */
@@ -82,7 +82,7 @@ public class DeckOfCards extends ADeckOfCards {
    *
    * @return The most recently-added item.
    * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
-   *                             Model.Stack. Note: EmptyStackException is a built-in Java
+   *                             Model.IStack. Note: EmptyStackException is a built-in Java
    *                             exception.
    */
 
@@ -98,7 +98,7 @@ public class DeckOfCards extends ADeckOfCards {
   /**
    * Adds a Model.Card to the Model.DeckOfCards
    *
-   * @param card A Model.Card push onto the Model.Stack.
+   * @param card A Model.Card push onto the Model.IStack.
    */
 
 
@@ -113,7 +113,7 @@ public class DeckOfCards extends ADeckOfCards {
    *
    * @return The most recently-added item. (Show)
    * @throws EmptyStackException Throws an EmptyStackException if the method is called on an empty
-   *                             Model.Stack. Note: EmptyStackException is a built-in Java
+   *                             Model.IStack. Note: EmptyStackException is a built-in Java
    *                             exception.
    */
 
@@ -142,58 +142,17 @@ public class DeckOfCards extends ADeckOfCards {
   }
 
 
-  /**
-   * Shuffle the Model.DeckOfCards of Cards
-   * @return
-   */
-
-
-  public void shuffleDeck() {
-    for (int i = 0; i < this.numberOfCardsInDeck; i++) {
-      int index = i + (int) (Math.random() * (this.numberOfCardsInDeck - i));
-      Card temp = this.deck.get(index);
-      deck.set(index, this.deck.get(i));
-      deck.set(i, temp);
-    }
-
+  public Card getCard(Integer index) {
+    return this.deck.get(index);
   }
 
 
-  public int splitsDeck() {
-    Random newTopCard = new Random();
-    int indexOfNewTopCard = 0;
-    for (int counter = 0; counter < 1; counter++) {
-      indexOfNewTopCard = 1 + newTopCard.nextInt(this.numberOfCardsInDeck - 8);
-    }
-    return indexOfNewTopCard;
 
 
-  }
 
 
-  public DeckOfCards cutsDeck() {
-    DeckOfCards deckOfCards = new DeckOfCards();
-    int indexOfNewTopCard = this.splitsDeck();
-    int i = this.numberOfCardsInDeck - 1;
-    int j = 0;
 
-    // We are partitioning around the new Topcard.
-    // Cards that are on top of deck are being pushed to the back of the deck
 
-    while (i > indexOfNewTopCard) {
-      deckOfCards.addCard(this.popCard());
-      i--;
-    }
-
-    // We then take the cards less then the partition and add it to the stack/deck
-
-    while (j <= indexOfNewTopCard) {
-      deckOfCards.addCard(this.deck.get(j));
-      j++;
-    }
-    return deckOfCards;
-
-  }
 
 
   @Override
