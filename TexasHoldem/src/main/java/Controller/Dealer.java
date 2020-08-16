@@ -3,8 +3,9 @@ package Controller;
 import Model.Card;
 import Model.DeckOfCards;
 import View.Table;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -182,5 +183,39 @@ public class Dealer {
   }
 
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Dealer)) {
+      return false;
+    }
+    Dealer dealer = (Dealer) o;
+    return Objects.equals(deckOfCards, dealer.deckOfCards) &&
+        Objects.equals(currTable, dealer.currTable) &&
+        Objects.equals(gameBigBlind, dealer.gameBigBlind) &&
+        Objects.equals(bigBlind, dealer.bigBlind) &&
+        Objects.equals(smallBlind, dealer.smallBlind) &&
+        Objects.equals(numberOfCardsInDeck, dealer.numberOfCardsInDeck);
+  }
 
+  @Override
+  public int hashCode() {
+    return Objects
+        .hash(deckOfCards, currTable, gameBigBlind, bigBlind, smallBlind, numberOfCardsInDeck);
+  }
+
+
+  @Override
+  public String toString() {
+    return "Dealer{" +
+        "deckOfCards=" + deckOfCards +
+        ", currTable=" + currTable +
+        ", gameBigBlind=" + gameBigBlind +
+        ", bigBlind=" + bigBlind +
+        ", smallBlind=" + smallBlind +
+        ", numberOfCardsInDeck=" + numberOfCardsInDeck +
+        '}';
+  }
 }
