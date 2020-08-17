@@ -15,6 +15,7 @@ public class DeckOfCardsTest {
   Card card7;
   Card topCard;
   EmptyDeckOfCards emptyDeckOfCards;
+  Card cardHeartsSix;
 
 
   @Before
@@ -24,6 +25,7 @@ public class DeckOfCardsTest {
     card7 = new Card(Suit.Clubs, Value.Seven);
     topCard = new Card(Suit.Spades, Value.ACE);
     emptyDeckOfCards = new EmptyDeckOfCards();
+    cardHeartsSix = new Card(Suit.Hearts, Value.Six);
 
   }
 
@@ -41,10 +43,30 @@ public class DeckOfCardsTest {
 
   }
 
+  @Test
+  public void popCard() {
+    assertEquals(deck1.popCard(), deck2.popCard());
+
+  }
+
 
   @Test
   public void isEmpty() {
     assertFalse(deck1.isEmpty());
+  }
+
+
+  @Test
+  public void set() {
+    deck2.set(0, cardHeartsSix);
+    assertTrue( deck2.getCard(0).equals(cardHeartsSix));
+
+
+  }
+
+  @Test
+  public void getCard() {
+    assertEquals(cardHeartsSix, deck2.getCard(30) );
   }
 
 
@@ -76,10 +98,11 @@ public class DeckOfCardsTest {
   }
 
 
+
   @Test
   public void testToString() {
-    String expected = "Model.EmptyDeckOfCards{}";
-    assertEquals(expected, emptyDeckOfCards.toString());
+    String expected = deck1.toString();
+    assertEquals(expected, deck2.toString());
 
   }
 

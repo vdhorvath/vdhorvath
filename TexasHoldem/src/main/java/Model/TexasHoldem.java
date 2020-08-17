@@ -1,18 +1,17 @@
 package Model;
 
+import Controller.CurrGamePlayers;
 import Controller.Dealer;
 import Controller.Players;
 import View.Table;
 import java.util.ArrayList;
-
 import java.util.List;
 
 
-public class TexasHoldem {
 
-  private Integer numberOfPlayers;
+public class TexasHoldem {
   private Dealer dealer;
-  private List<Players> currPlayers;
+  private CurrGamePlayers currPlayers;
   private Table currTable;
   private DeckOfCards currDeckOfCards;
   private Double gameBigBlind = 1000.0;
@@ -25,9 +24,8 @@ public class TexasHoldem {
 
 
   public TexasHoldem(Integer numberOfPlayers) {
-    this.numberOfPlayers = numberOfPlayers;
     this.currDeckOfCards = new DeckOfCards();
-    this.currPlayers = new ArrayList<>();
+    this.currPlayers = new CurrGamePlayers(numberOfPlayers);
     this.currTable = new Table();
     this.dealer = new Dealer(currDeckOfCards, currTable);
     this.roundBigBlind = getRoundBigBlind();
@@ -35,43 +33,15 @@ public class TexasHoldem {
 
   }
 
-
   /**
-   * Get all the current players in the game.
-   * @return an Array list of players in the game.
+   * Create a new Game, by calling the create players from current Players.
    */
-
-
-  public List<Players> getCurrPlayers() {
-    return this.currPlayers;
-  }
-
-
-  /**
-   * Create a new name game, by initiating all the players in the game.
-   */
-
-
 
   public void newGame() {
-    createPlayer();
+    this.currPlayers.createPlayersForGame();
 
   }
 
-
-
-  /**
-   * Create number of players in the game.
-   */
-
-  public void createPlayer() {
-    for (int i = 0; i < this.numberOfPlayers; i++) {
-      Players player = new Players();
-      this.currPlayers.add(player);
-    }
-
-
-  }
 
 
   /**
@@ -111,8 +81,6 @@ public class TexasHoldem {
    * Validate a player's choice
    *
    */
-
-
 
 
   public void validatePlayersChoice(List<Players> currPlayers, Players player)
@@ -222,7 +190,7 @@ public class TexasHoldem {
 
 
   public void checkPlayerLosses() {
-    for (Players player : this.currPlayers) {
+    for (Players player : this.currPlayers.getCurrPlayers()) {
       if (player.getPurse().equals(0.0)) {
         System.out.println(String.format("%s, You Lose!", player.toCustomString()));
         this.currPlayers.remove(player);
@@ -231,58 +199,7 @@ public class TexasHoldem {
     }
   }
 
-  /**
-   * Rotate Blinds, move players from position based on Small Blind and Big Blind
-   */
 
-
-  public void rotateBlinds() {
-    Players temp = this.getCurrPlayers().get(0);
-    this.currPlayers.remove(0);
-    this.currPlayers.add(temp);
-    System.out.println(this.getCurrPlayers());
-  }
-
-  /**
-   * Index of the first player to act.
-   * @return
-   */
-
-
-  public Integer indexOfFirstToAct() {
-    if (this.currPlayers.size() < 3) {
-      return 1;
-    } else
-      return 2;
-  }
-
-
-  /**
-   *
-   * @param currPlayers in the game
-   * @param index index of the first to act
-   * @return List of players
-   */
-
-
-  public List<Players> shiftPlayersForBets(List<Players> currPlayers, Integer index) {
-    Integer i = index;
-    Integer j = 0;
-    List<Players> shiftedPlayerList = new ArrayList() {
-    };
-
-    while (i <= currPlayers.size() - 1) {
-      shiftedPlayerList.add(currPlayers.get(i));
-      i++;
-    }
-
-    while (j < indexOfFirstToAct()) {
-      shiftedPlayerList.add(currPlayers.get(j));
-      j++;
-
-    }
-    return shiftedPlayerList;
-  }
 
 
   /**
@@ -293,7 +210,9 @@ public class TexasHoldem {
 
   public void bettingRound() throws NoCashException {
     List<Players> shiftPlayersForBets =
-        shiftPlayersForBets(this.currPlayers, indexOfFirstToAct());
+        this.currPlayers.shiftPlayersForBets(this.currPlayers.getCurrPlayers(),
+            this.currPlayers.indexOfFirstToAct());
+
     for (Players player : shiftPlayersForBets) {
       if (!this.foldList.contains(player)) {
         bettingHelper(shiftPlayersForBets, player);
@@ -354,6 +273,7 @@ public class TexasHoldem {
   }
 
 
+
   /**
    * Update all the player's flag
    * @param shiftPlayersForBets
@@ -368,8 +288,6 @@ public class TexasHoldem {
 
 
 
-
-
   public void PlayGame() throws NoCashException {
     int round = 0;
 
@@ -378,7 +296,7 @@ public class TexasHoldem {
     System.out.println("_____________________________");
 
     dealer.shuffleDeck(this.currDeckOfCards);
-    dealer.deal(this.currDeckOfCards, this.currPlayers);
+    dealer.deal(this.currDeckOfCards, this.currPlayers.getCurrPlayers());
 
     while (round != 1) {
       printLines();
@@ -418,6 +336,8 @@ public class TexasHoldem {
 
   // Check if only one player has money in the there purse.
     // if only one player has money in their purse game over
+
+
 
 }
 

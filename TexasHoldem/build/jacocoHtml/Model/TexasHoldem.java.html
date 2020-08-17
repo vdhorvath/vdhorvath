@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TexasHoldem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TexasHoldem</a> &gt; <a href="index.source.html" class="el_package">Model</a> &gt; <span class="el_source">TexasHoldem.java</span></div><h1>TexasHoldem.java</h1><pre class="source lang-java linenums">package Model;
+
+import Controller.CurrGamePlayers;
+import Controller.Dealer;
+import Controller.Players;
+import View.Table;
+import java.util.ArrayList;
+
+import java.util.List;
+
+
+
+public class TexasHoldem {
+  private Dealer dealer;
+  //private List&lt;Players&gt; currPlayers;
+  private CurrGamePlayers currPlayers;
+  private Table currTable;
+  private DeckOfCards currDeckOfCards;
+<span class="nc" id="L19">  private Double gameBigBlind = 1000.0;</span>
+<span class="nc" id="L20">  private Double roundBigBlind = 1000.0;</span>
+<span class="nc" id="L21">  private Double smallBlind = roundBigBlind / 2;</span>
+<span class="nc" id="L22">  private boolean raiseFlag = false;</span>
+<span class="nc" id="L23">  private List&lt;Players&gt; foldList = new ArrayList&lt;&gt;();</span>
+
+
+
+
+<span class="nc" id="L28">  public TexasHoldem(Integer numberOfPlayers) {</span>
+<span class="nc" id="L29">    this.currDeckOfCards = new DeckOfCards();</span>
+<span class="nc" id="L30">    this.currPlayers = new CurrGamePlayers(numberOfPlayers);</span>
+<span class="nc" id="L31">    this.currTable = new Table();</span>
+<span class="nc" id="L32">    this.dealer = new Dealer(currDeckOfCards, currTable);</span>
+<span class="nc" id="L33">    this.roundBigBlind = getRoundBigBlind();</span>
+
+
+<span class="nc" id="L36">  }</span>
+
+
+
+
+
+
+
+/*  *//**
+   * Create number of players in the game.
+   *//*
+
+  public void createPlayer() {
+    for (int i = 0; i &lt; this.numberOfPlayers; i++) {
+      Players player = new Players();
+      this.currPlayers.add(player);
+    }
+
+
+  }*/
+
+
+  /**
+   * Setter function to update the number of players in the game.
+   * @param minRoundBet
+   */
+
+
+  public void updateRoundBigBlind(Double minRoundBet) {
+<span class="nc" id="L65">    this.roundBigBlind = minRoundBet;</span>
+
+<span class="nc" id="L67">  }</span>
+
+  /**
+   * Update the flag
+   */
+
+  public void updateFlag() {
+<span class="nc" id="L74">    this.raiseFlag = false;</span>
+
+<span class="nc" id="L76">  }</span>
+
+
+  /**
+   * Getter for the
+   * @return the big blind for the round.
+   */
+
+  public Double getRoundBigBlind() {
+<span class="nc" id="L85">    return roundBigBlind;</span>
+  }
+
+
+
+
+  /**
+   * Validate a player's choice
+   *
+   */
+
+
+
+
+  public void validatePlayersChoice(List&lt;Players&gt; currPlayers, Players player)
+      throws NoCashException {
+
+        // if a player folds
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (player.getChoice() == 3) {</span>
+<span class="nc" id="L105">      foldPlayer(currPlayers, player);</span>
+
+      // if a player checks or call
+
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    } else if(player.getChoice() == 1) {</span>
+<span class="nc" id="L110">      validatePlayersBet(player, this.roundBigBlind);</span>
+
+      // if a player raises
+
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    } else if (player.getChoice() == 2) {</span>
+<span class="nc" id="L115">      validatePlayersBet(player, dealer.askPlayerBetAmt());</span>
+
+    }
+
+
+<span class="nc" id="L120">  }</span>
+
+
+  /**
+   * Validate a players bet about
+   *
+   * @return a double, players bet amount.
+   */
+
+
+  public Double validatePlayersBet(Players player, Double amount) throws NoCashException {
+<span class="nc" id="L131">    Double newBet = 0.0;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">    if (amount &lt; this.roundBigBlind) {</span>
+<span class="nc" id="L133">      System.out</span>
+<span class="nc" id="L134">          .println(&quot;Sorry your bet was too low, the minimum bet is &quot; + &quot;&quot; + this.roundBigBlind);</span>
+<span class="nc" id="L135">      newBet = dealer.askPlayerBetAmt();</span>
+<span class="nc" id="L136">      return this.validatePlayersBet(player, newBet);</span>
+
+<span class="nc bnc" id="L138" title="All 2 branches missed.">    } else if (amount &gt; this.roundBigBlind) {</span>
+<span class="nc" id="L139">      updateRoundBigBlind(amount);</span>
+      // take money from players purse
+<span class="nc" id="L141">      player.betOrCheck(amount);</span>
+
+      // flag for raise bet
+<span class="nc" id="L144">      this.raiseFlag = true;</span>
+
+<span class="nc" id="L146">      changeAllPlayersFlagToTrue(player);</span>
+
+
+<span class="nc" id="L149">      System.out.println(&quot;The minimum has increased, the minimum bet is &quot; + &quot;&quot; + this.roundBigBlind);</span>
+<span class="nc" id="L150">      return this.currTable.addBetsToPot(amount);</span>
+    }
+    // take money from players purse
+<span class="nc" id="L153">    player.betOrCheck(this.roundBigBlind);</span>
+
+    // update players flag after the blind has been raised
+
+<span class="nc" id="L157">    System.out.println(&quot;this should print 1&quot;);</span>
+<span class="nc" id="L158">    changeAllPlayersFlagToTrue(player);</span>
+
+    // update the pot, adding funds to pot
+
+<span class="nc" id="L162">    return this.currTable.addBetsToPot(amount);</span>
+  }
+
+
+  /**
+   * Update all the Players flags
+   * @param p players in the game.
+   */
+
+
+
+  public void changeAllPlayersFlagToTrue(Players p) {
+<span class="nc bnc" id="L174" title="All 4 branches missed.">    if (this.raiseFlag == true &amp;&amp; this.roundBigBlind &gt; this.gameBigBlind) {</span>
+<span class="nc" id="L175">      System.out.println(&quot;this should print 2&quot;);</span>
+<span class="nc" id="L176">      p.updateRaiseFlagTrue();</span>
+    }
+
+<span class="nc" id="L179">  }</span>
+
+
+
+
+  /**
+   * Skip Player's Turn if they fold.
+   * @param currPlayers Current players in the game
+   * @param player player that has folded.
+   */
+
+
+
+  public void foldPlayer(List&lt;Players&gt; currPlayers, Players player) {
+<span class="nc" id="L193">    this.foldList.add(player);</span>
+<span class="nc" id="L194">    currPlayers.listIterator().next();</span>
+<span class="nc" id="L195">      System.out.println(&quot;---------------------------------&quot;);</span>
+<span class="nc" id="L196">      System.out.println(player.toCustomString() + &quot; &quot; + &quot;has folded&quot;);</span>
+<span class="nc" id="L197">      System.out.println(&quot;---------------------------------&quot;);</span>
+
+<span class="nc" id="L199">    }</span>
+
+
+
+
+
+  public void checkPlayerLosses() {
+<span class="nc bnc" id="L206" title="All 2 branches missed.">    for (Players player : this.currPlayers.getCurrPlayers()) {</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">      if (player.getPurse().equals(0.0)) {</span>
+<span class="nc" id="L208">        System.out.println(String.format(&quot;%s, You Lose!&quot;, player.toCustomString()));</span>
+<span class="nc" id="L209">        this.currPlayers.remove(player);</span>
+
+      }
+<span class="nc" id="L212">    }</span>
+<span class="nc" id="L213">  }</span>
+
+
+  /**
+   * Index of the first player to act.
+   * @return
+   */
+
+
+  public Integer indexOfFirstToAct() {
+<span class="nc bnc" id="L223" title="All 2 branches missed.">    if (this.currPlayers.size() &lt; 3) {</span>
+<span class="nc" id="L224">      return 1;</span>
+    } else
+<span class="nc" id="L226">      return 2;</span>
+  }
+
+
+/*  *//**
+   *
+   * @param currPlayers in the game
+   * @param index index of the first to act
+   * @return List of players
+   *//*
+
+
+  public List&lt;Players&gt; shiftPlayersForBets(List&lt;Players&gt; currPlayers, Integer index) {
+    Integer i = index;
+    Integer j = 0;
+    List&lt;Players&gt; shiftedPlayerList = new ArrayList() {
+    };
+
+    while (i &lt;= currPlayers.size() - 1) {
+      shiftedPlayerList.add(currPlayers.get(i));
+      i++;
+    }
+
+    while (j &lt; indexOfFirstToAct()) {
+      shiftedPlayerList.add(currPlayers.get(j));
+      j++;
+
+    }
+    return shiftedPlayerList;
+  }*/
+
+
+  /**
+   * One betting round
+   * @throws NoCashException
+   */
+
+
+  public void bettingRound() throws NoCashException {
+<span class="nc" id="L265">    List&lt;Players&gt; shiftPlayersForBets =</span>
+<span class="nc" id="L266">        this.currPlayers.shiftPlayersForBets(this.currPlayers.getCurrPlayers(),</span>
+<span class="nc" id="L267">            this.currPlayers.indexOfFirstToAct());</span>
+
+<span class="nc bnc" id="L269" title="All 2 branches missed.">    for (Players player : shiftPlayersForBets) {</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">      if (!this.foldList.contains(player)) {</span>
+<span class="nc" id="L271">        bettingHelper(shiftPlayersForBets, player);</span>
+      } else
+        // skip player
+<span class="nc" id="L274">        shiftPlayersForBets.listIterator().next();</span>
+
+<span class="nc" id="L276">    }</span>
+
+    // If there is a raise we will need to re-loop through all the players
+    // that have not raised
+
+<span class="nc bnc" id="L281" title="All 2 branches missed.">    if (this.raiseFlag != false) {</span>
+<span class="nc" id="L282">      System.out.println(&quot;Game Flag is&quot; + &quot; &quot; + this.raiseFlag);</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">          for (Players player : shiftPlayersForBets ) {</span>
+<span class="nc bnc" id="L284" title="All 4 branches missed.">            if (!this.foldList.contains(player) &amp;&amp; player.getRaiseFlag() == false) {</span>
+<span class="nc" id="L285">              System.out.println(&quot;Print THIS is the HELPER&quot;);</span>
+<span class="nc" id="L286">              this.bettingHelper(shiftPlayersForBets, player);</span>
+
+            }
+
+<span class="nc" id="L290">        }</span>
+          // update game flag
+<span class="nc" id="L292">          this.updateFlag();</span>
+
+          // update all player flags for a new round
+<span class="nc" id="L295">          this.updatePlayerFlags(shiftPlayersForBets);</span>
+
+          // reset the round big Blind to
+<span class="nc" id="L298">          this.roundBigBlind = this.gameBigBlind;</span>
+    }
+
+<span class="nc" id="L301">  }</span>
+
+
+  /**
+   * Betting Helper function to help with printing, validate
+   * a player's choice
+   * @param shiftPlayersForBets
+   * @param player
+   * @throws NoCashException
+   */
+
+
+
+  private void bettingHelper(List&lt;Players&gt; shiftPlayersForBets, Players player)
+      throws NoCashException {
+<span class="nc" id="L316">    System.out.println(player.toString());</span>
+<span class="nc" id="L317">    System.out.println(player.toCustomString());</span>
+<span class="nc" id="L318">    dealer.askPlayerForChoice(player);</span>
+<span class="nc" id="L319">    this.validatePlayersChoice(shiftPlayersForBets, player);</span>
+<span class="nc" id="L320">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L321">    System.out.println(player.toString() + &quot; &quot; + player.getRaiseFlag());</span>
+<span class="nc" id="L322">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L323">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L324">    System.out.println(&quot;This is the current pot&quot; + &quot; &quot; + this.currTable.getPot());</span>
+<span class="nc" id="L325">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L326">  }</span>
+
+
+  /**
+   * Update all the player's flag
+   * @param shiftPlayersForBets
+   */
+
+  private void updatePlayerFlags(List&lt;Players&gt; shiftPlayersForBets) {
+<span class="nc bnc" id="L335" title="All 2 branches missed.">      for(Players p: shiftPlayersForBets) {</span>
+<span class="nc" id="L336">        p.updateRaiseFlagFalse();</span>
+<span class="nc" id="L337">      }</span>
+
+<span class="nc" id="L339">  }</span>
+
+
+
+
+
+  public void PlayGame() throws NoCashException {
+<span class="nc" id="L346">    int round = 0;</span>
+
+<span class="nc" id="L348">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L349">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L350">    System.out.println(&quot;_____________________________&quot;);</span>
+
+<span class="nc" id="L352">    dealer.shuffleDeck(this.currDeckOfCards);</span>
+<span class="nc" id="L353">    dealer.deal(this.currDeckOfCards, this.currPlayers.getCurrPlayers());</span>
+
+<span class="nc bnc" id="L355" title="All 2 branches missed.">    while (round != 1) {</span>
+<span class="nc" id="L356">      printLines();</span>
+<span class="nc" id="L357">      bettingRound();</span>
+<span class="nc" id="L358">      printLines();</span>
+<span class="nc" id="L359">      System.out.println(&quot;FLOP&quot;);</span>
+<span class="nc" id="L360">      dealer.dealFlop(this.currDeckOfCards);</span>
+<span class="nc" id="L361">      printLines();</span>
+<span class="nc" id="L362">      bettingRound();</span>
+<span class="nc" id="L363">      printLines();</span>
+<span class="nc" id="L364">      System.out.println(&quot;TURN&quot;);</span>
+<span class="nc" id="L365">      printLines();</span>
+<span class="nc" id="L366">      dealer.dealTurnOrRiver(this.currDeckOfCards);</span>
+<span class="nc" id="L367">      this.bettingRound();</span>
+<span class="nc" id="L368">      printLines();</span>
+<span class="nc" id="L369">      System.out.println(&quot;RIVER&quot;);</span>
+<span class="nc" id="L370">      dealer.dealTurnOrRiver(this.currDeckOfCards);</span>
+<span class="nc" id="L371">      printLines();</span>
+<span class="nc" id="L372">      this.bettingRound();</span>
+<span class="nc" id="L373">      printLines();</span>
+
+<span class="nc" id="L375">      round++;</span>
+
+    }
+
+
+<span class="nc" id="L380">  }</span>
+
+  private void printLines() throws NoCashException {
+<span class="nc" id="L383">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L384">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L385">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L386">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L387">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L388">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L389">  }</span>
+
+  // Check if only one player has money in the there purse.
+    // if only one player has money in their purse game over
+
+
+
+}
+
+
+
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

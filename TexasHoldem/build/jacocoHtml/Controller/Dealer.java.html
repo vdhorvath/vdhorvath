@@ -2,32 +2,221 @@
 
 import Model.Card;
 import Model.DeckOfCards;
+import View.Table;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Dealer {
-  private Card[] dealerHand;
   private DeckOfCards deckOfCards;
+  private Table currTable;
+<span class="nc" id="L15">  private Double gameBigBlind = 1000.0;</span>
+<span class="nc" id="L16">  private Double bigBlind = 1000.0;</span>
+<span class="nc" id="L17">  private Double smallBlind = bigBlind / 2;</span>
+<span class="nc" id="L18">  private Integer numberOfCardsInDeck = 52;</span>
 
 
 
+<span class="nc" id="L22">  public Dealer(DeckOfCards deckOfCards, Table currTable) {</span>
+<span class="nc" id="L23">    this.deckOfCards = deckOfCards;</span>
+<span class="nc" id="L24">    this.currTable = currTable;</span>
+<span class="nc" id="L25">  }</span>
 
-<span class="nc" id="L14">  public Dealer(Card[] dealerHand, DeckOfCards deckOfCards) {</span>
-<span class="nc" id="L15">    this.dealerHand = dealerHand;</span>
-<span class="nc" id="L16">    this.deckOfCards = deckOfCards;</span>
-<span class="nc" id="L17">  }</span>
+  /**
+   * Dealer Shuffle the DeckOfCards of Cards
+   * @return
+   */
 
 
-  public Card[] getDealerHand() {
-<span class="nc" id="L21">    return dealerHand;</span>
+  public void shuffleDeck(DeckOfCards deckOfCards) {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">    for (int i = 0; i &lt; this.numberOfCardsInDeck; i++) {</span>
+<span class="nc" id="L35">      int index = i + (int) (Math.random() * (this.numberOfCardsInDeck - i));</span>
+<span class="nc" id="L36">      Card temp = deckOfCards.getCard(index);</span>
+<span class="nc" id="L37">      deckOfCards.set(index, deckOfCards.getCard(i));</span>
+<span class="nc" id="L38">      deckOfCards.set(i, temp);</span>
+    }
+
+<span class="nc" id="L41">    System.out.println(deckOfCards);</span>
+<span class="nc" id="L42">  }</span>
+
+
+  /**
+   * Dealer Splits the DeckOfCards of Cards Helper function
+   * for cutting the deck of cards.
+   * @return
+   */
+
+
+  public int splitsDeck() {
+<span class="nc" id="L53">    Random newTopCard = new Random();</span>
+<span class="nc" id="L54">    int indexOfNewTopCard = 0;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">    for (int counter = 0; counter &lt; 1; counter++) {</span>
+<span class="nc" id="L56">      indexOfNewTopCard = 1 + newTopCard.nextInt(this.numberOfCardsInDeck - 8);</span>
+    }
+<span class="nc" id="L58">    return indexOfNewTopCard;</span>
+
+
+  }
+
+
+  /**
+   * Dealer cuts the DeckOfCards of Cards
+   */
+
+
+  public void cutsDeck(DeckOfCards deckOfCards) {
+<span class="nc" id="L70">    int indexOfNewTopCard = this.splitsDeck();</span>
+<span class="nc" id="L71">    int i = deckOfCards.size() - 1;</span>
+<span class="nc" id="L72">    int j = 0;</span>
+
+    // We are partitioning around the new top card.
+    // Cards that are on top of deck are being pushed to the back of the deck
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">    while (i &gt; indexOfNewTopCard) {</span>
+<span class="nc" id="L78">      deckOfCards.addCard(deckOfCards.popCard());</span>
+<span class="nc" id="L79">      i--;</span>
+    }
+
+
+    // We then take the cards less then the partition and add it to the stack/deck
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">    while (j &lt;= indexOfNewTopCard) {</span>
+<span class="nc" id="L86">      deckOfCards.addCard(deckOfCards.popCard());</span>
+<span class="nc" id="L87">      j++;</span>
+    }
+<span class="nc" id="L89">    System.out.println(deckOfCards.size());</span>
+<span class="nc" id="L90">    System.out.println(deckOfCards.getDeck());</span>
+
+
+
+<span class="nc" id="L94">  }</span>
+
+
+  /**
+   * Dealer deals the DeckOfCards of Cards
+   * @return
+   */
+
+
+  public void deal(DeckOfCards deckOfCards, List&lt;Players&gt; currPlayers) {
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    for (Players p : currPlayers) {</span>
+<span class="nc" id="L105">      p.addCard(deckOfCards.popCard());</span>
+<span class="nc" id="L106">      p.addCard(deckOfCards.popCard());</span>
+<span class="nc" id="L107">      System.out.println(p);</span>
+<span class="nc" id="L108">    }</span>
+
+<span class="nc" id="L110">  }</span>
+
+
+  /**
+   * Dealer deals the flop
+   * @param deckOfCards
+   */
+
+
+  public void dealFlop(DeckOfCards deckOfCards) {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">    for (int i = 0; i &lt; 3; i++) {</span>
+<span class="nc" id="L121">      this.currTable.addCard(deckOfCards.popCard());</span>
+    }
+<span class="nc" id="L123">    System.out.println(&quot;BELOW IS THE FLOP&quot;);</span>
+<span class="nc" id="L124">    System.out.println(this.currTable.getHand());</span>
+
+<span class="nc" id="L126">  }</span>
+
+  /**
+   * Dealer Deals the Flop of the River
+   * param deckOfCards
+   *
+   */
+
+
+  public void dealTurnOrRiver(DeckOfCards deckOfCards) {
+<span class="nc" id="L136">    this.currTable.addCard(deckOfCards.popCard());</span>
+<span class="nc" id="L137">    System.out.println(this.currTable.getHand());</span>
+<span class="nc" id="L138">  }</span>
+
+
+
+  /**
+   * Ask player for wager amount they would like to wager;
+   * @return a double, players bet amount.
+   */
+
+
+  public Double askPlayerBetAmt() {
+<span class="nc" id="L149">    Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L150">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L151">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L152">    System.out.println(String</span>
+<span class="nc" id="L153">        .format(&quot;How much would you like bet?&quot;));</span>
+<span class="nc" id="L154">    Double betAmount = scanner.nextDouble();</span>
+<span class="nc" id="L155">    return betAmount;</span>
   }
 
 
 
+  /**
+   * Ask player for amount they would like to wager;
+   * @return a double, players bet amount.
+   * @param playersArrayList
+   */
 
 
+  public Integer askBigBlindCheckOrBet(List&lt;Players&gt; playersArrayList) {
+<span class="nc" id="L168">    System.out.println(playersArrayList.get(1).toCustomString());</span>
+<span class="nc" id="L169">    System.out.println(&quot;Check or Call = 1 or Raise = 2&quot;);</span>
+<span class="nc" id="L170">    Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L171">    Integer choice = scanner.nextInt();</span>
+<span class="nc" id="L172">    return choice;</span>
+
+  }
 
 
+  public Integer askPlayerForChoice(Players player) {
+<span class="nc" id="L178">    System.out.println(&quot;Check or Call = 1 or Raise = 2 or Fold = 3&quot;);</span>
+<span class="nc" id="L179">    Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L180">    Integer choice = scanner.nextInt();</span>
+<span class="nc" id="L181">    player.updateChoice(choice);</span>
+<span class="nc" id="L182">    return choice;</span>
+  }
 
 
+  @Override
+  public boolean equals(Object o) {
+<span class="nc bnc" id="L188" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L189">      return true;</span>
+    }
+<span class="nc bnc" id="L191" title="All 2 branches missed.">    if (!(o instanceof Dealer)) {</span>
+<span class="nc" id="L192">      return false;</span>
+    }
+<span class="nc" id="L194">    Dealer dealer = (Dealer) o;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">    return Objects.equals(deckOfCards, dealer.deckOfCards) &amp;&amp;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        Objects.equals(currTable, dealer.currTable) &amp;&amp;</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        Objects.equals(gameBigBlind, dealer.gameBigBlind) &amp;&amp;</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        Objects.equals(bigBlind, dealer.bigBlind) &amp;&amp;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">        Objects.equals(smallBlind, dealer.smallBlind) &amp;&amp;</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">        Objects.equals(numberOfCardsInDeck, dealer.numberOfCardsInDeck);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L205">    return Objects</span>
+<span class="nc" id="L206">        .hash(deckOfCards, currTable, gameBigBlind, bigBlind, smallBlind, numberOfCardsInDeck);</span>
+  }
+
+
+  @Override
+  public String toString() {
+<span class="nc" id="L212">    return &quot;Dealer{&quot; +</span>
+        &quot;deckOfCards=&quot; + deckOfCards +
+        &quot;, currTable=&quot; + currTable +
+        &quot;, gameBigBlind=&quot; + gameBigBlind +
+        &quot;, bigBlind=&quot; + bigBlind +
+        &quot;, smallBlind=&quot; + smallBlind +
+        &quot;, numberOfCardsInDeck=&quot; + numberOfCardsInDeck +
+        '}';
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,6 +1,6 @@
 package Model;
 
-import Model.Card;
+
 import java.util.EmptyStackException;
 
 public class EmptyDeckOfCards extends ADeckOfCards {
@@ -43,7 +43,7 @@ public class EmptyDeckOfCards extends ADeckOfCards {
 
   @Override
   public Card popCard() throws EmptyStackException {
-    throw new IllegalArgumentException("Empty Model.DeckOfCards!");
+    throw new EmptyStackException();
   }
 
   /**
@@ -55,13 +55,14 @@ public class EmptyDeckOfCards extends ADeckOfCards {
 
   @Override
   public Card showTopCard() throws EmptyStackException {
-    throw new IllegalArgumentException("Empty Model.DeckOfCards");
+    throw new EmptyStackException();
+
   }
 
 
   @Override
   public String toString() {
-    return "Model.EmptyDeckOfCards{}";
+    return "EmptyDeckOfCards{}";
   }
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmptyDeckOfCards.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TexasHoldem</a> &gt; <a href="index.source.html" class="el_package">Model</a> &gt; <span class="el_source">EmptyDeckOfCards.java</span></div><h1>EmptyDeckOfCards.java</h1><pre class="source lang-java linenums">package Model;
 
-import Model.Card;
+
 import java.util.EmptyStackException;
 
-public class EmptyDeckOfCards implements Stack {
+public class EmptyDeckOfCards extends ADeckOfCards {
 
 <span class="fc" id="L8">  public EmptyDeckOfCards() {</span>
 
@@ -17,7 +17,7 @@ public class EmptyDeckOfCards implements Stack {
 
   @Override
   public boolean isEmpty() {
-<span class="nc" id="L20">    return true;</span>
+<span class="fc" id="L20">    return true;</span>
   }
 
   /**
@@ -29,20 +29,7 @@ public class EmptyDeckOfCards implements Stack {
 
   @Override
   public Integer size() {
-<span class="nc" id="L32">    return 0;</span>
-  }
-
-
-  /**
-   * Adds a Model.Card to the Model.DeckOfCards.
-   *
-   * @param card, pushes card onto the Model.DeckOfCards.
-   */
-
-
-  @Override
-  public void addCard(Card card) {
-<span class="nc" id="L45">    return;</span>
+<span class="fc" id="L32">    return 0;</span>
   }
 
 
@@ -55,8 +42,8 @@ public class EmptyDeckOfCards implements Stack {
 
 
   @Override
-  public Card popCard(DeckOfCards deckOfCards) throws EmptyStackException {
-<span class="nc" id="L59">    throw new IllegalArgumentException(&quot;Empty Model.DeckOfCards!&quot;);</span>
+  public Card popCard() throws EmptyStackException {
+<span class="fc" id="L46">    throw new EmptyStackException();</span>
   }
 
   /**
@@ -68,13 +55,14 @@ public class EmptyDeckOfCards implements Stack {
 
   @Override
   public Card showTopCard() throws EmptyStackException {
-<span class="nc" id="L71">    throw new IllegalArgumentException(&quot;Empty Model.DeckOfCards&quot;);</span>
+<span class="fc" id="L58">    throw new EmptyStackException();</span>
+
   }
 
 
   @Override
   public String toString() {
-<span class="nc" id="L77">    return &quot;Model.EmptyDeckOfCards{}&quot;;</span>
+<span class="fc" id="L65">    return &quot;EmptyDeckOfCards{}&quot;;</span>
   }
 }
 

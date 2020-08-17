@@ -3,7 +3,7 @@
 import Model.Card;
 import java.util.Comparator;
 
-<span class="nc" id="L6">public class CardComparator implements Comparator&lt;Card&gt; {</span>
+<span class="fc" id="L6">public class CardComparator implements Comparator&lt;Card&gt; {</span>
 
 
   /**
@@ -23,9 +23,9 @@ import java.util.Comparator;
 
   @Override
   public int compare(Card c1, Card c2) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (c1.getValue().getValue() &gt; c2.getValue().getValue()) {return 1;}</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">    if (c1.getValue().getValue() &lt; c2.getValue().getValue()) {return -1;}</span>
-<span class="nc" id="L28">    return 0;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    if (c1.getValue().getValue() &gt; c2.getValue().getValue()) {return 1;}</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    if (c1.getValue().getValue() &lt; c2.getValue().getValue()) {return -1;}</span>
+<span class="fc" id="L28">    return 0;</span>
 
   }
 

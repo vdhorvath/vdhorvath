@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CardTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-08-17T17:51:29" hostname="Valeries-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="testToString" classname="CardTest" time="0.0"/>
+  <testcase name="testThatCardsAreNotEqual" classname="CardTest" time="0.0"/>
+  <testcase name="getSuit" classname="CardTest" time="0.0"/>
+  <testcase name="testHashCode" classname="CardTest" time="0.001"/>
+  <testcase name="testThatCardsAreEqual" classname="CardTest" time="0.0"/>
+  <testcase name="sortByValue" classname="CardTest" time="0.0"/>
+  <testcase name="getValue" classname="CardTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
