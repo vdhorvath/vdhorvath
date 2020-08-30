@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Model.TexasHoldemTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-08-17T17:51:29" hostname="Valeries-MacBook-Pro.local" time="0.003">
+<testsuite name="Model.TexasHoldemTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-08-25T16:23:26" hostname="Valeries-MacBook-Pro.local" time="0.009">
   <properties/>
-  <testcase name="changeAllPlayersFlagToTrue" classname="Model.TexasHoldemTest" time="0.0"/>
+  <testcase name="changeAllPlayersFlagToTrue" classname="Model.TexasHoldemTest" time="0.001"/>
   <testcase name="bettingRound" classname="Model.TexasHoldemTest" time="0.0"/>
   <testcase name="getCurrPlayers" classname="Model.TexasHoldemTest" time="0.0"/>
   <testcase name="updateRoundBigBlind" classname="Model.TexasHoldemTest" time="0.0"/>

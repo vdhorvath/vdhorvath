@@ -3,28 +3,27 @@
 
 import Model.DeckOfCards;
 import Model.Hand;
-import Model.NoCashException;
 import Model.TexasHoldem;
-import java.util.ArrayList;
+
 
 public class Table extends Hand {
   private TexasHoldem texasHoldemMinimum;
-<span class="nc" id="L12">  private Double pot = 0.0;</span>
+<span class="nc" id="L11">  private Double pot = 0.0;</span>
   private DeckOfCards currDeckOfCards;
 
 
 
 
   public Table() {
-<span class="nc" id="L19">    super();</span>
-<span class="nc" id="L20">    this.pot = pot;</span>
+<span class="nc" id="L18">    super();</span>
+<span class="nc" id="L19">    this.pot = pot;</span>
 
 
-<span class="nc" id="L23">  }</span>
+<span class="nc" id="L22">  }</span>
 
 
   public Double getPot() {
-<span class="nc" id="L27">    return pot;</span>
+<span class="nc" id="L26">    return pot;</span>
   }
 
 
@@ -33,7 +32,7 @@ public class Table extends Hand {
 
   public Double addBetsToPot(Double pot)
   {
-<span class="nc" id="L36">    return this.pot += pot;</span>
+<span class="nc" id="L35">    return this.pot += pot;</span>
   }
 
 
@@ -44,7 +43,7 @@ public class Table extends Hand {
 
   @Override
   public String toString() {
-<span class="nc" id="L47">    return &quot;Table {&quot; +</span>
+<span class="nc" id="L46">    return &quot;Table {&quot; +</span>
         &quot;pot =&quot; + pot +
         &quot;, currDeckOfCards = &quot; + currDeckOfCards +
         '}';

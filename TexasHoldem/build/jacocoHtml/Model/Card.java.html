@@ -65,36 +65,51 @@ public class Card implements Comparable&lt;Card&gt; {
   }
 
 
-  @Override
-  public boolean equals(Object o) {
-<span class="fc bfc" id="L70" title="All 2 branches covered.">    if (this == o) {</span>
-<span class="fc" id="L71">      return true;</span>
-    }
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">    if (!(o instanceof Card)) {</span>
-<span class="nc" id="L74">      return false;</span>
-    }
-<span class="fc" id="L76">    Card card = (Card) o;</span>
-<span class="pc bpc" id="L77" title="1 of 4 branches missed.">    return suit == card.suit &amp;&amp;</span>
-        value == card.value;
+  /**
+   * Compares its two arguments for Suite.  Returns one integer or zero,
+   *
+   * the first object to be compared.
+   * @param other the second object to be compared.
+   * @return a one if equal, zero, otherwise.
+   * equal to, or greater than the second.
+   * @throws NullPointerException if an argument is null and this comparator does not permit null
+   *                              arguments
+   * @throws ClassCastException   if the arguments' types prevent them from being compared by this
+   *                              comparator.
+   */
+
+  public int compareSuit(Card other) {
+<span class="fc" id="L82">    CardComparator cardComparator = new CardComparator();</span>
+<span class="fc" id="L83">    return cardComparator.compareSuit(this, other);</span>
+
   }
 
 
-
+  @Override
+  public boolean equals(Object o) {
+<span class="fc bfc" id="L90" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L91">      return true;</span>
+    }
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">    if (!(o instanceof Card)) {</span>
+<span class="nc" id="L94">      return false;</span>
+    }
+<span class="fc" id="L96">    Card card = (Card) o;</span>
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">    return suit == card.suit &amp;&amp;</span>
+        value == card.value;
+  }
 
   @Override
   public int hashCode() {
-<span class="fc" id="L86">    return Objects.hash(suit, value);</span>
+<span class="fc" id="L103">    return Objects.hash(suit, value);</span>
   }
 
   @Override
   public String toString() {
-<span class="fc" id="L91">    return &quot;Model.Card{&quot; +</span>
+<span class="fc" id="L108">    return &quot;Card{&quot; +</span>
         &quot;suit=&quot; + suit +
         &quot;, value=&quot; + value +
         '}';
   }
-
-
 }
 
 

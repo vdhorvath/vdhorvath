@@ -2,8 +2,8 @@ package Controller;
 
 import Model.Card;
 import Model.DeckOfCards;
+import Model.Hand;
 import View.Table;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class Dealer {
   private DeckOfCards deckOfCards;
-  private Table currTable;
   private Double gameBigBlind = 1000.0;
   private Double bigBlind = 1000.0;
   private Double smallBlind = bigBlind / 2;
@@ -19,10 +18,14 @@ public class Dealer {
 
 
 
-  public Dealer(DeckOfCards deckOfCards, Table currTable) {
+
+
+  public Dealer(DeckOfCards deckOfCards) {
     this.deckOfCards = deckOfCards;
-    this.currTable = currTable;
+
   }
+
+
 
   /**
    * Dealer Shuffle the DeckOfCards of Cards
@@ -38,7 +41,7 @@ public class Dealer {
       deckOfCards.set(i, temp);
     }
 
-    System.out.println(deckOfCards);
+
   }
 
 
@@ -86,8 +89,8 @@ public class Dealer {
       deckOfCards.addCard(deckOfCards.popCard());
       j++;
     }
-    System.out.println(deckOfCards.size());
-    System.out.println(deckOfCards.getDeck());
+    //System.out.println(deckOfCards.size());
+    //System.out.println(deckOfCards.getDeck());
 
 
 
@@ -95,18 +98,16 @@ public class Dealer {
 
 
   /**
-   * Dealer deals the DeckOfCards of Cards
+   * Dealer deals a Hand
    * @return
    */
 
 
-  public void deal(DeckOfCards deckOfCards, List<Players> currPlayers) {
-    for (Players p : currPlayers) {
-      p.addCard(deckOfCards.popCard());
-      p.addCard(deckOfCards.popCard());
-      System.out.println(p);
-    }
-
+  public Hand deal(DeckOfCards deckOfCards) {
+    Hand hand = new Hand();
+    hand.addCard(deckOfCards.popCard());
+    hand.addCard(deckOfCards.popCard());
+    return hand;
   }
 
 
@@ -116,12 +117,12 @@ public class Dealer {
    */
 
 
-  public void dealFlop(DeckOfCards deckOfCards) {
+  public Hand dealFlop(DeckOfCards deckOfCards)  {
+    Hand board = new Hand();
     for (int i = 0; i < 3; i++) {
-      this.currTable.addCard(deckOfCards.popCard());
+      board.addCard(deckOfCards.popCard());
     }
-    System.out.println("BELOW IS THE FLOP");
-    System.out.println(this.currTable.getHand());
+    return board;
 
   }
 
@@ -132,9 +133,9 @@ public class Dealer {
    */
 
 
-  public void dealTurnOrRiver(DeckOfCards deckOfCards) {
-    this.currTable.addCard(deckOfCards.popCard());
-    System.out.println(this.currTable.getHand());
+  public void dealTurnOrRiver(DeckOfCards deckOfCards, Table currTable) {
+    currTable.getBoard().addCard((deckOfCards.popCard()));
+    System.out.println(currTable.getBoard());
   }
 
 
@@ -183,6 +184,9 @@ public class Dealer {
   }
 
 
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +197,6 @@ public class Dealer {
     }
     Dealer dealer = (Dealer) o;
     return Objects.equals(deckOfCards, dealer.deckOfCards) &&
-        Objects.equals(currTable, dealer.currTable) &&
         Objects.equals(gameBigBlind, dealer.gameBigBlind) &&
         Objects.equals(bigBlind, dealer.bigBlind) &&
         Objects.equals(smallBlind, dealer.smallBlind) &&
@@ -203,7 +206,7 @@ public class Dealer {
   @Override
   public int hashCode() {
     return Objects
-        .hash(deckOfCards, currTable, gameBigBlind, bigBlind, smallBlind, numberOfCardsInDeck);
+        .hash(deckOfCards, gameBigBlind, bigBlind, smallBlind, numberOfCardsInDeck);
   }
 
 
@@ -211,7 +214,6 @@ public class Dealer {
   public String toString() {
     return "Dealer{" +
         "deckOfCards=" + deckOfCards +
-        ", currTable=" + currTable +
         ", gameBigBlind=" + gameBigBlind +
         ", bigBlind=" + bigBlind +
         ", smallBlind=" + smallBlind +

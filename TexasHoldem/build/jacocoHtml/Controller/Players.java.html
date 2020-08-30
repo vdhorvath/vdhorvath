@@ -8,25 +8,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Players extends Hand {
-<span class="nc" id="L11">  private static AtomicInteger playerNumberGen = new AtomicInteger(1);</span>
-<span class="nc" id="L12">  private double purse = 10000.00;</span>
-<span class="nc" id="L13">  private Integer playerNumber = 1;</span>
-<span class="nc" id="L14">  private Integer choice = 0;</span>
+<span class="fc" id="L11">  private static AtomicInteger playerNumberGen = new AtomicInteger(1);</span>
+<span class="fc" id="L12">  private double purse = 10000.00;</span>
+<span class="fc" id="L13">  private Integer playerNumber = 1;</span>
+<span class="fc" id="L14">  private Integer choice = 0;</span>
   private boolean raiseFlag;
 
 
 
 
   public Players() {
-<span class="nc" id="L21">    super();</span>
-<span class="nc" id="L22">    this.purse = getPurse();</span>
-<span class="nc" id="L23">    this.playerNumber = this.playerNumberGen.getAndIncrement();</span>
-<span class="nc" id="L24">    this.choice = 0;</span>
-<span class="nc" id="L25">    this.raiseFlag = false;</span>
+<span class="fc" id="L21">    super();</span>
+<span class="fc" id="L22">    this.purse = getPurse();</span>
+<span class="fc" id="L23">    this.playerNumber = this.playerNumberGen.getAndIncrement();</span>
+<span class="fc" id="L24">    this.choice = 0;</span>
+<span class="fc" id="L25">    this.raiseFlag = false;</span>
 
 
 
-<span class="nc" id="L29">  }</span>
+<span class="fc" id="L29">  }</span>
 
   /**
    * Setter for the player number to update and change
@@ -45,7 +45,7 @@ public class Players extends Hand {
    */
 
   public Double getPurse() {
-<span class="nc" id="L48">    return this.purse;</span>
+<span class="fc" id="L48">    return this.purse;</span>
 
   }
 

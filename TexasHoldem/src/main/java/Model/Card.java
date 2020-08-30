@@ -65,6 +65,26 @@ public class Card implements Comparable<Card> {
   }
 
 
+  /**
+   * Compares its two arguments for Suite.  Returns one integer or zero,
+   *
+   * the first object to be compared.
+   * @param other the second object to be compared.
+   * @return a one if equal, zero, otherwise.
+   * equal to, or greater than the second.
+   * @throws NullPointerException if an argument is null and this comparator does not permit null
+   *                              arguments
+   * @throws ClassCastException   if the arguments' types prevent them from being compared by this
+   *                              comparator.
+   */
+
+  public int compareSuit(Card other) {
+    CardComparator cardComparator = new CardComparator();
+    return cardComparator.compareSuit(this, other);
+
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -78,9 +98,6 @@ public class Card implements Comparable<Card> {
         value == card.value;
   }
 
-
-
-
   @Override
   public int hashCode() {
     return Objects.hash(suit, value);
@@ -88,13 +105,11 @@ public class Card implements Comparable<Card> {
 
   @Override
   public String toString() {
-    return "Model.Card{" +
+    return "Card{" +
         "suit=" + suit +
         ", value=" + value +
         '}';
   }
-
-
 }
 
 

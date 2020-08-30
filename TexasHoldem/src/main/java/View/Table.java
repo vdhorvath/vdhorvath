@@ -1,26 +1,32 @@
 package View;
-
-
-import Model.DeckOfCards;
 import Model.Hand;
-import Model.NoCashException;
-import Model.TexasHoldem;
-import java.util.ArrayList;
 
-public class Table extends Hand {
-  private TexasHoldem texasHoldemMinimum;
+
+
+public class Table {
   private Double pot = 0.0;
-  private DeckOfCards currDeckOfCards;
+  private Hand board;
 
 
 
+  /**
+   * Constructor for the Table class
+   */
 
-  public Table() {
-    super();
+  public Table(Hand board) {
     this.pot = pot;
+    this.board = board;
 
 
   }
+
+
+
+
+  /**
+   * Gets the Pot amount
+   * @return Double, Pot amount.
+   */
 
 
   public Double getPot() {
@@ -28,11 +34,24 @@ public class Table extends Hand {
   }
 
 
+  /**
+   * Gets the size of the current cards on the table.
+   * @return Integer of the Table
+   */
+
+  public Integer size() {
+
+    return this.board.size();
+  }
 
 
+  /**
+   * Adds additional bets to the pot.
+   * @param pot
+   * @return Double, total number of bets for a round.
+   */
 
-  public Double addBetsToPot(Double pot)
-  {
+  public Double addBetsToPot(Double pot) {
     return this.pot += pot;
   }
 
@@ -42,11 +61,24 @@ public class Table extends Hand {
 
 
 
+
+  /**
+   * Get the board cards
+   * @return Hand, the current cards that are on the board.
+   */
+
+
+
+  public Hand getBoard() {
+    return this.board;
+  }
+
+
   @Override
   public String toString() {
-    return "Table {" +
-        "pot =" + pot +
-        ", currDeckOfCards = " + currDeckOfCards +
+    return "Table{" +
+        "pot=" + pot +
+        ", board=" + board +
         '}';
   }
 }

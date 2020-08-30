@@ -1,36 +1,50 @@
 package Controller;
 
+
+import Model.Card;
 import Model.Hand;
 import Model.NoCashException;
-
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class Players extends Hand {
+
+
+public class Players {
+
   private static AtomicInteger playerNumberGen = new AtomicInteger(1);
-  private double purse = 10000.00;
+  private Double purse = 10000.00;
   private Integer playerNumber = 1;
   private Integer choice = 0;
   private boolean raiseFlag;
+  private Hand hand;
 
 
+  /**
+   * Constructor for a player
+   *
+   * @param hand
+   */
 
 
-  public Players() {
-    super();
-    this.purse = getPurse();
+  public Players(Hand hand) {
     this.playerNumber = this.playerNumberGen.getAndIncrement();
+    this.purse = purse;
     this.choice = 0;
     this.raiseFlag = false;
-
-
+    this.hand = hand;
 
   }
 
+
+  public Hand getHand() {
+    return hand;
+  }
+
+
   /**
-   * Setter for the player number to update and change
-   * with every new player that is created
+   * Setter for the player number to update and change with every new player that is created
+   *
    * @param startingInt
    */
 
@@ -41,6 +55,7 @@ public class Players extends Hand {
 
   /**
    * Getter for a Player's wallet.
+   *
    * @return
    */
 
@@ -50,10 +65,8 @@ public class Players extends Hand {
   }
 
   /**
-   * Setter for a Player's raise flag.
-   * Set to True
+   * Setter for a Player's raise flag. Set to True
    */
-
 
 
   public void updateRaiseFlagTrue() {
@@ -62,8 +75,7 @@ public class Players extends Hand {
   }
 
   /**
-   * Setter for a Player's raise flag.
-   * Set to False
+   * Setter for a Player's raise flag. Set to False
    */
 
   public void updateRaiseFlagFalse() {
@@ -73,6 +85,7 @@ public class Players extends Hand {
 
   /**
    * Getter for a Player's number
+   *
    * @return Integer
    */
 
@@ -84,6 +97,7 @@ public class Players extends Hand {
 
   /**
    * Getter for a Player's raise flag.
+   *
    * @return
    */
 
@@ -93,6 +107,7 @@ public class Players extends Hand {
 
   /**
    * Bet or Check, subtract a player's amount from the purse.
+   *
    * @param currBet
    * @return
    * @throws NoCashException
@@ -100,7 +115,6 @@ public class Players extends Hand {
 
   public double betOrCheck(Double currBet) throws NoCashException {
     if (this.purse - currBet > 0) {
-      System.out.println(this.purse);
       this.purse = this.purse - currBet;
       return this.purse;
 
@@ -112,6 +126,7 @@ public class Players extends Hand {
 
   /**
    * Getter for a Player's choice.
+   *
    * @return Integer for a player's choice.
    */
 
@@ -121,6 +136,7 @@ public class Players extends Hand {
 
   /**
    * Setter to update a player's choice,
+   *
    * @param newChoice
    */
 
@@ -132,6 +148,7 @@ public class Players extends Hand {
 
   /**
    * Custom toString for a player
+   *
    * @return String, player, player's number and their purse.
    */
 
@@ -140,6 +157,16 @@ public class Players extends Hand {
         "purse = " + purse +
         '}';
   }
+
+
+
+
+  public void addCard(Card card) {
+    this.hand.addCard(card);
+
+  }
+
+
 
 
   @Override
@@ -162,18 +189,13 @@ public class Players extends Hand {
     return Objects.hash(purse, playerNumber, choice, raiseFlag);
   }
 
+
   @Override
   public String toString() {
-    return "Player = " + getPlayerNum() + getHand();
+    return "Player = " + playerNumber +
+        " hand = " + hand +
+        '}';
   }
-
-
-
-
-
-
-
-
 }
 
 

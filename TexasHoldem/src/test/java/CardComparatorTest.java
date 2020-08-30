@@ -34,4 +34,17 @@ public class CardComparatorTest {
   }
 
 
+  @Test
+  public void compareSuitEqual() {
+    assertTrue(jackCardSpades.compareSuit(aceCard) == 1);
+  }
+
+  @Test
+  public void compareSuitFalse() {
+    assertTrue(jackCardSpades.compareSuit(jackCardHearts) == 0);
+  }
+
+
+
+
 }

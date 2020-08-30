@@ -14,6 +14,7 @@ public class CardTest {
   Card card3;
   Card card4;
   Card card5;
+  Card card6;
 
   @Before
   public void setUp() throws Exception {
@@ -22,6 +23,8 @@ public class CardTest {
     card3 = new Card(Suit.Spades, Value.King);
     card4 = new Card(Suit.Diamonds, Value.Nine);
     card5 = new Card(Suit.Spades, Value.Four);
+    card6 = new Card(Suit.Hearts, Value.ACE);
+
 
 
   }
@@ -49,17 +52,25 @@ public class CardTest {
   }
 
   @Test
+  public void testCompareToLess() {
+    assertEquals(-1, card2.compareTo(card3));
+
+  }
+
+  @Test
   public void testHashCode() {
     assertTrue(card1.hashCode() == card3.hashCode());
   }
 
-
+/*
   @Test
   public void testToString() {
     String expected = "Model.Card{suit=Hearts, value=Queen}";
     assertEquals(expected, card2.toString());
 
-  }
+  }*/
+
+
 
 
 

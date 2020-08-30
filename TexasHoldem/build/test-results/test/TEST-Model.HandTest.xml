@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Model.HandTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-08-25T16:23:26" hostname="Valeries-MacBook-Pro.local" time="0.006">
+  <properties/>
+  <testcase name="addCard" classname="Model.HandTest" time="0.002"/>
+  <testcase name="testToString" classname="Model.HandTest" time="0.0"/>
+  <testcase name="highCardLessEqual" classname="Model.HandTest" time="0.0"/>
+  <testcase name="highCardGreater" classname="Model.HandTest" time="0.0"/>
+  <testcase name="highCardLessThan" classname="Model.HandTest" time="0.0"/>
+  <testcase name="getCard" classname="Model.HandTest" time="0.0"/>
+  <testcase name="getHand" classname="Model.HandTest" time="0.0"/>
+  <testcase name="size" classname="Model.HandTest" time="0.0"/>
+  <testcase name="testHashCode" classname="Model.HandTest" time="0.0"/>
+  <testcase name="testEquals" classname="Model.HandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -20,9 +20,7 @@ public class Main {
 
 
     TexasHoldem texasHoldem = new TexasHoldem(numberOfPlayers);
-    texasHoldem.newGame();
     texasHoldem.PlayGame();
-
 
 
 

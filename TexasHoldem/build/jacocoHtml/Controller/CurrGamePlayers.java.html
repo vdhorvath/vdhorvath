@@ -3,18 +3,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class CurrGamePlayers {
 
   private List&lt;Players&gt; currPlayers;
   private Integer numberOfPlayers;
 
 
-<span class="nc" id="L12">  public CurrGamePlayers(Integer numberOfPlayers) {</span>
-<span class="nc" id="L13">    this.currPlayers = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L14">    this.numberOfPlayers = numberOfPlayers;</span>
 
-<span class="nc" id="L16">  }</span>
+<span class="nc" id="L15">  public CurrGamePlayers(Integer numberOfPlayers) {</span>
+<span class="nc" id="L16">    this.currPlayers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L17">    this.numberOfPlayers = numberOfPlayers;</span>
 
+<span class="nc" id="L19">  }</span>
 
 
 
@@ -25,10 +27,10 @@ public class CurrGamePlayers {
 
 
   public Integer indexOfFirstToAct() {
-<span class="nc bnc" id="L28" title="All 2 branches missed.">    if (this.currPlayers.size() &lt; 3) {</span>
-<span class="nc" id="L29">      return 1;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    if (this.currPlayers.size() &lt; 3) {</span>
+<span class="nc" id="L31">      return 1;</span>
     } else
-<span class="nc" id="L31">      return 2;</span>
+<span class="nc" id="L33">      return 2;</span>
   }
 
 
@@ -39,11 +41,11 @@ public class CurrGamePlayers {
    */
 
   public void createPlayersForGame() {
-<span class="nc bnc" id="L42" title="All 2 branches missed.">    for (int i = 0; i &lt; this.numberOfPlayers; i++) {</span>
-<span class="nc" id="L43">      Players player = new Players();</span>
-<span class="nc" id="L44">      this.currPlayers.add(player);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    for (int i = 0; i &lt; this.numberOfPlayers; i++) {</span>
+<span class="nc" id="L45">      Players player = new Players();</span>
+<span class="nc" id="L46">      this.currPlayers.add(player);</span>
     }
-<span class="nc" id="L46">  }</span>
+<span class="nc" id="L48">  }</span>
 
 
 
@@ -54,25 +56,41 @@ public class CurrGamePlayers {
 
 
   public List&lt;Players&gt; getCurrPlayers() {
-<span class="nc" id="L57">    return this.currPlayers;</span>
+<span class="nc" id="L59">    return this.currPlayers;</span>
   }
 
 
+  /**
+   * Add a player to the list
+   * @param player
+   */
 
-<span class="nc" id="L62">  public void add(Players player) { this.currPlayers.add(player); }</span>
 
 
+<span class="nc" id="L70">  public void add(Players player) { this.currPlayers.add(player); }</span>
+
+
+  /**
+   * Return the Size of the List of players
+   * @return Integer
+   */
 
   public Integer size() {
-<span class="nc" id="L67">    return this.currPlayers.size();</span>
+<span class="nc" id="L79">    return this.numberOfPlayers;</span>
   }
+
+
+  /**
+   * Remove a player from the List of players
+   * @param players
+   * @return boolean, that the player has been removed.
+   */
 
 
   public boolean remove(Players players) {
-<span class="nc" id="L72">    return this.currPlayers.remove(players);</span>
+<span class="nc" id="L91">    return this.currPlayers.remove(players);</span>
 
   }
-
 
 
 
@@ -83,16 +101,16 @@ public class CurrGamePlayers {
 
 
   public void rotateBlinds() {
-<span class="nc" id="L86">    Players temp = this.currPlayers.get(0);</span>
-<span class="nc" id="L87">    this.currPlayers.remove(0);</span>
-<span class="nc" id="L88">    this.currPlayers.add(temp);</span>
-<span class="nc" id="L89">    System.out.println(this.currPlayers);</span>
-<span class="nc" id="L90">  }</span>
+<span class="nc" id="L104">    Players temp = this.currPlayers.get(0);</span>
+<span class="nc" id="L105">    this.currPlayers.remove(0);</span>
+<span class="nc" id="L106">    this.currPlayers.add(temp);</span>
+<span class="nc" id="L107">    System.out.println(this.currPlayers);</span>
+<span class="nc" id="L108">  }</span>
 
 
 
   /**
-   *
+   * Shift the players of the game based on the first to Act.
    * @param currPlayers in the game
    * @param index index of the first to act
    * @return List of players
@@ -100,22 +118,22 @@ public class CurrGamePlayers {
 
 
   public List&lt;Players&gt; shiftPlayersForBets(List&lt;Players&gt; currPlayers, Integer index) {
-<span class="nc" id="L103">    Integer i = index;</span>
-<span class="nc" id="L104">    Integer j = 0;</span>
-<span class="nc" id="L105">    List&lt;Players&gt; shiftedPlayerList = new ArrayList() {</span>
+<span class="nc" id="L121">    Integer i = index;</span>
+<span class="nc" id="L122">    Integer j = 0;</span>
+<span class="nc" id="L123">    List&lt;Players&gt; shiftedPlayerList = new ArrayList() {</span>
     };
 
-<span class="nc bnc" id="L108" title="All 2 branches missed.">    while (i &lt;= currPlayers.size() - 1) {</span>
-<span class="nc" id="L109">      shiftedPlayerList.add(currPlayers.get(i));</span>
-<span class="nc" id="L110">      i++;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">    while (i &lt;= currPlayers.size() - 1) {</span>
+<span class="nc" id="L127">      shiftedPlayerList.add(currPlayers.get(i));</span>
+<span class="nc" id="L128">      i++;</span>
     }
 
-<span class="nc bnc" id="L113" title="All 2 branches missed.">    while (j &lt; indexOfFirstToAct()) {</span>
-<span class="nc" id="L114">      shiftedPlayerList.add(currPlayers.get(j));</span>
-<span class="nc" id="L115">      j++;</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">    while (j &lt; indexOfFirstToAct()) {</span>
+<span class="nc" id="L132">      shiftedPlayerList.add(currPlayers.get(j));</span>
+<span class="nc" id="L133">      j++;</span>
 
     }
-<span class="nc" id="L118">    return shiftedPlayerList;</span>
+<span class="nc" id="L136">    return shiftedPlayerList;</span>
   }
 
 
