@@ -51,7 +51,7 @@ public class PokerHandEval {
 
   public Card highCard(Players player, Table table) {
     List<Card> cardList = cardsInPlay(player, table);
-    System.out.println(cardList.get(0));
+    // System.out.println(cardList.get(0));
     return cardList.get(0);
 
   }
@@ -77,9 +77,10 @@ public class PokerHandEval {
         result.add(one);
         result.add(two);
       }
+
     }
 
-    System.out.println(result);
+    //System.out.println(result);
     return result;
 
   }
@@ -90,6 +91,8 @@ public class PokerHandEval {
     List<Card> cardsInPlay = cardsInPlay(player, table);
     int card = 0;
 
+
+
     if (pairToThree.size() == 2) {
 
       while (card < cardsInPlay.size()) {
@@ -97,7 +100,7 @@ public class PokerHandEval {
         if (currCard.getValue().getValue() == pairToThree.get(0).getValue().getValue() &&
             !pairToThree.contains(currCard)) {
           pairToThree.add(currCard);
-          System.out.println(pairToThree);
+          //System.out.println(pairToThree);
           return pairToThree;
         }
         card++;
@@ -106,6 +109,27 @@ public class PokerHandEval {
 
     }
     return null;
+  }
+
+
+
+  public void bestPlayerHand(Players player, Table table) {
+    List<Card> threeOfKind = this.threeOfKind(player, table);
+    List<Card> pair = this.pair(player, table);
+    Card highCard  = this.highCard(player, table);
+
+    if(this.threeOfKind(player, table) != null) {
+      // is Three of Kind function later
+      System.out.println(String.format("Your Highest Hand :: %s", threeOfKind.toString()));
+
+    } else if (!this.pair(player, table).isEmpty()) {
+      // isPair function later
+      System.out.println(String.format("Your Highest Hand :: %s", pair.toString()));
+    } else {
+      System.out.println(String.format("Your Highest Hand :: %s", highCard.toString()));
+
+    }
+
   }
 
 

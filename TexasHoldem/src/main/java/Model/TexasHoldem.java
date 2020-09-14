@@ -347,7 +347,7 @@ public class TexasHoldem {
     System.out.println(player.toString());
     System.out.println(player.toCustomString());
     System.out.println("_________________________________");
-    pokerHandEval.threeOfKind(player, currTable);
+    pokerHandEval.bestPlayerHand(player, currTable);
 
     System.out.println("_________________________________");
     dealer.askPlayerForChoice(player);
