@@ -1,26 +1,30 @@
 package View;
-import Model.Hand;
-
+import Model.Card;
+import java.util.ArrayList;
 
 
 public class Table {
   private Double pot = 0.0;
-  private Hand board;
-
+  private ArrayList<Card> board;
 
 
   /**
    * Constructor for the Table class
    */
 
-  public Table(Hand board) {
+  public Table(ArrayList<Card> board) {
     this.pot = pot;
-    this.board = board;
-
+    this.board = new ArrayList<>();
 
   }
 
 
+
+  public Table() {
+    this.pot = pot;
+    this.board = new ArrayList<>();
+
+  }
 
 
   /**
@@ -40,7 +44,9 @@ public class Table {
    */
 
   public Integer size() {
-
+    if(this.getBoard() == null) {
+      return 0;
+    }
     return this.board.size();
   }
 
@@ -58,8 +64,9 @@ public class Table {
 
 
 
-
-
+  public void addCard(Card card) {
+    this.board.add(card);
+  }
 
 
   /**
@@ -68,8 +75,7 @@ public class Table {
    */
 
 
-
-  public Hand getBoard() {
+  public ArrayList<Card> getBoard() {
     return this.board;
   }
 

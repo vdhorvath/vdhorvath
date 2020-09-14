@@ -2,33 +2,39 @@
 
 import Model.TexasHoldem;
 import Model.NoCashException;
+
+
 import java.util.Scanner;
 
-<span class="nc" id="L7">public class Main {</span>
+<span class="nc" id="L9">public class Main {</span>
+
   public static void main(String[] args) throws NoCashException {
-<span class="nc" id="L9">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L10">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L11">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L12">    System.out.println(&quot;WELCOME TO TEXAS HOLDEM!!!&quot;);</span>
+<span class="nc" id="L12">    System.out.println(&quot;_____________________________&quot;);</span>
 <span class="nc" id="L13">    System.out.println(&quot;_____________________________&quot;);</span>
 <span class="nc" id="L14">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L15">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L15">    System.out.println(&quot;WELCOME TO TEXAS HOLDEM!!!&quot;);</span>
+<span class="nc" id="L16">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L17">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L18">    System.out.println(&quot;_____________________________&quot;);</span>
 
-<span class="nc" id="L17">    Scanner scanner = new Scanner(System.in);  // Create a Scanner object</span>
-<span class="nc" id="L18">    System.out.println(&quot;Enter number of players&quot;);</span>
-<span class="nc" id="L19">    Integer numberOfPlayers = scanner.nextInt();</span>
+<span class="nc" id="L20">    Scanner scanner = new Scanner(System.in);  // Create a Scanner object</span>
+<span class="nc" id="L21">    System.out.println(&quot;Enter number of players&quot;);</span>
+<span class="nc" id="L22">    Integer numberOfPlayers = scanner.nextInt();</span>
 
-
-<span class="nc" id="L22">    TexasHoldem texasHoldem = new TexasHoldem(numberOfPlayers);</span>
-<span class="nc" id="L23">    texasHoldem.newGame();</span>
-<span class="nc" id="L24">    texasHoldem.PlayGame();</span>
-
-
-
+<span class="nc" id="L24">    TexasHoldem texasHoldem = new TexasHoldem(numberOfPlayers);</span>
+<span class="nc" id="L25">    texasHoldem.PlayGame();</span>
 
 
-<span class="nc" id="L30">  }</span>
+
+
+
+<span class="nc" id="L31">  }</span>
+
+
 }
+
+
+
 
 
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class TexasHoldem {
   private Dealer dealer;
   private List<Players> currPlayers;
@@ -18,6 +19,8 @@ public class TexasHoldem {
   private boolean raiseFlag = false;
   private List<Players> foldList = new ArrayList<>();
   private Integer numberOfPlayers;
+
+
 
 
 
@@ -35,8 +38,8 @@ public class TexasHoldem {
     this.roundBigBlind = getRoundBigBlind();
     this.numberOfPlayers = numberOfPlayers;
     this.dealer = new Dealer(this.currDeckOfCards);
+    this.currTable = new Table();
 
-    
 
   }
 
@@ -47,9 +50,11 @@ public class TexasHoldem {
 
   public void createPlayersForGame(Integer numberOfPlayers) {
     for (int i = 0; i < numberOfPlayers; i++) {
-      Players player = new Players(this.dealer.deal(this.currDeckOfCards));
+      Players player = new Players();
+      dealer.deal(currDeckOfCards, player);
       this.currPlayers.add(player);
     }
+
   }
 
 
@@ -340,8 +345,7 @@ public class TexasHoldem {
     System.out.println(player.toString());
     System.out.println(player.toCustomString());
     System.out.println("_________________________________");
-    // System.out.println("Your High card" + " " + PokerHandEval.highCard(player, currTable));
-    System.out.println("Your Pair/s" + " " + PokerHandEval.pair(player, currTable));
+    PokerHandEval.highCard(player,currTable);
     System.out.println("_________________________________");
     dealer.askPlayerForChoice(player);
     this.validatePlayersChoice(shiftPlayersForBets, player);
@@ -388,9 +392,6 @@ public class TexasHoldem {
     this.createPlayersForGame(this.numberOfPlayers);
 
 
-    this.currTable = new Table(dealer.dealFlop(this.currDeckOfCards));
-
-
 
 
 
@@ -403,7 +404,7 @@ public class TexasHoldem {
       bettingRound();
       printLines();
       System.out.println("BELOW IS THE FLOP");
-      dealer.dealFlop(this.currDeckOfCards);
+      dealer.dealFlop(this.currDeckOfCards, this.currTable);
       printLines();
       bettingRound();
       printLines();
@@ -423,6 +424,8 @@ public class TexasHoldem {
 
 
   }
+
+
 
   private void printLines() throws NoCashException {
     System.out.println("_____________________________");

@@ -1,51 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Table.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TexasHoldem</a> &gt; <a href="index.source.html" class="el_package">View</a> &gt; <span class="el_source">Table.java</span></div><h1>Table.java</h1><pre class="source lang-java linenums">package View;
-
-
-import Model.DeckOfCards;
 import Model.Hand;
-import Model.TexasHoldem;
+import java.util.ArrayList;
 
 
-public class Table extends Hand {
-  private TexasHoldem texasHoldemMinimum;
-<span class="nc" id="L11">  private Double pot = 0.0;</span>
-  private DeckOfCards currDeckOfCards;
+public class Table {
+<span class="nc" id="L7">  private Double pot = 0.0;</span>
+  private Hand board;
 
 
+  /**
+   * Constructor for the Table class
+   */
+
+<span class="nc" id="L15">  public Table(Hand board) {</span>
+<span class="nc" id="L16">    this.pot = pot;</span>
+<span class="nc" id="L17">    this.board = board;</span>
+
+<span class="nc" id="L19">  }</span>
+
+<span class="nc" id="L21">  public Table() {</span>
+
+<span class="nc" id="L23">  }</span>
 
 
-  public Table() {
-<span class="nc" id="L18">    super();</span>
-<span class="nc" id="L19">    this.pot = pot;</span>
-
-
-<span class="nc" id="L22">  }</span>
+  /**
+   * Gets the Pot amount
+   * @return Double, Pot amount.
+   */
 
 
   public Double getPot() {
-<span class="nc" id="L26">    return pot;</span>
+<span class="nc" id="L33">    return pot;</span>
+  }
+
+
+  /**
+   * Gets the size of the current cards on the table.
+   * @return Integer of the Table
+   */
+
+  public Integer size() {
+<span class="nc" id="L43">    return this.board.size();</span>
+  }
+
+
+  /**
+   * Adds additional bets to the pot.
+   * @param pot
+   * @return Double, total number of bets for a round.
+   */
+
+  public Double addBetsToPot(Double pot) {
+<span class="nc" id="L54">    return this.pot += pot;</span>
   }
 
 
 
 
 
-  public Double addBetsToPot(Double pot)
-  {
-<span class="nc" id="L35">    return this.pot += pot;</span>
+
+
+
+  /**
+   * Get the board cards
+   * @return Hand, the current cards that are on the board.
+   */
+
+
+
+  public Hand getBoard() {
+<span class="nc" id="L72">    return this.board;</span>
   }
-
-
-
-
-
 
 
   @Override
   public String toString() {
-<span class="nc" id="L46">    return &quot;Table {&quot; +</span>
-        &quot;pot =&quot; + pot +
-        &quot;, currDeckOfCards = &quot; + currDeckOfCards +
+<span class="nc" id="L78">    return &quot;Table{&quot; +</span>
+        &quot;pot=&quot; + pot +
+        &quot;, board=&quot; + board +
         '}';
   }
 }

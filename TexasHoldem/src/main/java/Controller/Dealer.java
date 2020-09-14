@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Card;
 import Model.DeckOfCards;
-import Model.Hand;
 import View.Table;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +14,8 @@ public class Dealer {
   private Double bigBlind = 1000.0;
   private Double smallBlind = bigBlind / 2;
   private Integer numberOfCardsInDeck = 52;
+
+
 
 
 
@@ -103,11 +104,10 @@ public class Dealer {
    */
 
 
-  public Hand deal(DeckOfCards deckOfCards) {
-    Hand hand = new Hand();
-    hand.addCard(deckOfCards.popCard());
-    hand.addCard(deckOfCards.popCard());
-    return hand;
+  public void deal(DeckOfCards deckOfCards, Players player) {
+    player.getHand().add(deckOfCards.popCard());
+    player.getHand().add(deckOfCards.popCard());
+
   }
 
 
@@ -117,14 +117,13 @@ public class Dealer {
    */
 
 
-  public Hand dealFlop(DeckOfCards deckOfCards)  {
-    Hand board = new Hand();
+  public void dealFlop(DeckOfCards deckOfCards, Table board)  {
     for (int i = 0; i < 3; i++) {
       board.addCard(deckOfCards.popCard());
     }
-    return board;
-
+    System.out.println(board.getBoard());
   }
+
 
   /**
    * Dealer Deals the Flop of the River
@@ -133,9 +132,10 @@ public class Dealer {
    */
 
 
-  public void dealTurnOrRiver(DeckOfCards deckOfCards, Table currTable) {
-    currTable.getBoard().addCard((deckOfCards.popCard()));
-    System.out.println(currTable.getBoard());
+  public void dealTurnOrRiver(DeckOfCards deckOfCards, Table board) {
+    board.addCard(deckOfCards.popCard());
+    System.out.println(board.getBoard());
+
   }
 
 
@@ -221,3 +221,5 @@ public class Dealer {
         '}';
   }
 }
+
+

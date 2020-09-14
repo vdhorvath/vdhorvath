@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Hand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TexasHoldem</a> &gt; <a href="index.source.html" class="el_package">Model</a> &gt; <span class="el_source">Hand.java</span></div><h1>Hand.java</h1><pre class="source lang-java linenums">package Model;
 
 
-import Controller.Players;
-import View.Table;
 import java.util.ArrayList;
 import java.util.Objects;
 
+public class Hand  {
 
-public abstract class Hand {
-
-<span class="fc" id="L12">  private ArrayList&lt;Card&gt; hand = new ArrayList&lt;&gt;();</span>
-
-
-<span class="fc" id="L15">  public Hand() {</span>
-<span class="fc" id="L16">    this.hand = new ArrayList&lt;&gt;();</span>
+  public ArrayList&lt;Card&gt; hand;
 
 
-<span class="fc" id="L19">  }</span>
+
+<span class="fc" id="L13">  public Hand(ArrayList&lt;Card&gt; hand) {</span>
+<span class="fc" id="L14">    this.hand = hand;</span>
+
+<span class="fc" id="L16">  }</span>
+
 
 
   public Integer size() {
-<span class="nc" id="L23">    return this.hand.size();</span>
+<span class="nc" id="L21">    return this.hand.size();</span>
   }
 
   /**
@@ -30,7 +28,7 @@ public abstract class Hand {
    */
 
   public ArrayList&lt;Card&gt; getHand() {
-<span class="fc" id="L33">    return this.hand;</span>
+<span class="nc" id="L31">    return this.hand;</span>
   }
 
 
@@ -41,9 +39,9 @@ public abstract class Hand {
    */
 
   public void addCard(Card card) {
-<span class="fc" id="L44">    this.hand.add(card);</span>
+<span class="nc" id="L42">    this.hand.add(card);</span>
 
-<span class="fc" id="L46">  }</span>
+<span class="nc" id="L44">  }</span>
 
   /**
    * Getter method for a card in hand.
@@ -54,100 +52,33 @@ public abstract class Hand {
 
 
   public Card getCard(Integer cardIndex) {
-<span class="nc" id="L57">    return this.hand.get(cardIndex);</span>
+<span class="nc" id="L55">    return this.hand.get(cardIndex);</span>
 
   }
-
-
-
-
-  public Card highCard(ArrayList&lt;Card&gt; hand) throws HasPairException {
-<span class="fc" id="L65">    int card1 = 0;</span>
-<span class="fc" id="L66">    int card2 = 1;</span>
-
-<span class="pc bpc" id="L68" title="2 of 4 branches missed.">    while (card1 &lt; card2 &amp;&amp; card2 &lt; hand.size()) {</span>
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">      if (hand.get(card1).compareTo(hand.get(card2)) == 1) {</span>
-<span class="nc" id="L70">        card2++;</span>
-<span class="nc" id="L71">        return hand.get(card1);</span>
-
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">      } else if (hand.get(card1).compareTo(hand.get(card2)) == -1) {</span>
-<span class="fc" id="L74">        card1++;</span>
-<span class="fc" id="L75">        return hand.get(card2);</span>
-      }
-
-    }
-<span class="nc" id="L79">    throw new HasPairException();</span>
-  }
-
-  public boolean hasPair(ArrayList&lt;Card&gt; hand) {
-<span class="nc" id="L83">    int card1 = 0;</span>
-<span class="nc" id="L84">    int card2 = 1;</span>
-
-<span class="nc bnc" id="L86" title="All 4 branches missed.">    while (card1 &lt; hand.size() &amp;&amp; card2 &lt; hand.size())</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">      if (hand.get(card1).compareTo(hand.get(card2)) == 0) {</span>
-<span class="nc" id="L88">        return true;</span>
-      }
-<span class="nc" id="L90">    return false;</span>
-  }
-
-
-
-  public ArrayList&lt;Card&gt; pairCards(ArrayList&lt;Card&gt; hand) {
-<span class="nc" id="L96">    int card1 = 0;</span>
-<span class="nc" id="L97">    int card2 = 1;</span>
-
-<span class="nc" id="L99">    ArrayList&lt;Card&gt; pair = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L100" title="All 4 branches missed.">    while (card1 &lt; hand.size() &amp;&amp; card2 &lt; hand.size())</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">      if (hand.get(card1).compareTo(hand.get(card2)) == 0) {</span>
-<span class="nc" id="L102">        card1++;</span>
-<span class="nc" id="L103">        card2++;</span>
-<span class="nc" id="L104">        pair.add(hand.get(card1));</span>
-<span class="nc" id="L105">        pair.add(hand.get(card1));</span>
-      }
-<span class="nc" id="L107">    return pair;</span>
-  }
-
-
-
-public boolean threeOfKind(Table table, Players player) {
-<span class="nc bnc" id="L113" title="All 2 branches missed.">    if(player.hasPair(player.getHand())) {</span>
-<span class="nc bnc" id="L114" title="All 2 branches missed.">      for(int card = 0; card &lt; table.size(); card++) {</span>
-<span class="nc bnc" id="L115" title="All 2 branches missed.">        if(player.getHand().get(0).getValue().equals(player.getHand().get(card).getValue()));</span>
-<span class="nc" id="L116">        return true;</span>
-      }
-    }
-<span class="nc" id="L119">    return false;</span>
-
-  }
-
-
-
-
 
 
 
   @Override
   public boolean equals(Object o) {
-<span class="nc bnc" id="L131" title="All 2 branches missed.">    if (this == o) {</span>
-<span class="nc" id="L132">      return true;</span>
-    }
-<span class="nc bnc" id="L134" title="All 2 branches missed.">    if (!(o instanceof Hand)) {</span>
-<span class="nc" id="L135">      return false;</span>
-    }
-<span class="nc" id="L137">    Hand hand1 = (Hand) o;</span>
-<span class="nc" id="L138">    return Objects.equals(hand, hand1.hand);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">    if (this == o)</span>
+<span class="nc" id="L64">      return true;</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass())</span>
+<span class="nc" id="L66">      return false;</span>
+<span class="nc" id="L67">    Hand that = (Hand) o;</span>
+<span class="nc" id="L68">    return Objects.equals(getHand(), that.getClass());</span>
   }
+
+
 
   @Override
   public int hashCode() {
-<span class="nc" id="L143">    return Objects.hash(hand);</span>
+<span class="nc" id="L75">    return Objects.hash(hand);</span>
   }
+
 
   @Override
   public String toString() {
-<span class="nc" id="L148">    return &quot;Hand{&quot; +</span>
-        &quot;hand=&quot; + hand +
-        '}';
+<span class="fc" id="L81">    return &quot;Hand :: &quot; + hand;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

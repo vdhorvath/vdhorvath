@@ -105,6 +105,7 @@ public class DeckOfCards extends ADeckOfCards {
   @Override
   public void addCard(Card card) {
     this.deck.add(card);
+
   }
 
 
@@ -145,11 +146,6 @@ public class DeckOfCards extends ADeckOfCards {
   public Card getCard(Integer index) {
     return this.deck.get(index);
   }
-
-
-
-
-
 
 
 

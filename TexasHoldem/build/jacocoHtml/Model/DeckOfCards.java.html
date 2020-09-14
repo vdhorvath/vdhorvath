@@ -150,34 +150,29 @@ public class DeckOfCards extends ADeckOfCards {
 
 
 
-
-
-
-
-
   @Override
   public boolean equals(Object o) {
-<span class="pc bpc" id="L160" title="1 of 2 branches missed.">    if (this == o) {</span>
-<span class="nc" id="L161">      return true;</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L156">      return true;</span>
     }
-<span class="pc bpc" id="L163" title="1 of 2 branches missed.">    if (!(o instanceof DeckOfCards)) {</span>
-<span class="nc" id="L164">      return false;</span>
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">    if (!(o instanceof DeckOfCards)) {</span>
+<span class="nc" id="L159">      return false;</span>
     }
-<span class="fc" id="L166">    DeckOfCards that = (DeckOfCards) o;</span>
-<span class="pc bpc" id="L167" title="1 of 2 branches missed.">    return Objects.equals(deck, that.deck) &amp;&amp;</span>
-<span class="pc bpc" id="L168" title="1 of 2 branches missed.">        Objects.equals(numberOfCardsInDeck, that.numberOfCardsInDeck);</span>
+<span class="fc" id="L161">    DeckOfCards that = (DeckOfCards) o;</span>
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">    return Objects.equals(deck, that.deck) &amp;&amp;</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        Objects.equals(numberOfCardsInDeck, that.numberOfCardsInDeck);</span>
   }
 
 
 
   @Override
   public int hashCode() {
-<span class="fc" id="L175">    return Objects.hash(deck, numberOfCardsInDeck);</span>
+<span class="fc" id="L170">    return Objects.hash(deck, numberOfCardsInDeck);</span>
   }
 
   @Override
   public String toString() {
-<span class="fc" id="L180">    return &quot;Model.DeckOfCards{&quot; +</span>
+<span class="fc" id="L175">    return &quot;Model.DeckOfCards{&quot; +</span>
         &quot;deck=&quot; + deck +
         &quot;, numberOfCardsInDeck=&quot; + numberOfCardsInDeck +
         '}';

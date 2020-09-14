@@ -1,10 +1,14 @@
 package View;
 
-import Model.TexasHoldem;
+
 import Model.NoCashException;
+import Model.TexasHoldem;
 import java.util.Scanner;
 
+
+
 public class Main {
+
   public static void main(String[] args) throws NoCashException {
     System.out.println("_____________________________");
     System.out.println("_____________________________");
@@ -18,14 +22,18 @@ public class Main {
     System.out.println("Enter number of players");
     Integer numberOfPlayers = scanner.nextInt();
 
-
     TexasHoldem texasHoldem = new TexasHoldem(numberOfPlayers);
     texasHoldem.PlayGame();
 
 
 
   }
+
+
 }
+
+
+
 
 
 

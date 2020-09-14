@@ -2,8 +2,8 @@ package Controller;
 
 
 import Model.Card;
-import Model.Hand;
 import Model.NoCashException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -17,7 +17,7 @@ public class Players {
   private Integer playerNumber = 1;
   private Integer choice = 0;
   private boolean raiseFlag;
-  private Hand hand;
+  private ArrayList<Card> hand;
 
 
   /**
@@ -27,17 +27,27 @@ public class Players {
    */
 
 
-  public Players(Hand hand) {
+  public Players(ArrayList<Card> hand) {
     this.playerNumber = this.playerNumberGen.getAndIncrement();
     this.purse = purse;
     this.choice = 0;
     this.raiseFlag = false;
-    this.hand = hand;
+    this.hand = new ArrayList<>();
 
   }
 
+  public Players() {
+    this.playerNumber = this.playerNumberGen.getAndIncrement();
+    this.purse = purse;
+    this.choice = 0;
+    this.raiseFlag = false;
+    this.hand = new ArrayList<>();
+  }
 
-  public Hand getHand() {
+
+
+
+  public ArrayList<Card> getHand() {
     return hand;
   }
 
@@ -160,11 +170,6 @@ public class Players {
 
 
 
-
-  public void addCard(Card card) {
-    this.hand.addCard(card);
-
-  }
 
 
 
