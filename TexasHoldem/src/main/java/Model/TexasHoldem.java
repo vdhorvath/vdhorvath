@@ -19,6 +19,7 @@ public class TexasHoldem {
   private boolean raiseFlag = false;
   private List<Players> foldList = new ArrayList<>();
   private Integer numberOfPlayers;
+  private PokerHandEval pokerHandEval;
 
 
 
@@ -39,6 +40,7 @@ public class TexasHoldem {
     this.numberOfPlayers = numberOfPlayers;
     this.dealer = new Dealer(this.currDeckOfCards);
     this.currTable = new Table();
+    this.pokerHandEval = new PokerHandEval();
 
 
   }
@@ -345,7 +347,7 @@ public class TexasHoldem {
     System.out.println(player.toString());
     System.out.println(player.toCustomString());
     System.out.println("_________________________________");
-    PokerHandEval.highCard(player,currTable);
+    pokerHandEval.threeOfKind(player, currTable);
     System.out.println("_________________________________");
     dealer.askPlayerForChoice(player);
     this.validatePlayersChoice(shiftPlayersForBets, player);

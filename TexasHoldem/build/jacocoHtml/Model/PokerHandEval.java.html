@@ -3,137 +3,105 @@
 import Controller.Players;
 import View.Table;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 
 public class PokerHandEval {
-  Players player;
-  Table table;
 
 
-<span class="nc" id="L13">  public PokerHandEval(Players player, Table table) {</span>
-<span class="nc" id="L14">    this.player = player;</span>
-<span class="nc" id="L15">    this.table = table;</span>
-<span class="nc" id="L16">  }</span>
+<span class="fc" id="L14">  public PokerHandEval() {</span>
+
+<span class="fc" id="L16">  }</span>
+
+  /**
+   * Creates a list of cards that current in play.
+   *
+   * @param player - to get the cards from the players hand.
+   * @param table  - to get the cards from the current table.
+   * @return
+   */
 
 
+  public List&lt;Card&gt; cardsInPlay(Players player, Table table) {
+<span class="fc" id="L28">    List&lt;Card&gt; cardList = new ArrayList&lt;&gt;();</span>
 
-  // High Card for player &amp; table
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    for (int i = 0; i &lt; player.getHand().size(); i++) {</span>
+<span class="fc" id="L31">      cardList.add(player.getHand().get(i));</span>
+    }
 
-  public static Card highCard(ArrayList&lt;Card&gt; hand) {
-<span class="nc" id="L23">    Card currHighCard = null;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    for (int j = 0; j &lt; table.size(); j++) {</span>
+<span class="fc" id="L35">      cardList.add(table.getBoard().get(j));</span>
+    }
 
-<span class="nc bnc" id="L25" title="All 2 branches missed.">    for (int i = 0; i &lt; hand.size(); i++) {</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">      if (hand.get(i).compareTo(currHighCard) &gt; 0) {</span>
-<span class="nc" id="L27">        currHighCard = hand.get(i);</span>
+<span class="fc" id="L38">    Collections.sort(cardList, Collections.reverseOrder());</span>
+<span class="fc" id="L39">    return cardList;</span>
+
+  }
+
+  /**
+   * Finds a HighCard in a hand. Default hand if no cards find a hand.
+   *
+   * @param player
+   * @param table
+   * @return
+   */
+
+
+  public Card highCard(Players player, Table table) {
+<span class="fc" id="L53">    List&lt;Card&gt; cardList = cardsInPlay(player, table);</span>
+<span class="fc" id="L54">    System.out.println(cardList.get(0));</span>
+<span class="fc" id="L55">    return cardList.get(0);</span>
+
+  }
+
+  /**
+   * Find a pair within a Hand.
+   *
+   * @param player - get a player's hand
+   * @param table  - get a table's hand
+   * @return pair
+   */
+
+
+  public List&lt;Card&gt; pair(Players player, Table table) {
+<span class="fc" id="L69">    List&lt;Card&gt; cardList = cardsInPlay(player, table);</span>
+<span class="fc" id="L70">    List&lt;Card&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L72" title="All 2 branches covered.">    for (int i = 0; i &lt; cardList.size() - 1; i++) {</span>
+<span class="fc" id="L73">      Card one = cardList.get(i);</span>
+<span class="fc" id="L74">      Card two = cardList.get(i + 1);</span>
+
+<span class="fc bfc" id="L76" title="All 4 branches covered.">      if (one.getValue().getValue() == two.getValue().getValue() &amp;&amp; !result.contains(one)) {</span>
+<span class="fc" id="L77">        result.add(one);</span>
+<span class="fc" id="L78">        result.add(two);</span>
       }
-
     }
-<span class="nc" id="L31">    return currHighCard;</span>
+
+<span class="fc" id="L82">    System.out.println(result);</span>
+<span class="fc" id="L83">    return result;</span>
+
   }
 
 
-  public static Card highCard(Players player, Table table) {
-<span class="nc" id="L36">    int card1 = 0;</span>
-<span class="nc" id="L37">    int card2 = 1;</span>
+  public List&lt;Card&gt; threeOfKind(Players player, Table table) {
+<span class="fc" id="L89">    List&lt;Card&gt; pairToThree = pair(player, table);</span>
+<span class="fc" id="L90">    List&lt;Card&gt; cardsInPlay = cardsInPlay(player, table);</span>
+<span class="fc" id="L91">    int card = 0;</span>
 
-<span class="nc" id="L39">    Card currHighCard = null;</span>
-
-<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (player.getHand().getCard(card1).compareTo(player.getHand().getCard(card2)) == 1) {</span>
-<span class="nc" id="L42">      currHighCard = player.getHand().getCard(card1);</span>
-
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    } else if (player.getHand().getCard(card1).compareTo(player.getHand().getCard(card2)) == -1) {</span>
-<span class="nc" id="L45">      currHighCard = player.getHand().getCard(card2);</span>
-    }
-
-    // This will iterate through the board/table cards to find the highest card
-
-<span class="nc bnc" id="L50" title="All 2 branches missed.">    for (int i = 0; i &lt; table.size(); i++) {</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">      if (table.getBoard().getCard(i).compareTo(currHighCard) &gt; 0) {</span>
-<span class="nc" id="L52">        currHighCard = table.getBoard().getCard(i);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">    while(card &lt; cardsInPlay.size()) {</span>
+<span class="fc" id="L94">      Card currCard = cardsInPlay.get(card);</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">      if(currCard.getValue().getValue() == pairToThree.get(1).getValue().getValue() &amp;&amp;</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">          !pairToThree.contains(currCard)) {</span>
+<span class="fc" id="L97">        pairToThree.add(currCard);</span>
+<span class="fc" id="L98">        return pairToThree;</span>
       }
+<span class="fc" id="L100">      card++;</span>
 
-    }
-<span class="nc" id="L56">    return currHighCard;</span>
+<span class="fc" id="L102">    }</span>
+<span class="nc" id="L103">    return null;</span>
   }
-
-
-  public static Hand pair(Players player, Table table) {
-<span class="nc" id="L61">    int card1 = 0;</span>
-<span class="nc" id="L62">    int card2 = 1;</span>
-
-<span class="nc" id="L64">    ArrayList&lt;Card&gt; hand = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L65">    Hand pair = new Hand(hand);</span>
-
-    // case 1 pair in hand
-
-<span class="nc bnc" id="L69" title="All 2 branches missed.">    if (player.getHand().getCard(card1).compareTo(player.getHand().getCard(card2)) == 0) {</span>
-<span class="nc" id="L70">      return player.getHand();</span>
-    }
-
-<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (table.getBoard() != null) {</span>
-
-      // case pair in hand and table
-
-      // case 3 pair on table but not in hand
-
-<span class="nc bnc" id="L79" title="All 2 branches missed.">      for (int playerCard = 0; playerCard &lt; player.getHand().size(); playerCard++)</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        for (int tableCard = 0; tableCard &lt; table.size(); tableCard++) {</span>
-
-<span class="nc bnc" id="L82" title="All 2 branches missed.">          if (table.getBoard().getCard(card1).compareTo(player.getHand().getCard(playerCard))</span>
-              == 0) {
-<span class="nc" id="L84">            pair.addCard(player.getHand().getCard(playerCard));</span>
-<span class="nc" id="L85">            pair.addCard(table.getBoard().getCard(card1));</span>
-          }
-<span class="nc" id="L87">          return pair;</span>
-
-        }
-
-    }
-<span class="nc" id="L92">    return pairOnTableHelper(table);</span>
-
-  }
-
-
-  public static Hand pairOnTableHelper(Table table) {
-
-<span class="nc" id="L99">    ArrayList&lt;Card&gt; hand = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L100">    Hand pair = new Hand(hand);</span>
-
-<span class="nc bnc" id="L102" title="All 2 branches missed.">    for (int i = 0; i &lt; table.size(); i++) {</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">      for (int j = 1; j &lt; table.size(); j++) {</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (table.getBoard().getCard(i).compareTo(table.getBoard().getCard(j)) == 0) {</span>
-<span class="nc" id="L105">          pair.addCard(table.getBoard().getCard(i));</span>
-<span class="nc" id="L106">          pair.addCard(table.getBoard().getCard(j));</span>
-        }
-      }
-<span class="nc" id="L109">      return pair;</span>
-
-    }
-<span class="nc" id="L112">    return null;</span>
-
-  }
-
 }
-
-
-
-
-
-
-
-/*
-  public boolean threeOfKind(Table table, Players player) {
-    if(this.hasPair(player.getHand())) {
-      for(int card = 0; card &lt; table.size(); card++) {
-        if(player.getHand().get(0).getValue().equals(player.getHand().get(card).getValue()));
-        return true;
-      }
-    }
-    return false;
-
-  }
-
-}
-*/
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

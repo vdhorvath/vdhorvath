@@ -44,71 +44,43 @@ public class Card implements Comparable&lt;Card&gt; {
 
   }
 
-  /**
-   * Compares this object with the specified object for order.  Returns a negative integer, zero, or
-   * a positive integer as this object is less than, equal to, or greater than the specified
-   * object.
-   *
-   * @param other the object to be compared.
-   * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
-   * or greater than the specified object.
-   * @throws NullPointerException if the specified object is null
-   * @throws ClassCastException   if the specified object's type prevents it from being compared to
-   *                              this object.
-   */
 
 
-  public int compareTo(Card other) {
-<span class="fc" id="L62">    CardComparator cardComparator = new CardComparator();</span>
-<span class="fc" id="L63">    return cardComparator.compare(this, other);</span>
-
+  public int compareTo(Card c) {
+<span class="fc" id="L50">    return this.getValue().getValue() - c.getValue().getValue();</span>
   }
 
 
-  /**
-   * Compares its two arguments for Suite.  Returns one integer or zero,
-   *
-   * the first object to be compared.
-   * @param other the second object to be compared.
-   * @return a one if equal, zero, otherwise.
-   * equal to, or greater than the second.
-   * @throws NullPointerException if an argument is null and this comparator does not permit null
-   *                              arguments
-   * @throws ClassCastException   if the arguments' types prevent them from being compared by this
-   *                              comparator.
-   */
-
-  public int compareSuit(Card other) {
-<span class="fc" id="L82">    CardComparator cardComparator = new CardComparator();</span>
-<span class="fc" id="L83">    return cardComparator.compareSuit(this, other);</span>
-
+  public int compareThree(Card c1, Card c2, Card c3) {
+<span class="nc bnc" id="L55" title="All 4 branches missed.">    if(c1.compareTo(c2) == 0 &amp;&amp; c2.compareTo(c3) == 0) {</span>
+<span class="nc" id="L56">        return 0;</span>
+    }
+<span class="nc" id="L58">    return -1;</span>
   }
+
 
 
   @Override
   public boolean equals(Object o) {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">    if (this == o) {</span>
-<span class="fc" id="L91">      return true;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L66">      return true;</span>
     }
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">    if (!(o instanceof Card)) {</span>
-<span class="nc" id="L94">      return false;</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">    if (!(o instanceof Card)) {</span>
+<span class="nc" id="L69">      return false;</span>
     }
-<span class="fc" id="L96">    Card card = (Card) o;</span>
-<span class="pc bpc" id="L97" title="1 of 4 branches missed.">    return suit == card.suit &amp;&amp;</span>
+<span class="fc" id="L71">    Card card = (Card) o;</span>
+<span class="pc bpc" id="L72" title="1 of 4 branches missed.">    return suit == card.suit &amp;&amp;</span>
         value == card.value;
   }
 
   @Override
   public int hashCode() {
-<span class="fc" id="L103">    return Objects.hash(suit, value);</span>
+<span class="fc" id="L78">    return Objects.hash(suit, value);</span>
   }
 
   @Override
   public String toString() {
-<span class="fc" id="L108">    return &quot;Card{&quot; +</span>
-        &quot;suit=&quot; + suit +
-        &quot;, value=&quot; + value +
-        '}';
+<span class="fc" id="L83">    return &quot;&lt;&quot;+ value + &quot; &quot; + &quot;of&quot; + &quot; &quot; + suit +&quot;&gt;&quot;;</span>
   }
 }
 

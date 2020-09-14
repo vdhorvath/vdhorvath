@@ -23,7 +23,7 @@ public class CardTest {
     card3 = new Card(Suit.Spades, Value.King);
     card4 = new Card(Suit.Diamonds, Value.Nine);
     card5 = new Card(Suit.Spades, Value.Four);
-    card6 = new Card(Suit.Hearts, Value.ACE);
+    card6 = new Card(Suit.Hearts, Value.Ace);
 
 
 
@@ -61,15 +61,6 @@ public class CardTest {
   public void testHashCode() {
     assertTrue(card1.hashCode() == card3.hashCode());
   }
-
-/*
-  @Test
-  public void testToString() {
-    String expected = "Model.Card{suit=Hearts, value=Queen}";
-    assertEquals(expected, card2.toString());
-
-  }*/
-
 
 
 

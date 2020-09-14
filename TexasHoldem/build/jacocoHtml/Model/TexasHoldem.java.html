@@ -19,6 +19,7 @@ public class TexasHoldem {
 <span class="nc" id="L19">  private boolean raiseFlag = false;</span>
 <span class="nc" id="L20">  private List&lt;Players&gt; foldList = new ArrayList&lt;&gt;();</span>
   private Integer numberOfPlayers;
+  private PokerHandEval pokerHandEval;
 
 
 
@@ -32,16 +33,17 @@ public class TexasHoldem {
 
 
 
-<span class="nc" id="L35">  public TexasHoldem(Integer numberOfPlayers) {</span>
-<span class="nc" id="L36">    this.currDeckOfCards = new DeckOfCards();</span>
-<span class="nc" id="L37">    this.currPlayers = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L38">    this.roundBigBlind = getRoundBigBlind();</span>
-<span class="nc" id="L39">    this.numberOfPlayers = numberOfPlayers;</span>
-<span class="nc" id="L40">    this.dealer = new Dealer(this.currDeckOfCards);</span>
-<span class="nc" id="L41">    this.currTable = new Table();</span>
+<span class="nc" id="L36">  public TexasHoldem(Integer numberOfPlayers) {</span>
+<span class="nc" id="L37">    this.currDeckOfCards = new DeckOfCards();</span>
+<span class="nc" id="L38">    this.currPlayers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L39">    this.roundBigBlind = getRoundBigBlind();</span>
+<span class="nc" id="L40">    this.numberOfPlayers = numberOfPlayers;</span>
+<span class="nc" id="L41">    this.dealer = new Dealer(this.currDeckOfCards);</span>
+<span class="nc" id="L42">    this.currTable = new Table();</span>
+<span class="nc" id="L43">    this.pokerHandEval = new PokerHandEval();</span>
 
 
-<span class="nc" id="L44">  }</span>
+<span class="nc" id="L46">  }</span>
 
 
   /**
@@ -49,11 +51,13 @@ public class TexasHoldem {
    */
 
   public void createPlayersForGame(Integer numberOfPlayers) {
-<span class="nc bnc" id="L52" title="All 2 branches missed.">    for (int i = 0; i &lt; numberOfPlayers; i++) {</span>
-<span class="nc" id="L53">      Players player = new Players(this.dealer.deal(this.currDeckOfCards));</span>
-<span class="nc" id="L54">      this.currPlayers.add(player);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    for (int i = 0; i &lt; numberOfPlayers; i++) {</span>
+<span class="nc" id="L55">      Players player = new Players();</span>
+<span class="nc" id="L56">      dealer.deal(currDeckOfCards, player);</span>
+<span class="nc" id="L57">      this.currPlayers.add(player);</span>
     }
-<span class="nc" id="L56">  }</span>
+
+<span class="nc" id="L60">  }</span>
 
 
 
@@ -64,9 +68,9 @@ public class TexasHoldem {
 
 
   public void updateRoundBigBlind(Double minRoundBet) {
-<span class="nc" id="L67">    this.roundBigBlind = minRoundBet;</span>
+<span class="nc" id="L71">    this.roundBigBlind = minRoundBet;</span>
 
-<span class="nc" id="L69">  }</span>
+<span class="nc" id="L73">  }</span>
 
 
   /**
@@ -75,9 +79,9 @@ public class TexasHoldem {
    */
 
   public void updateFlag() {
-<span class="nc" id="L78">    this.raiseFlag = false;</span>
+<span class="nc" id="L82">    this.raiseFlag = false;</span>
 
-<span class="nc" id="L80">  }</span>
+<span class="nc" id="L84">  }</span>
 
 
   /**
@@ -86,7 +90,7 @@ public class TexasHoldem {
    */
 
   public Double getRoundBigBlind() {
-<span class="nc" id="L89">    return roundBigBlind;</span>
+<span class="nc" id="L93">    return roundBigBlind;</span>
   }
 
 
@@ -102,23 +106,23 @@ public class TexasHoldem {
 
         // if a player folds
 
-<span class="nc bnc" id="L105" title="All 2 branches missed.">    if (player.getChoice() == 3) {</span>
-<span class="nc" id="L106">      foldPlayer(currPlayers, player);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    if (player.getChoice() == 3) {</span>
+<span class="nc" id="L110">      foldPlayer(currPlayers, player);</span>
 
       // if a player checks or call
 
-<span class="nc bnc" id="L110" title="All 2 branches missed.">    } else if(player.getChoice() == 1) {</span>
-<span class="nc" id="L111">      validatePlayersBet(player, this.roundBigBlind);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    } else if(player.getChoice() == 1) {</span>
+<span class="nc" id="L115">      validatePlayersBet(player, this.roundBigBlind);</span>
 
       // if a player raises
 
-<span class="nc bnc" id="L115" title="All 2 branches missed.">    } else if (player.getChoice() == 2) {</span>
-<span class="nc" id="L116">      validatePlayersBet(player, dealer.askPlayerBetAmt());</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">    } else if (player.getChoice() == 2) {</span>
+<span class="nc" id="L120">      validatePlayersBet(player, dealer.askPlayerBetAmt());</span>
 
     }
 
 
-<span class="nc" id="L121">  }</span>
+<span class="nc" id="L125">  }</span>
 
 
   /**
@@ -129,40 +133,40 @@ public class TexasHoldem {
 
 
   public Double validatePlayersBet(Players player, Double amount) throws NoCashException {
-<span class="nc" id="L132">    Double newBet = 0.0;</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">    if (amount &lt; this.roundBigBlind) {</span>
-<span class="nc" id="L134">      System.out</span>
-<span class="nc" id="L135">          .println(&quot;Sorry your bet was too low, the minimum bet is &quot; + &quot;&quot; + this.roundBigBlind);</span>
-<span class="nc" id="L136">      newBet = dealer.askPlayerBetAmt();</span>
-<span class="nc" id="L137">      return this.validatePlayersBet(player, newBet);</span>
+<span class="nc" id="L136">    Double newBet = 0.0;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">    if (amount &lt; this.roundBigBlind) {</span>
+<span class="nc" id="L138">      System.out</span>
+<span class="nc" id="L139">          .println(&quot;Sorry your bet was too low, the minimum bet is &quot; + &quot;&quot; + this.roundBigBlind);</span>
+<span class="nc" id="L140">      newBet = dealer.askPlayerBetAmt();</span>
+<span class="nc" id="L141">      return this.validatePlayersBet(player, newBet);</span>
 
-<span class="nc bnc" id="L139" title="All 2 branches missed.">    } else if (amount &gt; this.roundBigBlind) {</span>
-<span class="nc" id="L140">      updateRoundBigBlind(amount);</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    } else if (amount &gt; this.roundBigBlind) {</span>
+<span class="nc" id="L144">      updateRoundBigBlind(amount);</span>
       // take money from players purse
-<span class="nc" id="L142">      player.betOrCheck(amount);</span>
+<span class="nc" id="L146">      player.betOrCheck(amount);</span>
 
       // flag for raise bet
-<span class="nc" id="L145">      this.raiseFlag = true;</span>
+<span class="nc" id="L149">      this.raiseFlag = true;</span>
 
-<span class="nc" id="L147">      changeAllPlayersFlagToTrue(player);</span>
+<span class="nc" id="L151">      changeAllPlayersFlagToTrue(player);</span>
 
 
-<span class="nc" id="L150">      System.out.println(&quot;The minimum has increased, the minimum bet is &quot; + &quot;&quot; + this.roundBigBlind);</span>
+<span class="nc" id="L154">      System.out.println(&quot;The minimum has increased, the minimum bet is &quot; + &quot;&quot; + this.roundBigBlind);</span>
       //s
-<span class="nc" id="L152">      return this.currTable.addBetsToPot(amount);</span>
+<span class="nc" id="L156">      return this.currTable.addBetsToPot(amount);</span>
     }
     // take money from players purse
-<span class="nc" id="L155">    player.betOrCheck(this.roundBigBlind);</span>
+<span class="nc" id="L159">    player.betOrCheck(this.roundBigBlind);</span>
 
     // update players flag after the blind has been raised
 
-<span class="nc" id="L159">    changeAllPlayersFlagToTrue(player);</span>
+<span class="nc" id="L163">    changeAllPlayersFlagToTrue(player);</span>
 
     // update the pot, adding funds to pot
 
 
 
-<span class="nc" id="L165">    return this.currTable.addBetsToPot(amount);</span>
+<span class="nc" id="L169">    return this.currTable.addBetsToPot(amount);</span>
   }
 
 
@@ -176,11 +180,11 @@ public class TexasHoldem {
 
 
   public void changeAllPlayersFlagToTrue(Players p) {
-<span class="nc bnc" id="L179" title="All 4 branches missed.">    if (this.raiseFlag == true &amp;&amp; this.roundBigBlind &gt; this.gameBigBlind) {</span>
-<span class="nc" id="L180">      p.updateRaiseFlagTrue();</span>
+<span class="nc bnc" id="L183" title="All 4 branches missed.">    if (this.raiseFlag == true &amp;&amp; this.roundBigBlind &gt; this.gameBigBlind) {</span>
+<span class="nc" id="L184">      p.updateRaiseFlagTrue();</span>
     }
 
-<span class="nc" id="L183">  }</span>
+<span class="nc" id="L187">  }</span>
 
 
 
@@ -194,13 +198,13 @@ public class TexasHoldem {
 
 
   public void foldPlayer(List&lt;Players&gt; currPlayers, Players player) {
-<span class="nc" id="L197">    this.foldList.add(player);</span>
-<span class="nc" id="L198">    currPlayers.listIterator().next();</span>
-<span class="nc" id="L199">      System.out.println(&quot;---------------------------------&quot;);</span>
-<span class="nc" id="L200">      System.out.println(player.toCustomString() + &quot; &quot; + &quot;has folded&quot;);</span>
-<span class="nc" id="L201">      System.out.println(&quot;---------------------------------&quot;);</span>
+<span class="nc" id="L201">    this.foldList.add(player);</span>
+<span class="nc" id="L202">    currPlayers.listIterator().next();</span>
+<span class="nc" id="L203">      System.out.println(&quot;---------------------------------&quot;);</span>
+<span class="nc" id="L204">      System.out.println(player.toCustomString() + &quot; &quot; + &quot;has folded&quot;);</span>
+<span class="nc" id="L205">      System.out.println(&quot;---------------------------------&quot;);</span>
 
-<span class="nc" id="L203">    }</span>
+<span class="nc" id="L207">    }</span>
 
 
 
@@ -212,16 +216,16 @@ public class TexasHoldem {
 
 
   public Integer indexOfFirstToAct() {
-<span class="nc bnc" id="L215" title="All 2 branches missed.">    if (this.currPlayers.size() &lt; 3) {</span>
-<span class="nc" id="L216">      return 1;</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">    if (this.currPlayers.size() &lt; 3) {</span>
+<span class="nc" id="L220">      return 1;</span>
     } else
-<span class="nc" id="L218">      return 2;</span>
+<span class="nc" id="L222">      return 2;</span>
   }
 
 
 
   public Integer size() {
-<span class="nc" id="L224">    return this.currPlayers.size();</span>
+<span class="nc" id="L228">    return this.currPlayers.size();</span>
   }
 
 
@@ -233,7 +237,7 @@ public class TexasHoldem {
 
 
   public boolean remove(Players players) {
-<span class="nc" id="L236">    return this.currPlayers.remove(players);</span>
+<span class="nc" id="L240">    return this.currPlayers.remove(players);</span>
 
   }
 
@@ -244,11 +248,11 @@ public class TexasHoldem {
 
 
   public void rotateBlinds() {
-<span class="nc" id="L247">    Players temp = this.currPlayers.get(0);</span>
-<span class="nc" id="L248">    this.currPlayers.remove(0);</span>
-<span class="nc" id="L249">    this.currPlayers.add(temp);</span>
-<span class="nc" id="L250">    System.out.println(this.currPlayers);</span>
-<span class="nc" id="L251">  }</span>
+<span class="nc" id="L251">    Players temp = this.currPlayers.get(0);</span>
+<span class="nc" id="L252">    this.currPlayers.remove(0);</span>
+<span class="nc" id="L253">    this.currPlayers.add(temp);</span>
+<span class="nc" id="L254">    System.out.println(this.currPlayers);</span>
+<span class="nc" id="L255">  }</span>
 
 
 
@@ -261,22 +265,22 @@ public class TexasHoldem {
 
 
   public List&lt;Players&gt; shiftPlayersForBets(List&lt;Players&gt; currPlayers, Integer index) {
-<span class="nc" id="L264">    Integer i = index;</span>
-<span class="nc" id="L265">    Integer j = 0;</span>
-<span class="nc" id="L266">    List&lt;Players&gt; shiftedPlayerList = new ArrayList() {</span>
+<span class="nc" id="L268">    Integer i = index;</span>
+<span class="nc" id="L269">    Integer j = 0;</span>
+<span class="nc" id="L270">    List&lt;Players&gt; shiftedPlayerList = new ArrayList() {</span>
     };
 
-<span class="nc bnc" id="L269" title="All 2 branches missed.">    while (i &lt;= currPlayers.size() - 1) {</span>
-<span class="nc" id="L270">      shiftedPlayerList.add(currPlayers.get(i));</span>
-<span class="nc" id="L271">      i++;</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">    while (i &lt;= currPlayers.size() - 1) {</span>
+<span class="nc" id="L274">      shiftedPlayerList.add(currPlayers.get(i));</span>
+<span class="nc" id="L275">      i++;</span>
     }
 
-<span class="nc bnc" id="L274" title="All 2 branches missed.">    while (j &lt; indexOfFirstToAct()) {</span>
-<span class="nc" id="L275">      shiftedPlayerList.add(currPlayers.get(j));</span>
-<span class="nc" id="L276">      j++;</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">    while (j &lt; indexOfFirstToAct()) {</span>
+<span class="nc" id="L279">      shiftedPlayerList.add(currPlayers.get(j));</span>
+<span class="nc" id="L280">      j++;</span>
 
     }
-<span class="nc" id="L279">    return shiftedPlayerList;</span>
+<span class="nc" id="L283">    return shiftedPlayerList;</span>
   }
 
 
@@ -289,40 +293,40 @@ public class TexasHoldem {
 
 
   public void bettingRound() throws NoCashException {
-<span class="nc" id="L292">    List&lt;Players&gt; shiftPlayersForBets =</span>
-<span class="nc" id="L293">        this.shiftPlayersForBets(this.currPlayers, indexOfFirstToAct());</span>
+<span class="nc" id="L296">    List&lt;Players&gt; shiftPlayersForBets =</span>
+<span class="nc" id="L297">        this.shiftPlayersForBets(this.currPlayers, indexOfFirstToAct());</span>
 
-<span class="nc bnc" id="L295" title="All 2 branches missed.">    for (Players player : shiftPlayersForBets) {</span>
-<span class="nc bnc" id="L296" title="All 2 branches missed.">      if (!this.foldList.contains(player)) {</span>
-<span class="nc" id="L297">        bettingHelper(shiftPlayersForBets, player);</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">    for (Players player : shiftPlayersForBets) {</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">      if (!this.foldList.contains(player)) {</span>
+<span class="nc" id="L301">        bettingHelper(shiftPlayersForBets, player);</span>
 
       } else
         // skip player
-<span class="nc" id="L301">        shiftPlayersForBets.listIterator().next();</span>
-<span class="nc" id="L302">    }</span>
+<span class="nc" id="L305">        shiftPlayersForBets.listIterator().next();</span>
+<span class="nc" id="L306">    }</span>
 
     // If there is a raise we will need to re-loop through all the players
     // that have not raised
 
-<span class="nc bnc" id="L307" title="All 2 branches missed.">    if (this.raiseFlag != false) {</span>
-<span class="nc bnc" id="L308" title="All 2 branches missed.">          for (Players player : shiftPlayersForBets ) {</span>
-<span class="nc bnc" id="L309" title="All 4 branches missed.">            if (!this.foldList.contains(player) &amp;&amp; player.getRaiseFlag() == false) {</span>
-<span class="nc" id="L310">              this.bettingHelper(shiftPlayersForBets, player);</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">    if (this.raiseFlag != false) {</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">          for (Players player : shiftPlayersForBets ) {</span>
+<span class="nc bnc" id="L313" title="All 4 branches missed.">            if (!this.foldList.contains(player) &amp;&amp; player.getRaiseFlag() == false) {</span>
+<span class="nc" id="L314">              this.bettingHelper(shiftPlayersForBets, player);</span>
 
             }
 
-<span class="nc" id="L314">        }</span>
+<span class="nc" id="L318">        }</span>
           // update game flag
-<span class="nc" id="L316">          this.updateFlag();</span>
+<span class="nc" id="L320">          this.updateFlag();</span>
 
           // update all player flags for a new round
-<span class="nc" id="L319">          this.updatePlayerFlags(shiftPlayersForBets);</span>
+<span class="nc" id="L323">          this.updatePlayerFlags(shiftPlayersForBets);</span>
 
           // reset the round big Blind to
-<span class="nc" id="L322">          this.roundBigBlind = this.gameBigBlind;</span>
+<span class="nc" id="L326">          this.roundBigBlind = this.gameBigBlind;</span>
     }
 
-<span class="nc" id="L325">  }</span>
+<span class="nc" id="L329">  }</span>
 
 
 
@@ -340,20 +344,19 @@ public class TexasHoldem {
 
   private void bettingHelper(List&lt;Players&gt; shiftPlayersForBets, Players player)
       throws NoCashException {
-<span class="nc" id="L343">    System.out.println(player.toString());</span>
-<span class="nc" id="L344">    System.out.println(player.toCustomString());</span>
-<span class="nc" id="L345">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L346">    System.out.println(&quot;Your High card&quot; + &quot; &quot; + PokerHandEval.highCard(player, currTable));</span>
-    // System.out.println(&quot;Your Pair/s&quot; + &quot; &quot; + PokerHandEval.pair(player, currTable));
-<span class="nc" id="L348">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L349">    dealer.askPlayerForChoice(player);</span>
-<span class="nc" id="L350">    this.validatePlayersChoice(shiftPlayersForBets, player);</span>
+<span class="nc" id="L347">    System.out.println(player.toString());</span>
+<span class="nc" id="L348">    System.out.println(player.toCustomString());</span>
+<span class="nc" id="L349">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L350">    pokerHandEval.threeOfKind(player, currTable);</span>
 <span class="nc" id="L351">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L352">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L353">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L354">    System.out.println(&quot;Current Pot&quot; + &quot; &quot; + this.currTable.getPot());</span>
+<span class="nc" id="L352">    dealer.askPlayerForChoice(player);</span>
+<span class="nc" id="L353">    this.validatePlayersChoice(shiftPlayersForBets, player);</span>
+<span class="nc" id="L354">    System.out.println(&quot;_________________________________&quot;);</span>
 <span class="nc" id="L355">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L356">  }</span>
+<span class="nc" id="L356">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L357">    System.out.println(&quot;Current Pot&quot; + &quot; &quot; + this.currTable.getPot());</span>
+<span class="nc" id="L358">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L359">  }</span>
 
 
 
@@ -363,32 +366,32 @@ public class TexasHoldem {
    */
 
   private void updatePlayerFlags(List&lt;Players&gt; shiftPlayersForBets) {
-<span class="nc bnc" id="L366" title="All 2 branches missed.">      for(Players p: shiftPlayersForBets) {</span>
-<span class="nc" id="L367">        p.updateRaiseFlagFalse();</span>
-<span class="nc" id="L368">      }</span>
+<span class="nc bnc" id="L369" title="All 2 branches missed.">      for(Players p: shiftPlayersForBets) {</span>
+<span class="nc" id="L370">        p.updateRaiseFlagFalse();</span>
+<span class="nc" id="L371">      }</span>
 
-<span class="nc" id="L370">  }</span>
+<span class="nc" id="L373">  }</span>
 
 
 
 
 
   public void PlayGame() throws NoCashException {
-<span class="nc" id="L377">    int round = 0;</span>
+<span class="nc" id="L380">    int round = 0;</span>
 
-<span class="nc" id="L379">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L380">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L381">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L382">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L383">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L384">    System.out.println(&quot;_____________________________&quot;);</span>
 
     // shuffle deck
 
-<span class="nc" id="L385">    dealer.shuffleDeck(this.currDeckOfCards);</span>
+<span class="nc" id="L388">    dealer.shuffleDeck(this.currDeckOfCards);</span>
 
     // cuts the deck
-<span class="nc" id="L388">    dealer.cutsDeck(this.currDeckOfCards);</span>
+<span class="nc" id="L391">    dealer.cutsDeck(this.currDeckOfCards);</span>
 
     // create the players for the game and deal cards
-<span class="nc" id="L391">    this.createPlayersForGame(this.numberOfPlayers);</span>
+<span class="nc" id="L394">    this.createPlayersForGame(this.numberOfPlayers);</span>
 
 
 
@@ -398,40 +401,42 @@ public class TexasHoldem {
 
 
 
-<span class="nc bnc" id="L401" title="All 2 branches missed.">    while (round != 1) {</span>
-<span class="nc" id="L402">      printLines();</span>
-<span class="nc" id="L403">      bettingRound();</span>
-<span class="nc" id="L404">      printLines();</span>
-<span class="nc" id="L405">      System.out.println(&quot;BELOW IS THE FLOP&quot;);</span>
-<span class="nc" id="L406">      dealer.dealFlop(this.currDeckOfCards);</span>
+<span class="nc bnc" id="L404" title="All 2 branches missed.">    while (round != 1) {</span>
+<span class="nc" id="L405">      printLines();</span>
+<span class="nc" id="L406">      bettingRound();</span>
 <span class="nc" id="L407">      printLines();</span>
-<span class="nc" id="L408">      bettingRound();</span>
-<span class="nc" id="L409">      printLines();</span>
-<span class="nc" id="L410">      System.out.println(&quot;TURN&quot;);</span>
-<span class="nc" id="L411">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L408">      System.out.println(&quot;BELOW IS THE FLOP&quot;);</span>
+<span class="nc" id="L409">      dealer.dealFlop(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L410">      printLines();</span>
+<span class="nc" id="L411">      bettingRound();</span>
 <span class="nc" id="L412">      printLines();</span>
-<span class="nc" id="L413">      this.bettingRound();</span>
-<span class="nc" id="L414">      printLines();</span>
-<span class="nc" id="L415">      System.out.println(&quot;RIVER&quot;);</span>
-<span class="nc" id="L416">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L413">      System.out.println(&quot;TURN&quot;);</span>
+<span class="nc" id="L414">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L415">      printLines();</span>
+<span class="nc" id="L416">      this.bettingRound();</span>
 <span class="nc" id="L417">      printLines();</span>
-<span class="nc" id="L418">      this.bettingRound();</span>
-<span class="nc" id="L419">      printLines();</span>
-<span class="nc" id="L420">      round++;</span>
+<span class="nc" id="L418">      System.out.println(&quot;RIVER&quot;);</span>
+<span class="nc" id="L419">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L420">      printLines();</span>
+<span class="nc" id="L421">      this.bettingRound();</span>
+<span class="nc" id="L422">      printLines();</span>
+<span class="nc" id="L423">      round++;</span>
 
     }
 
 
-<span class="nc" id="L425">  }</span>
+<span class="nc" id="L428">  }</span>
+
+
 
   private void printLines() throws NoCashException {
-<span class="nc" id="L428">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L429">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L430">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L431">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L432">    System.out.println(&quot;_____________________________&quot;);</span>
 <span class="nc" id="L433">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L434">  }</span>
+<span class="nc" id="L434">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L435">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L436">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L437">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L438">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L439">  }</span>
 
   // Check if only one player has money in the there purse.
     // if only one player has money in their purse game over

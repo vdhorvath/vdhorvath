@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DeckOfCardsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-09-09T02:30:17" hostname="Valeries-MacBook-Pro.local" time="0.002">
+<testsuite name="DeckOfCardsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-09-14T19:35:21" hostname="Valeries-MacBook-Pro.local" time="0.004">
   <properties/>
-  <testcase name="testDeckEquals" classname="DeckOfCardsTest" time="0.001"/>
+  <testcase name="testDeckEquals" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="addCard" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="testToString" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="showTopCard" classname="DeckOfCardsTest" time="0.0"/>
@@ -9,8 +9,8 @@
   <testcase name="getCard" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="getDeck" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="set" classname="DeckOfCardsTest" time="0.0"/>
-  <testcase name="size" classname="DeckOfCardsTest" time="0.0"/>
-  <testcase name="testHashCode" classname="DeckOfCardsTest" time="0.0"/>
+  <testcase name="size" classname="DeckOfCardsTest" time="0.001"/>
+  <testcase name="testHashCode" classname="DeckOfCardsTest" time="0.001"/>
   <testcase name="isEmpty" classname="DeckOfCardsTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

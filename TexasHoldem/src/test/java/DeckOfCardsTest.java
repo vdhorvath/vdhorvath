@@ -23,7 +23,7 @@ public class DeckOfCardsTest {
     deck1 = new DeckOfCards();
     deck2 = new DeckOfCards();
     card7 = new Card(Suit.Clubs, Value.Seven);
-    topCard = new Card(Suit.Spades, Value.ACE);
+    topCard = new Card(Suit.Spades, Value.Ace);
     emptyDeckOfCards = new EmptyDeckOfCards();
     cardHeartsSix = new Card(Suit.Hearts, Value.Six);
 

@@ -32,7 +32,7 @@ public class Players {
     this.purse = purse;
     this.choice = 0;
     this.raiseFlag = false;
-    this.hand = new ArrayList<>();
+    this.hand = hand;
 
   }
 

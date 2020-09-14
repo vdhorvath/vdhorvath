@@ -14,7 +14,7 @@ public class Table {
 
   public Table(ArrayList<Card> board) {
     this.pot = pot;
-    this.board = new ArrayList<>();
+    this.board = board;
 
   }
 
