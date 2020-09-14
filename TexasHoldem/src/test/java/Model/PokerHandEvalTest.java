@@ -85,8 +85,6 @@ public class PokerHandEvalTest {
     expected.add(card3); // king of spades
     expected.add(card6); // king of hearts
 
-
-
     assertEquals(expected, pokerHandEval.threeOfKind(player1, table));
 
   }

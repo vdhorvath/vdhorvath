@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DeckOfCardsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-09-14T19:35:21" hostname="Valeries-MacBook-Pro.local" time="0.004">
+<testsuite name="DeckOfCardsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-09-14T19:39:27" hostname="Valeries-MacBook-Pro.local" time="0.005">
   <properties/>
-  <testcase name="testDeckEquals" classname="DeckOfCardsTest" time="0.0"/>
+  <testcase name="testDeckEquals" classname="DeckOfCardsTest" time="0.001"/>
   <testcase name="addCard" classname="DeckOfCardsTest" time="0.0"/>
-  <testcase name="testToString" classname="DeckOfCardsTest" time="0.0"/>
+  <testcase name="testToString" classname="DeckOfCardsTest" time="0.001"/>
   <testcase name="showTopCard" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="popCard" classname="DeckOfCardsTest" time="0.0"/>
   <testcase name="getCard" classname="DeckOfCardsTest" time="0.0"/>

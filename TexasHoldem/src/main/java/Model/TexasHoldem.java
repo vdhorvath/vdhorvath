@@ -348,6 +348,7 @@ public class TexasHoldem {
     System.out.println(player.toCustomString());
     System.out.println("_________________________________");
     pokerHandEval.threeOfKind(player, currTable);
+
     System.out.println("_________________________________");
     dealer.askPlayerForChoice(player);
     this.validatePlayersChoice(shiftPlayersForBets, player);
@@ -374,8 +375,6 @@ public class TexasHoldem {
 
 
 
-
-
   public void PlayGame() throws NoCashException {
     int round = 0;
 
@@ -392,8 +391,6 @@ public class TexasHoldem {
 
     // create the players for the game and deal cards
     this.createPlayersForGame(this.numberOfPlayers);
-
-
 
 
 

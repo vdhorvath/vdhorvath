@@ -90,17 +90,24 @@ public class PokerHandEval {
     List<Card> cardsInPlay = cardsInPlay(player, table);
     int card = 0;
 
-    while(card < cardsInPlay.size()) {
-      Card currCard = cardsInPlay.get(card);
-      if(currCard.getValue().getValue() == pairToThree.get(1).getValue().getValue() &&
-          !pairToThree.contains(currCard)) {
-        pairToThree.add(currCard);
-        return pairToThree;
+    if (pairToThree.size() == 2) {
+
+      while (card < cardsInPlay.size()) {
+        Card currCard = cardsInPlay.get(card);
+        if (currCard.getValue().getValue() == pairToThree.get(0).getValue().getValue() &&
+            !pairToThree.contains(currCard)) {
+          pairToThree.add(currCard);
+          System.out.println(pairToThree);
+          return pairToThree;
+        }
+        card++;
+
       }
-      card++;
 
     }
     return null;
   }
+
+
 }
 
