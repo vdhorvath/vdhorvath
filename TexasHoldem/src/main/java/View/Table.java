@@ -80,6 +80,14 @@ public class Table {
   }
 
 
+  public void printBoard() {
+    if (!this.getBoard().isEmpty()) {
+      System.out.println(this.getBoard());
+    }
+  }
+
+
+
   @Override
   public String toString() {
     return "Table{" +

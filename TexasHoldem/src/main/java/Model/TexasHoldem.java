@@ -347,6 +347,7 @@ public class TexasHoldem {
     System.out.println(player.toString());
     System.out.println(player.toCustomString());
     System.out.println("_________________________________");
+
     pokerHandEval.bestPlayerHand(player, currTable);
 
     System.out.println("_________________________________");
@@ -355,6 +356,7 @@ public class TexasHoldem {
     System.out.println("_________________________________");
     System.out.println("_________________________________");
     System.out.println("_________________________________");
+    this.currTable.printBoard();
     System.out.println("Current Pot" + " " + this.currTable.getPot());
     System.out.println("_________________________________");
   }

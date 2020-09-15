@@ -91,8 +91,6 @@ public class PokerHandEval {
     List<Card> cardsInPlay = cardsInPlay(player, table);
     int card = 0;
 
-
-
     if (pairToThree.size() == 2) {
 
       while (card < cardsInPlay.size()) {
@@ -113,20 +111,28 @@ public class PokerHandEval {
 
 
 
+
+
   public void bestPlayerHand(Players player, Table table) {
     List<Card> threeOfKind = this.threeOfKind(player, table);
+    List<Card> twoPair = pair(player, table);
     List<Card> pair = this.pair(player, table);
-    Card highCard  = this.highCard(player, table);
+    Card highCard = this.highCard(player, table);
 
-    if(this.threeOfKind(player, table) != null) {
+    if(threeOfKind != null) {
       // is Three of Kind function later
-      System.out.println(String.format("Your Highest Hand :: %s", threeOfKind.toString()));
+      System.out.println(String.format("Your Highest Hand, Three of Kind :: %s", threeOfKind.toString()));
 
-    } else if (!this.pair(player, table).isEmpty()) {
+    } else if (twoPair.size() == 4) {
       // isPair function later
-      System.out.println(String.format("Your Highest Hand :: %s", pair.toString()));
+      System.out.println(String.format("Your Highest Hand, Two Pair :: %s", twoPair.toString()));
+
+    } else if (!pair.isEmpty()) {
+      // isPair function later
+      System.out.println(String.format("Your Highest Hand, Pair :: %s", pair.toString()));
+
     } else {
-      System.out.println(String.format("Your Highest Hand :: %s", highCard.toString()));
+      System.out.println(String.format("Your Highest Hand, Highcard:: %s", highCard.toString()));
 
     }
 
