@@ -51,36 +51,29 @@ public class Card implements Comparable&lt;Card&gt; {
   }
 
 
-  public int compareThree(Card c1, Card c2, Card c3) {
-<span class="nc bnc" id="L55" title="All 4 branches missed.">    if(c1.compareTo(c2) == 0 &amp;&amp; c2.compareTo(c3) == 0) {</span>
-<span class="nc" id="L56">        return 0;</span>
-    }
-<span class="nc" id="L58">    return -1;</span>
-  }
-
 
 
   @Override
   public boolean equals(Object o) {
-<span class="fc bfc" id="L65" title="All 2 branches covered.">    if (this == o) {</span>
-<span class="fc" id="L66">      return true;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (this == o) {</span>
+<span class="fc" id="L59">      return true;</span>
     }
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">    if (!(o instanceof Card)) {</span>
-<span class="nc" id="L69">      return false;</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">    if (!(o instanceof Card)) {</span>
+<span class="nc" id="L62">      return false;</span>
     }
-<span class="fc" id="L71">    Card card = (Card) o;</span>
-<span class="pc bpc" id="L72" title="1 of 4 branches missed.">    return suit == card.suit &amp;&amp;</span>
+<span class="fc" id="L64">    Card card = (Card) o;</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">    return suit == card.suit &amp;&amp;</span>
         value == card.value;
   }
 
   @Override
   public int hashCode() {
-<span class="fc" id="L78">    return Objects.hash(suit, value);</span>
+<span class="fc" id="L71">    return Objects.hash(suit, value);</span>
   }
 
   @Override
   public String toString() {
-<span class="fc" id="L83">    return &quot;&lt;&quot;+ value + &quot; &quot; + &quot;of&quot; + &quot; &quot; + suit +&quot;&gt;&quot;;</span>
+<span class="fc" id="L76">    return &quot;&lt;&quot;+ value + &quot; &quot; + &quot;of&quot; + &quot; &quot; + suit +&quot;&gt;&quot;;</span>
   }
 }
 

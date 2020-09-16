@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CardTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-09-14T19:39:27" hostname="Valeries-MacBook-Pro.local" time="0.003">
+<testsuite name="CardTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-09-15T17:55:12" hostname="Valeries-MacBook-Pro.local" time="0.001">
   <properties/>
-  <testcase name="testThatCardsAreNotEqual" classname="CardTest" time="0.002"/>
+  <testcase name="testThatCardsAreNotEqual" classname="CardTest" time="0.0"/>
   <testcase name="getSuit" classname="CardTest" time="0.0"/>
   <testcase name="testCompareToLess" classname="CardTest" time="0.0"/>
   <testcase name="testHashCode" classname="CardTest" time="0.0"/>

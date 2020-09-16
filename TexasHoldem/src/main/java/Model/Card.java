@@ -51,13 +51,6 @@ public class Card implements Comparable<Card> {
   }
 
 
-  public int compareThree(Card c1, Card c2, Card c3) {
-    if(c1.compareTo(c2) == 0 && c2.compareTo(c3) == 0) {
-        return 0;
-    }
-    return -1;
-  }
-
 
 
   @Override

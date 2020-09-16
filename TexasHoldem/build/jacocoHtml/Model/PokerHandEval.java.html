@@ -4,16 +4,18 @@ import Controller.Players;
 import View.Table;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
+import java.util.List;
+import java.util.Stack;
 
 
 public class PokerHandEval {
+  
 
 
-<span class="fc" id="L14">  public PokerHandEval() {</span>
+<span class="fc" id="L16">  public PokerHandEval() {</span>
 
-<span class="fc" id="L16">  }</span>
+<span class="fc" id="L18">  }</span>
 
   /**
    * Creates a list of cards that current in play.
@@ -25,18 +27,18 @@ public class PokerHandEval {
 
 
   public List&lt;Card&gt; cardsInPlay(Players player, Table table) {
-<span class="fc" id="L28">    List&lt;Card&gt; cardList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L30">    List&lt;Card&gt; cardList = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L30" title="All 2 branches covered.">    for (int i = 0; i &lt; player.getHand().size(); i++) {</span>
-<span class="fc" id="L31">      cardList.add(player.getHand().get(i));</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">    for (int i = 0; i &lt; player.getHand().size(); i++) {</span>
+<span class="fc" id="L33">      cardList.add(player.getHand().get(i));</span>
     }
 
-<span class="fc bfc" id="L34" title="All 2 branches covered.">    for (int j = 0; j &lt; table.size(); j++) {</span>
-<span class="fc" id="L35">      cardList.add(table.getBoard().get(j));</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">    for (int j = 0; j &lt; table.size(); j++) {</span>
+<span class="fc" id="L37">      cardList.add(table.getBoard().get(j));</span>
     }
 
-<span class="fc" id="L38">    Collections.sort(cardList, Collections.reverseOrder());</span>
-<span class="fc" id="L39">    return cardList;</span>
+<span class="fc" id="L40">    Collections.sort(cardList, Collections.reverseOrder());</span>
+<span class="fc" id="L41">    return cardList;</span>
 
   }
 
@@ -50,9 +52,9 @@ public class PokerHandEval {
 
 
   public Card highCard(Players player, Table table) {
-<span class="nc" id="L53">    List&lt;Card&gt; cardList = cardsInPlay(player, table);</span>
-<span class="nc" id="L54">    System.out.println(cardList.get(0));</span>
-<span class="nc" id="L55">    return cardList.get(0);</span>
+<span class="nc" id="L55">    List&lt;Card&gt; cardList = cardsInPlay(player, table);</span>
+    // System.out.println(cardList.get(0));
+<span class="nc" id="L57">    return cardList.get(0);</span>
 
   }
 
@@ -66,46 +68,151 @@ public class PokerHandEval {
 
 
   public List&lt;Card&gt; pair(Players player, Table table) {
-<span class="fc" id="L69">    List&lt;Card&gt; cardList = cardsInPlay(player, table);</span>
-<span class="fc" id="L70">    List&lt;Card&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L71">    List&lt;Card&gt; cardList = cardsInPlay(player, table);</span>
+<span class="fc" id="L72">    List&lt;Card&gt; result = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L72" title="All 2 branches covered.">    for (int i = 0; i &lt; cardList.size() - 1; i++) {</span>
-<span class="fc" id="L73">      Card one = cardList.get(i);</span>
-<span class="fc" id="L74">      Card two = cardList.get(i + 1);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    for (int i = 0; i &lt; cardList.size() - 1; i++) {</span>
+<span class="fc" id="L75">      Card one = cardList.get(i);</span>
+<span class="fc" id="L76">      Card two = cardList.get(i + 1);</span>
 
-<span class="fc bfc" id="L76" title="All 4 branches covered.">      if (one.getValue().getValue() == two.getValue().getValue() &amp;&amp; !result.contains(one)) {</span>
-<span class="fc" id="L77">        result.add(one);</span>
-<span class="fc" id="L78">        result.add(two);</span>
+<span class="fc bfc" id="L78" title="All 4 branches covered.">      if (one.getValue().getValue() == two.getValue().getValue() &amp;&amp; !result.contains(one)) {</span>
+<span class="fc" id="L79">        result.add(one);</span>
+<span class="fc" id="L80">        result.add(two);</span>
       }
+
     }
 
-<span class="fc" id="L82">    System.out.println(result);</span>
-<span class="fc" id="L83">    return result;</span>
+
+<span class="fc" id="L86">    return result;</span>
 
   }
 
 
   public List&lt;Card&gt; threeOfKind(Players player, Table table) {
-<span class="fc" id="L89">    List&lt;Card&gt; pairToThree = pair(player, table);</span>
-<span class="fc" id="L90">    List&lt;Card&gt; cardsInPlay = cardsInPlay(player, table);</span>
-<span class="fc" id="L91">    int card = 0;</span>
+<span class="fc" id="L92">    List&lt;Card&gt; pairToThree = pair(player, table);</span>
+<span class="fc" id="L93">    List&lt;Card&gt; cardsInPlay = cardsInPlay(player, table);</span>
+<span class="fc" id="L94">    int card = 0;</span>
 
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">    if (pairToThree.size() == 2) {</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">    if (pairToThree.size() == 2) {</span>
 
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">      while (card &lt; cardsInPlay.size()) {</span>
-<span class="fc" id="L96">        Card currCard = cardsInPlay.get(card);</span>
-<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (currCard.getValue().getValue() == pairToThree.get(0).getValue().getValue() &amp;&amp;</span>
-<span class="fc bfc" id="L98" title="All 2 branches covered.">            !pairToThree.contains(currCard)) {</span>
-<span class="fc" id="L99">          pairToThree.add(currCard);</span>
-<span class="fc" id="L100">          return pairToThree;</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">      while (card &lt; cardsInPlay.size()) {</span>
+<span class="fc" id="L99">        Card currCard = cardsInPlay.get(card);</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        if (currCard.getValue().getValue() == pairToThree.get(0).getValue().getValue() &amp;&amp;</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">            !pairToThree.contains(currCard)) {</span>
+<span class="fc" id="L102">          pairToThree.add(currCard);</span>
+
+<span class="fc" id="L104">          return pairToThree;</span>
         }
-<span class="fc" id="L102">        card++;</span>
+<span class="fc" id="L106">        card++;</span>
 
-<span class="fc" id="L104">      }</span>
+<span class="fc" id="L108">      }</span>
 
     }
-<span class="nc" id="L107">    return null;</span>
+<span class="nc" id="L111">    return null;</span>
   }
+
+
+  public List&lt;Card&gt; straight(Players player, Table table) {
+<span class="fc" id="L116">    List&lt;Card&gt; cardsInPlay = cardsInPlay(player, table);</span>
+<span class="fc" id="L117">    List&lt;Card&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L119">    int i = 0;</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">    if(cardsInPlay.size() &gt; 4) {</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">      while (i &lt; cardsInPlay.size() - 1) {</span>
+<span class="fc" id="L122">        int card1 = cardsInPlay.get(i).getValue().getValue();</span>
+<span class="fc" id="L123">        int card2 = cardsInPlay.get(i + 1).getValue().getValue();</span>
+<span class="fc" id="L124">        int check = card1 - card2;</span>
+
+<span class="pc bpc" id="L126" title="1 of 4 branches missed.">        if(check == 1 &amp;&amp; result.size() &lt;= 4) {</span>
+<span class="fc" id="L127">          result.add(cardsInPlay.get(i));</span>
+
+        }
+<span class="fc" id="L130">        i++;</span>
+<span class="fc" id="L131">        }</span>
+
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">      if(result.size() != 5) {</span>
+<span class="nc" id="L134">        return null;</span>
+      }
+
+<span class="fc" id="L137">      System.out.println(&quot;Double Check Straight&quot;);</span>
+<span class="fc" id="L138">      System.out.println(result);</span>
+<span class="fc" id="L139">      return result;</span>
+
+      }
+<span class="nc" id="L142">      return null;</span>
+
+
+  }
+
+
+  public Stack&lt;Card&gt; flush(Players player, Table table) {
+<span class="fc" id="L149">    List&lt;Card&gt; cardsInPlay = cardsInPlay(player, table);</span>
+<span class="fc" id="L150">    Stack&lt;Card&gt; cardStack = new Stack&lt;&gt;();</span>
+
+<span class="fc" id="L152">    int i = 0;</span>
+<span class="fc" id="L153">    int j = 0;</span>
+
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">    while (i &lt; cardsInPlay.size()) {</span>
+<span class="fc" id="L156">      Card currCard = cardsInPlay.get(i);</span>
+
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">      if (currCard.getSuit() == currCard.getSuit()) {</span>
+<span class="fc" id="L159">        cardStack.push(cardsInPlay.get(j));</span>
+<span class="fc" id="L160">        j++;</span>
+
+<span class="nc bnc" id="L162" title="All 2 branches missed.">      } else if (!cardStack.isEmpty()) {</span>
+<span class="nc" id="L163">        cardStack.pop();</span>
+        }
+<span class="fc" id="L165">        i++;</span>
+<span class="fc" id="L166">        j++;</span>
+
+<span class="fc" id="L168">      }</span>
+<span class="nc" id="L169">    System.out.println(cardStack);</span>
+<span class="nc" id="L170">    return cardStack;</span>
+
+  }
+
+
+
+
+
+
+
+  public void bestPlayerHand(Players player, Table table) {
+<span class="nc" id="L181">    List&lt;Card&gt; flush = this.flush(player, table);</span>
+<span class="nc" id="L182">    List&lt;Card&gt; straight = this.straight(player, table);</span>
+<span class="nc" id="L183">    List&lt;Card&gt; threeOfKind = this.threeOfKind(player, table);</span>
+<span class="nc" id="L184">    List&lt;Card&gt; pair = this.pair(player, table);</span>
+<span class="nc" id="L185">    Card highCard = this.highCard(player, table);</span>
+
+
+<span class="nc bnc" id="L188" title="All 2 branches missed.">     if(flush != null) {</span>
+      // is straight function later
+<span class="nc" id="L190">      System.out.println(String.format(&quot;Your Highest Hand, flush :: %s&quot;, flush.toString()));</span>
+    }
+
+<span class="nc bnc" id="L193" title="All 2 branches missed.">    else if(straight != null) {</span>
+      // is straight function later
+<span class="nc" id="L195">      System.out.println(String.format(&quot;Your Highest Hand, Straight :: %s&quot;, straight.toString()));</span>
+    }
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">    else if(threeOfKind != null) {</span>
+      // is Three of Kind function later
+<span class="nc" id="L200">      System.out.println(String.format(&quot;Your Highest Hand, Three of Kind :: %s&quot;, threeOfKind.toString()));</span>
+
+<span class="nc bnc" id="L202" title="All 2 branches missed.">    } else if (pair.size() == 4) {</span>
+      // isPair function later
+<span class="nc" id="L204">      System.out.println(String.format(&quot;Your Highest Hand, Two Pair :: %s&quot;, pair.toString()));</span>
+
+<span class="nc bnc" id="L206" title="All 2 branches missed.">    } else if (!pair.isEmpty()) {</span>
+      // isPair function later
+<span class="nc" id="L208">      System.out.println(String.format(&quot;Your Highest Hand, Pair :: %s&quot;, pair.toString()));</span>
+
+    } else {
+<span class="nc" id="L211">      System.out.println(String.format(&quot;Your Highest Hand, Highcard :: %s&quot;, highCard.toString()));</span>
+
+    }
+
+<span class="nc" id="L215">  }</span>
 
 
 }

@@ -347,16 +347,19 @@ public class TexasHoldem {
 <span class="nc" id="L347">    System.out.println(player.toString());</span>
 <span class="nc" id="L348">    System.out.println(player.toCustomString());</span>
 <span class="nc" id="L349">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L350">    pokerHandEval.threeOfKind(player, currTable);</span>
-<span class="nc" id="L351">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L352">    dealer.askPlayerForChoice(player);</span>
-<span class="nc" id="L353">    this.validatePlayersChoice(shiftPlayersForBets, player);</span>
-<span class="nc" id="L354">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L355">    System.out.println(&quot;_________________________________&quot;);</span>
+
+<span class="nc" id="L351">    pokerHandEval.bestPlayerHand(player, currTable);</span>
+
+<span class="nc" id="L353">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L354">    dealer.askPlayerForChoice(player);</span>
+<span class="nc" id="L355">    this.validatePlayersChoice(shiftPlayersForBets, player);</span>
 <span class="nc" id="L356">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L357">    System.out.println(&quot;Current Pot&quot; + &quot; &quot; + this.currTable.getPot());</span>
+<span class="nc" id="L357">    System.out.println(&quot;_________________________________&quot;);</span>
 <span class="nc" id="L358">    System.out.println(&quot;_________________________________&quot;);</span>
-<span class="nc" id="L359">  }</span>
+<span class="nc" id="L359">    this.currTable.printBoard();</span>
+<span class="nc" id="L360">    System.out.println(&quot;Current Pot&quot; + &quot; &quot; + this.currTable.getPot());</span>
+<span class="nc" id="L361">    System.out.println(&quot;_________________________________&quot;);</span>
+<span class="nc" id="L362">  }</span>
 
 
 
@@ -366,30 +369,30 @@ public class TexasHoldem {
    */
 
   private void updatePlayerFlags(List&lt;Players&gt; shiftPlayersForBets) {
-<span class="nc bnc" id="L369" title="All 2 branches missed.">      for(Players p: shiftPlayersForBets) {</span>
-<span class="nc" id="L370">        p.updateRaiseFlagFalse();</span>
-<span class="nc" id="L371">      }</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">      for(Players p: shiftPlayersForBets) {</span>
+<span class="nc" id="L373">        p.updateRaiseFlagFalse();</span>
+<span class="nc" id="L374">      }</span>
 
-<span class="nc" id="L373">  }</span>
+<span class="nc" id="L376">  }</span>
 
 
 
   public void PlayGame() throws NoCashException {
-<span class="nc" id="L378">    int round = 0;</span>
+<span class="nc" id="L381">    int round = 0;</span>
 
-<span class="nc" id="L380">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L381">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L382">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L383">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L384">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L385">    System.out.println(&quot;_____________________________&quot;);</span>
 
     // shuffle deck
 
-<span class="nc" id="L386">    dealer.shuffleDeck(this.currDeckOfCards);</span>
+<span class="nc" id="L389">    dealer.shuffleDeck(this.currDeckOfCards);</span>
 
     // cuts the deck
-<span class="nc" id="L389">    dealer.cutsDeck(this.currDeckOfCards);</span>
+<span class="nc" id="L392">    dealer.cutsDeck(this.currDeckOfCards);</span>
 
     // create the players for the game and deal cards
-<span class="nc" id="L392">    this.createPlayersForGame(this.numberOfPlayers);</span>
+<span class="nc" id="L395">    this.createPlayersForGame(this.numberOfPlayers);</span>
 
 
 
@@ -397,42 +400,42 @@ public class TexasHoldem {
 
 
 
-<span class="nc bnc" id="L400" title="All 2 branches missed.">    while (round != 1) {</span>
-<span class="nc" id="L401">      printLines();</span>
-<span class="nc" id="L402">      bettingRound();</span>
-<span class="nc" id="L403">      printLines();</span>
-<span class="nc" id="L404">      System.out.println(&quot;BELOW IS THE FLOP&quot;);</span>
-<span class="nc" id="L405">      dealer.dealFlop(this.currDeckOfCards, this.currTable);</span>
+<span class="nc bnc" id="L403" title="All 2 branches missed.">    while (round != 1) {</span>
+<span class="nc" id="L404">      printLines();</span>
+<span class="nc" id="L405">      bettingRound();</span>
 <span class="nc" id="L406">      printLines();</span>
-<span class="nc" id="L407">      bettingRound();</span>
-<span class="nc" id="L408">      printLines();</span>
-<span class="nc" id="L409">      System.out.println(&quot;TURN&quot;);</span>
-<span class="nc" id="L410">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L407">      System.out.println(&quot;BELOW IS THE FLOP&quot;);</span>
+<span class="nc" id="L408">      dealer.dealFlop(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L409">      printLines();</span>
+<span class="nc" id="L410">      bettingRound();</span>
 <span class="nc" id="L411">      printLines();</span>
-<span class="nc" id="L412">      this.bettingRound();</span>
-<span class="nc" id="L413">      printLines();</span>
-<span class="nc" id="L414">      System.out.println(&quot;RIVER&quot;);</span>
-<span class="nc" id="L415">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L412">      System.out.println(&quot;TURN&quot;);</span>
+<span class="nc" id="L413">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L414">      printLines();</span>
+<span class="nc" id="L415">      this.bettingRound();</span>
 <span class="nc" id="L416">      printLines();</span>
-<span class="nc" id="L417">      this.bettingRound();</span>
-<span class="nc" id="L418">      printLines();</span>
-<span class="nc" id="L419">      round++;</span>
+<span class="nc" id="L417">      System.out.println(&quot;RIVER&quot;);</span>
+<span class="nc" id="L418">      dealer.dealTurnOrRiver(this.currDeckOfCards, this.currTable);</span>
+<span class="nc" id="L419">      printLines();</span>
+<span class="nc" id="L420">      this.bettingRound();</span>
+<span class="nc" id="L421">      printLines();</span>
+<span class="nc" id="L422">      round++;</span>
 
     }
 
 
-<span class="nc" id="L424">  }</span>
+<span class="nc" id="L427">  }</span>
 
 
 
   private void printLines() throws NoCashException {
-<span class="nc" id="L429">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L430">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L431">    System.out.println(&quot;_____________________________&quot;);</span>
 <span class="nc" id="L432">    System.out.println(&quot;_____________________________&quot;);</span>
 <span class="nc" id="L433">    System.out.println(&quot;_____________________________&quot;);</span>
 <span class="nc" id="L434">    System.out.println(&quot;_____________________________&quot;);</span>
-<span class="nc" id="L435">  }</span>
+<span class="nc" id="L435">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L436">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L437">    System.out.println(&quot;_____________________________&quot;);</span>
+<span class="nc" id="L438">  }</span>
 
   // Check if only one player has money in the there purse.
     // if only one player has money in their purse game over

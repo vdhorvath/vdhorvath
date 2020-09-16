@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 
-
 public class PokerHandEval {
+
 
 
   public PokerHandEval() {
@@ -80,7 +80,7 @@ public class PokerHandEval {
 
     }
 
-    //System.out.println(result);
+
     return result;
 
   }
@@ -98,7 +98,7 @@ public class PokerHandEval {
         if (currCard.getValue().getValue() == pairToThree.get(0).getValue().getValue() &&
             !pairToThree.contains(currCard)) {
           pairToThree.add(currCard);
-          //System.out.println(pairToThree);
+
           return pairToThree;
         }
         card++;
@@ -110,29 +110,104 @@ public class PokerHandEval {
   }
 
 
+  public List<Card> straight(Players player, Table table) {
+    List<Card> cardsInPlay = cardsInPlay(player, table);
+    List<Card> result = new ArrayList<>();
 
+    int i = 0;
+    if(cardsInPlay.size() > 4) {
+      while (i < cardsInPlay.size() - 1) {
+        int card1 = cardsInPlay.get(i).getValue().getValue();
+        int card2 = cardsInPlay.get(i + 1).getValue().getValue();
+        int check = card1 - card2;
+
+        if(check == 1 && result.size() <= 4) {
+          result.add(cardsInPlay.get(i));
+
+        }
+        i++;
+        }
+
+      if(result.size() != 5) {
+        return null;
+      }
+
+      System.out.println("Double Check Straight");
+      System.out.println(result);
+      return result;
+
+      }
+      return null;
+
+
+  }
+
+/*
+  public Stack<Card> flush(Players player, Table table) {
+    List<Card> cardsInPlay = cardsInPlay(player, table);
+    Stack<Card> cardStack = new Stack<>();
+
+    int i = 0;
+    int j = 0;
+
+    if (cardsInPlay.size() > 4) {
+
+      while (i < cardStack.size()) {
+        Card currCard = cardsInPlay.get(i);
+
+        if (currCard.getSuit() == currCard.getSuit()) {
+          cardStack.push(cardsInPlay.get(j));
+          j++;
+
+        }
+          cardStack.pop();
+        }
+        i++;
+        j++;
+      }
+      System.out.println(cardStack);
+      return cardStack;
+
+    }
+
+    return null;
+
+
+  }*/
 
 
   public void bestPlayerHand(Players player, Table table) {
+    //List<Card> flush = this.flush(player, table);
+    List<Card> straight = this.straight(player, table);
     List<Card> threeOfKind = this.threeOfKind(player, table);
-    List<Card> twoPair = pair(player, table);
     List<Card> pair = this.pair(player, table);
     Card highCard = this.highCard(player, table);
 
-    if(threeOfKind != null) {
+
+  /*   if(flush != null) {
+      // is straight function later
+      System.out.println(String.format("Your Highest Hand, flush :: %s", flush.toString()));
+    }*/
+
+    if(straight != null) {
+      // is straight function later
+      System.out.println(String.format("Your Highest Hand, Straight :: %s", straight.toString()));
+    }
+
+    else if(threeOfKind != null) {
       // is Three of Kind function later
       System.out.println(String.format("Your Highest Hand, Three of Kind :: %s", threeOfKind.toString()));
 
-    } else if (twoPair.size() == 4) {
+    } else if (pair.size() == 4) {
       // isPair function later
-      System.out.println(String.format("Your Highest Hand, Two Pair :: %s", twoPair.toString()));
+      System.out.println(String.format("Your Highest Hand, Two Pair :: %s", pair.toString()));
 
     } else if (!pair.isEmpty()) {
       // isPair function later
       System.out.println(String.format("Your Highest Hand, Pair :: %s", pair.toString()));
 
     } else {
-      System.out.println(String.format("Your Highest Hand, Highcard:: %s", highCard.toString()));
+      System.out.println(String.format("Your Highest Hand, Highcard :: %s", highCard.toString()));
 
     }
 
