@@ -4,11 +4,11 @@
 This assignment was an academic assignment to learn more about a client-server model.
 
 
-**Did you use external resources? List them.**
+**Did you use external resources?**
 
 * https://www.tutorialspoint.com/c_standard_library/c_function_strcmp.htm
 * https://www.tutorialspoint.com/c_standard_library/c_function_sprintf.htm
-* A few other YouTube video resources, I can't find that discusses srand()
+
 
 **How to run the program**
 
