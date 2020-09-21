@@ -1,7 +1,7 @@
-# Mini Guessing Game 
+# Mini Guessing Game in C
 
-**Name**
-Valerie Horvath
+**Details**
+This assignment was an academic assignment to learn more about a client-server model.
 
 
 **Did you use external resources? List them.**
