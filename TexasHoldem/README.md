@@ -11,6 +11,6 @@ Texas Holdem is a modified version of the card texasHoldem poker. Two cards, kno
 
 **Why Texas Holdem?**
 
-This Texas Holdem project is a non-academic project that I designed to build on my object-oriented design skills. I also enjoy coding in Java. My approach for this project was to take a Model-View-Controller (MVC) design approach. My selection for this approach was because I wanted to create a project that was flexible enough to implement changes in the future. Specifically my goal is to make changes to the user interface of this game. At this time, the game plays out of the terminal. The next phase of this project will be to build the UI of this project using JavaFX. My ultimate goal is to make this gamea running web application.
+This Texas Holdem project is a non-academic project that I designed to build on my object-oriented design skills. I also enjoy coding in Java. My approach for this project was to take a Model-View-Controller (MVC) design approach. My selection for this approach was because I wanted to create a project that was flexible enough to implement changes in the future. Specifically my goal is to make changes to the user interface of this game. At this time, the game plays out of the terminal. The next phase of this project will be to build the UI of this project using JavaFX. My ultimate goal is to make this game a  running web application.
 
  
